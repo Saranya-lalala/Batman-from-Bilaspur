@@ -1,11 +1,393 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Batman from Bilaspur</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bilaspur Times - Special Birthday Edition</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f4e8d0;
+      color: #2c2c2c;
+      overflow-x: hidden;
+    }
+
+    /* Newspaper Container */
+    .newspaper {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: linear-gradient(to bottom, #f9f6f0 0%, #f4e8d0 100%);
+      padding: 3rem;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+      border: 2px solid #8B7355;
+      position: relative;
+    }
+
+    /* Aged paper texture overlay */
+    .newspaper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,115,85,0.03) 2px, rgba(139,115,85,0.03) 4px);
+      pointer-events: none;
+    }
+
+    /* Masthead */
+    .masthead {
+      text-align: center;
+      border-bottom: 4px double #2c2c2c;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .masthead h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    .edition-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #2c2c2c;
+    }
+
+    /* Main Headline */
+    .main-headline {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 2rem 0;
+      border-top: 3px solid #2c2c2c;
+      border-bottom: 3px solid #2c2c2c;
+    }
+
+    .main-headline h2 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .subheadline {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    .byline {
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 1rem;
+      color: #555;
+    }
+
+    /* Hero Image */
+    .hero-image {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .hero-image img {
+      max-width: 600px;
+      width: 100%;
+      height: auto;
+      border: 3px solid #2c2c2c;
+      filter: grayscale(100%) contrast(1.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .image-caption {
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 0.5rem;
+      color: #555;
+    }
+
+    /* Column Layout */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    .column {
+      border-right: 1px solid #ccc;
+      padding-right: 1.5rem;
+    }
+
+    .column:last-child {
+      border-right: none;
+    }
+
+    .column h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid #2c2c2c;
+      padding-bottom: 0.3rem;
+    }
+
+    .column p {
+      font-size: 0.95rem;
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+
+    /* Side Image */
+    .side-image {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .side-image img {
+      max-width: 100%;
+      border: 2px solid #2c2c2c;
+      filter: grayscale(100%) contrast(1.1);
+    }
+
+    /* Boxes */
+    .info-box {
+      border: 2px solid #2c2c2c;
+      padding: 1rem;
+      margin: 1rem 0;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .info-box h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .info-box p {
+      font-size: 0.85rem;
+      margin: 0.3rem 0;
+    }
+
+    /* Continue Button */
+    .continue-button {
+      text-align: center;
+      margin: 3rem 0;
+      animation: pulse 2s infinite;
+    }
+
+    .continue-button button {
+      background: #2c2c2c;
+      color: #f4e8d0;
+      border: 3px solid #2c2c2c;
+      padding: 1.5rem 3rem;
+      font-size: 1.3rem;
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+
+    .continue-button button:hover {
+      background: #f4e8d0;
+      color: #2c2c2c;
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* Quote Boxes */
+    .quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      padding: 1rem;
+      border-left: 4px solid #2c2c2c;
+      margin: 1rem 0;
+      background: rgba(255,255,255,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+      
+      .column {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .masthead h1 {
+        font-size: 2.5rem;
+      }
+
+      .main-headline h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
-<body style="background: black; color: white; text-align: center; padding: 100px; font-family: Arial;">
-  <h1>🦇 THE BATMAN FROM BILASPUR 🦇</h1>
-  <p>Coming February 12, 2026</p>
-  <p>Something special is being built...</p>
+<body>
+
+  <div class="newspaper">
+    
+    <!-- Masthead -->
+    <div class="masthead">
+      <h1>THE BILASPUR TIMES</h1>
+      <p class="tagline">"Juna Bilaspur's Most Trusted News Source Since Forever"</p>
+      <div class="edition-info">
+        <span><strong>SPECIAL BIRTHDAY EDITION</strong></span>
+        <span>Wednesday, February 12, 2026</span>
+        <span>Price: ₹10</span>
+      </div>
+    </div>
+
+    <!-- Main Headline -->
+    <div class="main-headline">
+      <h2>THE BATMAN OF BILASPUR TURNS 34</h2>
+      <p class="subheadline">Local Hero "Kaddu-Paddu" Defies Aging Process, Scientists Report "He's Like Fine Wine But Make It Adventure Sports"</p>
+      <p class="subheadline">Exclusive Investigation: How One Man Cycles 150km, Loses Every Bet, and Still Conquers Hearts Across Continents</p>
+      <p class="byline">By Sarah Investigates, Senior Romance & Adventure Correspondent</p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="hero-image">
+      <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/fe4624a3-cfba-417d-ac20-2657436ff15f.JPG" alt="The Batman of Bilaspur">
+      <p class="image-caption">EXCLUSIVE: The moment Bilaspur's hero revealed his true identity. Residents report "we always knew it was him." Photo credit: Anonymous admirer.</p>
+    </div>
+
+    <!-- Three Column Layout -->
+    <div class="columns">
+      
+      <!-- Column 1 -->
+      <div class="column">
+        <h3>Hero Completes Another Year of Excellence</h3>
+        <p><strong>JUNA BILASPUR</strong> — In a development that surprises absolutely no one familiar with local legend Akshay (known affectionately as "Kaddu-Paddu" and "That Guy Who Helps Everyone"), the beloved hero has completed his 34th year of being unreasonably generous, unfairly funny, and suspiciously good at literally everything.</p>
+        
+        <p>"We've run the numbers," reports Dr. Statistics from the Bilaspur Institute of Obvious Facts. "This man has a 100% success rate at making time for people, a 0% record in winning bets against his girlfriend, and somehow maintains hero status. The math doesn't add up."</p>
+
+        <div class="quote">
+          "I'm an undercover agent, Saranya."
+          <br>— Akshay, explaining his heroic activities
+        </div>
+
+        <p>When pressed about his remarkable aging process, sources close to the hero confirm he "literally gets better every year, like fine wine if wine could also cycle 150 kilometers."</p>
+
+        <p>The hero was unavailable for extended comment, reportedly too busy being the only man on an all-women adventure racing team. "He's just built different," confirmed teammates, shaking their heads in admiration.</p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="column">
+        <h3>Breaking: Man Reads Books Nightly to Girlfriend 7,000km Away</h3>
+        <p><strong>LONG DISTANCE DEPARTMENT</strong> — Romance researchers have declared Akshay's nightly book-reading tradition "the most romantic thing we've documented in our 40-year research history."</p>
+
+        <p>"Every. Single. Night," emphasizes Dr. Heart from the University of Long Distance Love. "Not sometimes. Not when convenient. Every night. While also maintaining quiz championship status AND training for 200km cycling. This shouldn't be physically possible."</p>
+
+        <div class="quote">
+          "Tu khush, toh main khush."
+          <br>— The hero's reported philosophy
+        </div>
+
+        <p>The recipient of these literary adventures, an LSE student who wishes to remain mysterious, was unavailable for comment but was reportedly seen smiling at her phone at all hours.</p>
+
+        <div class="side-image">
+          <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3782_(1).jpg" alt="Off-duty hero">
+          <p class="image-caption">RARE SIGHTING: The Batman of Bilaspur photographed during rare moment of rest. Witnesses report "he was probably planning his next adventure."</p>
+        </div>
+
+        <h3>Quiz Teams Consider Retirement</h3>
+        <p><strong>NATIONAL</strong> — Quiz organizations across India report "devastating morale" following Akshay's latest last-minute answer that "literally left people clapping."</p>
+
+        <p>"The pattern is clear," sighs defeated Quiz Master Ramesh. "They arrive together. They're adorable. Then HE drops an answer that makes the entire room applaud. It's not fair. It's also extremely impressive."</p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="column">
+        <h3>Betting Industry in Crisis</h3>
+        <p><strong>ECONOMICS DESK</strong> — The International Association of Wagers has issued an emergency bulletin following Akshay's unprecedented losing streak.</p>
+
+        <p>"Zero wins. Every single bet lost to his girlfriend," explains economist Dr. Probability. "She now has unlimited veto power. He keeps betting anyway. We suspect he's either terrible at gambling or brilliant at romance. Likely both."</p>
+
+        <div class="quote">
+          "Okay okay loserrrr!"
+          <br>— Unidentified girlfriend, reportedly
+        </div>
+
+        <div class="info-box">
+          <h4>🦇 HERO STATS</h4>
+          <p><strong>Cycling Distance:</strong> 150km (completed), 200km (this weekend)</p>
+          <p><strong>Adventure Roles:</strong> Trek Leader, Adventure Racer, Endurance Cyclist</p>
+          <p><strong>Quiz Record:</strong> Undefeated</p>
+          <p><strong>Bet Record:</strong> 0% wins, 100% adorable</p>
+          <p><strong>Nightly Reading Streak:</strong> 365+ days unbroken</p>
+          <p><strong>Makes Time For:</strong> Everyone</p>
+        </div>
+
+        <div class="info-box">
+          <h4>📰 CLASSIFIED</h4>
+          <p><strong>WANTED:</strong> Someone who can beat him at quizzes. Reward unlikely to be claimed.</p>
+          <p><strong>LOST:</strong> Every bet ever made. If found, girlfriend is keeping them.</p>
+          <p><strong>PUBLIC SERVICE:</strong> Sachin Tendulkar is not a cheater. This message brought to you by Concerned Bilaspur Citizens.</p>
+        </div>
+
+        <h3>Local Opinion</h3>
+        <div class="quote">
+          "Ayy dayya! This man is unbelievable. Generous, adventurous, funny. And he reads to his girlfriend every night? Pagluuu in the best way possible."
+          <br>— Juna Bilaspur Residents Association
+        </div>
+
+        <h3>Valentine's Day Miracle</h3>
+        <p><strong>ROMANCE SECTION</strong> — Sources confirm the hero's first kiss occurred on Valentine's Day, marking what experts call "peak romantic timing."</p>
+
+        <p>"Statistically perfect," notes Dr. Romance. "Valentine's Day first kiss? That's storybook material."</p>
+      </div>
+    </div>
+
+    <!-- Continue Button -->
+    <div class="continue-button">
+      <button onclick="turnPage()">📖 TURN PAGE TO CONTINUE STORY →</button>
+    </div>
+
+  </div>
+
+  <script>
+    function turnPage() {
+      // This will trigger the transition to comic book section
+      // We'll build this next!
+      alert("🦇 COMING SOON: The comic book adventure begins!\n\nNext sections:\n• Origin Story\n• Superpowers\n• The Adventures\n• By The Numbers\n• Mission: London\n\nStay tuned! 💕");
+    }
+  </script>
+
 </body>
 </html>
