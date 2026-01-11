@@ -1033,6 +1033,30 @@
     </p>
 
   </div>
+  <script>
+    let musicPlaying = false;
+
+    function toggleMusic() {
+      const btn = document.getElementById('musicBtn');
+      musicPlaying = !musicPlaying;
+      btn.textContent = musicPlaying ? '🔊' : '🔇';
+      // Music integration will be added later
+    }
+
+    function turnPage() {
+      const newspaper = document.getElementById('newspaper');
+      const comic = document.getElementById('comicSection');
+      
+      // Hide newspaper with animation
+      newspaper.classList.add('hidden');
+      
+      // Show comic after newspaper fades
+      setTimeout(() => {
+        newspaper.style.display = 'none';
+        comic.classList.add('active');
+        window.scrollTo(0, 0);
+      }, 1000);
+    }
   </script>
 
 </body>
