@@ -16,8 +16,7 @@
       font-family: 'Georgia', 'Times New Roman', serif;
       background: #1a1a1a;
       color: #2c2c2c;
-      overflow: hidden;
-      height: 100vh;
+      overflow-x: hidden;
     }
 
     /* Music Control */
@@ -40,145 +39,32 @@
       transform: scale(1.1);
     }
 
-    /* Book Container */
-    .book-container {
-      perspective: 2000px;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* Page */
-    .page {
-      position: absolute;
-      width: 90%;
+    /* Newspaper */
+    .newspaper {
       max-width: 1200px;
-      height: 85vh;
-      background: white;
-      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-      border-radius: 8px;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transform-origin: left center;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    .page.active {
-      opacity: 1;
-      pointer-events: all;
-      transform: translateX(0) rotateY(0deg);
-      z-index: 100;
-    }
-
-    .page.turning-out {
-      animation: pageTurnOut 0.8s forwards;
-      z-index: 200;
-    }
-
-    .page.turned {
-      opacity: 0;
-      transform: translateX(-100%) rotateY(-90deg);
-      pointer-events: none;
-    }
-
-    @keyframes pageTurnOut {
-      0% {
-        transform: translateX(0) rotateY(0deg);
-      }
-      100% {
-        transform: translateX(-100%) rotateY(-90deg);
-        opacity: 0;
-      }
-    }
-
-    /* Navigation */
-    .nav-controls {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10000;
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      background: rgba(0,0,0,0.8);
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      border: 2px solid #FFD700;
-    }
-
-    .nav-btn {
-      background: #FFD700;
-      border: 3px solid #000;
-      color: #000;
-      font-size: 1.5rem;
-      font-weight: 900;
-      padding: 0.5rem 1.5rem;
-      cursor: pointer;
-      border-radius: 30px;
-      font-family: 'Bangers', cursive;
-      transition: all 0.3s;
-    }
-
-    .nav-btn:hover:not(:disabled) {
-      transform: scale(1.1);
-      background: #FFF;
-    }
-
-    .nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
-    .page-counter {
-      color: white;
-      font-family: 'Permanent Marker', cursive;
-      font-size: 1.2rem;
-    }
-
-    /* Click zones for page turning */
-    .click-zone {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .click-zone.left {
-      left: 0;
-    }
-
-    .click-zone.right {
-      right: 0;
-    }
-
-    .click-zone:hover {
-      background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
-    }
-
-    /* Newspaper Page Styles */
-    .newspaper-page {
+      margin: 2rem auto;
       background: linear-gradient(to bottom, #f9f6f0 0%, #f4e8d0 100%);
       padding: 3rem;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+      border: 2px solid #8B7355;
       position: relative;
+      transition: all 1s ease;
     }
 
-    .newspaper-page::before {
+    .newspaper.hidden {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    .newspaper::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,115,85,0.03) 2px, rgba(139,115,85,0.03) 4px);
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,115,85,0.03) 2px, rgba(139,115,85,0.03) 4px);
       pointer-events: none;
     }
 
@@ -232,11 +118,6 @@
       margin: 0.5rem 0;
     }
 
-    .hero-image {
-      text-align: center;
-      margin: 1.5rem 0;
-    }
-
     .hero-image img {
       max-width: 500px;
       width: 100%;
@@ -257,7 +138,6 @@
       gap: 1.5rem;
       margin: 1.5rem 0;
       font-size: 0.9rem;
-      line-height: 1.5;
     }
 
     .column {
@@ -293,10 +173,6 @@
       background: rgba(255,255,255,0.3);
     }
 
-    .side-image {
-      margin: 0.8rem 0;
-    }
-
     .side-image img {
       max-width: 100%;
       border: 2px solid #2c2c2c;
@@ -322,45 +198,246 @@
       margin: 0.2rem 0;
     }
 
-    /* Comic Page Styles */
-    .comic-page {
-      background: #1a1a1a;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .chapter-title {
+    .continue-button {
       text-align: center;
-      margin-bottom: 2rem;
+      margin: 3rem 0;
+      animation: pulse 2s infinite;
     }
 
-    .chapter-title h1 {
+    .continue-button button {
+      background: #2c2c2c;
+      color: #f4e8d0;
+      border: 3px solid #2c2c2c;
+      padding: 1.5rem 3rem;
+      font-size: 1.3rem;
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+
+    .continue-button button:hover {
+      background: #f4e8d0;
+      color: #2c2c2c;
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* Chapter Grid */
+    .chapter-grid-section {
+      display: none;
+      opacity: 0;
+      background: #1a1a1a;
+      min-height: 100vh;
+      padding: 4rem 2rem;
+    }
+
+    .chapter-grid-section.active {
+      display: block;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .grid-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .grid-header h1 {
       font-family: 'Bangers', cursive;
-      font-size: 4rem;
+      font-size: 5rem;
       color: #FFD700;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow: 4px 4px 0 #000, 
-                   -2px -2px 0 #000,  
-                   2px -2px 0 #000,
-                   -2px 2px 0 #000;
+      letter-spacing: 6px;
+      text-shadow: 6px 6px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+      margin-bottom: 1rem;
     }
 
-    .chapter-title p {
-      font-family: 'Permanent Marker', cursive;
+    .grid-header p {
+      color: white;
       font-size: 1.5rem;
-      color: #fff;
+      font-family: 'Permanent Marker', cursive;
+      letter-spacing: 2px;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .chapter-box {
+      background: white;
+      border: 8px solid #000;
+      border-radius: 12px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.5);
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chapter-box:hover:not(.coming-soon) {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 16px 16px 0 rgba(255,215,0,0.4);
+      border-color: #FFD700;
+    }
+
+    .chapter-box.coming-soon {
+      opacity: 0.4;
+      cursor: default;
+      background: #e0e0e0;
+    }
+
+    .chapter-number {
+      background: #FFD700;
+      color: #000;
+      font-family: 'Bangers', cursive;
+      font-size: 2rem;
+      padding: 0.5rem 1.5rem;
+      border: 5px solid #000;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      transform: rotate(-3deg);
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .chapter-box.coming-soon .chapter-number {
+      background: #ccc;
+    }
+
+    .chapter-box h2 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2.5rem;
+      color: #FF0000;
+      margin-bottom: 1rem;
       text-transform: uppercase;
     }
 
+    .chapter-preview-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border: 5px solid #000;
+      filter: grayscale(100%) contrast(1.3);
+      margin: 1rem 0;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+    }
+
+    .chapter-desc {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+      flex-grow: 1;
+    }
+
+    .read-btn {
+      background: #2c2c2c;
+      color: white;
+      border: 4px solid #000;
+      padding: 1rem 2rem;
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: all 0.3s;
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    .read-btn:hover {
+      background: #FFD700;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    /* Chapter Viewer */
+    .chapter-viewer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      z-index: 20000;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .chapter-viewer.active {
+      display: block;
+      animation: fadeIn 0.3s;
+    }
+
+    .chapter-viewer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 5rem;
+    }
+
+    .viewer-header {
+      position: sticky;
+      top: 0;
+      background: rgba(26,26,26,0.95);
+      padding: 1.5rem;
+      z-index: 100;
+      border-bottom: 4px solid #FFD700;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .viewer-title {
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      color: #FFD700;
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    .back-to-grid-btn {
+      background: #FFD700;
+      color: #000;
+      border: 4px solid #000;
+      padding: 0.8rem 2rem;
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+    }
+
+    .back-to-grid-btn:hover {
+      background: #FFF;
+      transform: scale(1.05);
+    }
+
+    /* Comic Panel Styles */
     .comic-panel {
       background: white;
       border: 8px solid #000;
-      border-radius: 8px;
-      padding: 2rem;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 3rem auto;
+      max-width: 1000px;
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.5);
       position: relative;
     }
 
@@ -371,8 +448,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: 
-        radial-gradient(circle, #000 1px, transparent 1px);
+      background-image: radial-gradient(circle, #000 1px, transparent 1px);
       background-size: 4px 4px;
       opacity: 0.05;
       pointer-events: none;
@@ -381,39 +457,35 @@
     .panel-header {
       background: #FFD700;
       color: #000;
-      padding: 0.5rem 1rem;
-      border: 4px solid #000;
+      padding: 0.6rem 1.5rem;
+      border: 5px solid #000;
       display: inline-block;
       font-family: 'Bangers', cursive;
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
       transform: rotate(-2deg);
-      box-shadow: 4px 4px 0 #000;
+      box-shadow: 5px 5px 0 #000;
     }
 
-    .panel-content {
+    .panel-content-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
       align-items: center;
+      margin: 2rem 0;
     }
 
     .panel-text {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #2c2c2c;
+      font-size: 1.2rem;
+      line-height: 1.8;
     }
 
     .panel-text h3 {
       font-family: 'Permanent Marker', cursive;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       color: #FF0000;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
-    }
-
-    .panel-image {
-      text-align: center;
     }
 
     .panel-image img {
@@ -427,11 +499,11 @@
       background: white;
       border: 4px solid #000;
       border-radius: 20px;
-      padding: 1.2rem;
+      padding: 1.5rem;
       position: relative;
-      margin: 1.5rem 0;
+      margin: 2rem 0;
       font-family: 'Permanent Marker', cursive;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       box-shadow: 4px 4px 0 #000;
     }
 
@@ -459,45 +531,37 @@
     .caption-box {
       background: #FFD700;
       border: 3px solid #000;
-      padding: 0.8rem 1.2rem;
-      margin: 1rem 0;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
       font-family: 'Georgia', serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-style: italic;
-      box-shadow: 3px 3px 0 #000;
+      box-shadow: 4px 4px 0 #000;
     }
 
     .sound-effect {
       font-family: 'Bangers', cursive;
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: #FFD700;
       text-align: center;
-      margin: 1.5rem 0;
-      text-shadow: 4px 4px 0 #000,
-                   -2px -2px 0 #000,
-                   2px -2px 0 #000,
-                   -2px 2px 0 #000;
+      margin: 2rem 0;
+      text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
     }
 
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
 
     .stat-box {
       background: #FFD700;
       border: 5px solid #000;
-      padding: 1rem;
+      padding: 1.5rem;
       text-align: center;
       transform: rotate(-1deg);
       box-shadow: 6px 6px 0 #000;
-      transition: transform 0.3s;
-    }
-
-    .stat-box:hover {
-      transform: rotate(0deg) scale(1.05);
     }
 
     .stat-box:nth-child(even) {
@@ -508,39 +572,44 @@
 
     .stat-box h4 {
       font-family: 'Bangers', cursive;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
       text-transform: uppercase;
     }
 
     .stat-box p {
-      font-size: 0.85rem;
-      font-family: 'Georgia', serif;
+      font-size: 0.95rem;
     }
 
-    /* Page turn hint */
-    .turn-hint {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
-      color: rgba(0,0,0,0.3);
+    .chapter-title-section {
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .chapter-title-section h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 5rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+      margin-bottom: 1rem;
+    }
+
+    .chapter-title-section p {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.9rem;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
+      font-size: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     @media (max-width: 768px) {
-      .page {
-        width: 95%;
-        height: 90vh;
+      .chapter-grid {
+        grid-template-columns: 1fr;
       }
 
-      .panel-content {
+      .panel-content-grid {
         grid-template-columns: 1fr;
       }
 
@@ -551,12 +620,6 @@
       .columns {
         grid-template-columns: 1fr;
       }
-
-      .column {
-        border: none;
-        padding: 0;
-        margin-bottom: 1rem;
-      }
     }
   </style>
 </head>
@@ -565,504 +628,128 @@
   <!-- Music Control -->
   <div class="music-control" onclick="toggleMusic()" id="musicBtn">🔊</div>
 
-  <!-- Book Container -->
-  <div class="book-container">
-
-    <!-- PAGE 1: NEWSPAPER -->
-    <div class="page active" id="page1">
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="newspaper-page">
-        <div class="masthead">
-          <h1>THE BILASPUR TIMES</h1>
-          <p class="tagline">"Juna Bilaspur's Most Trusted News Source Since Forever"</p>
-          <div class="edition-info">
-            <span><strong>SPECIAL BIRTHDAY EDITION</strong></span>
-            <span>Wednesday, February 12, 2026</span>
-            <span>Price: ₹10</span>
-          </div>
-        </div>
-
-        <div class="main-headline">
-          <h2>THE BATMAN OF BILASPUR TURNS 34</h2>
-          <p class="subheadline">Local Hero "Kaddu-Paddu" Defies Aging Process</p>
-          <p class="subheadline">How One Man Cycles 200km, Loses Every Bet, and Conquers Hearts</p>
-        </div>
-
-        <div class="hero-image">
-          <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/fe4624a3-cfba-417d-ac20-2657436ff15f.JPG" alt="Batman">
-          <p class="image-caption">EXCLUSIVE: The hero revealed. "We always knew it was him."</p>
-        </div>
-
-        <div class="columns">
-          <div class="column">
-            <h3>Year of Excellence</h3>
-            <p><strong>JUNA BILASPUR</strong> — Local legend Akshay completes his 34th year of being unreasonably generous and suspiciously good at everything.</p>
-            <div class="quote">"I'm an undercover agent, Saranya." — Akshay</div>
-          </div>
-
-          <div class="column">
-            <h3>Reads to Girlfriend 7,000km Away</h3>
-            <p>"Every. Single. Night," reports Dr. Heart. "This shouldn't be possible."</p>
-            <div class="quote">"Tu khush, toh main khush."</div>
-            <div class="side-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3782_(1).jpg" alt="Hero">
-            </div>
-          </div>
-
-          <div class="column">
-            <h3>Betting Crisis</h3>
-            <p>Zero wins. Unlimited veto powers lost.</p>
-            <div class="info-box">
-              <h4>🦇 STATS</h4>
-              <p><strong>Cycling:</strong> 150, 200km ✓</p>
-              <p><strong>Quiz:</strong> Undefeated</p>
-              <p><strong>Bets:</strong> 0%</p>
-              <p><strong>Reading:</strong> 365+ days</p>
-            </div>
-          </div>
-        </div>
+  <!-- Newspaper -->
+  <div class="newspaper" id="newspaper">
+    <div class="masthead">
+      <h1>THE BILASPUR TIMES</h1>
+      <p class="tagline">"Juna Bilaspur's Most Trusted News Source Since Forever"</p>
+      <div class="edition-info">
+        <span><strong>SPECIAL BIRTHDAY EDITION</strong></span>
+        <span>Wednesday, February 12, 2026</span>
+        <span>Price: ₹10</span>
       </div>
-      <div class="turn-hint">Click right to turn page →</div>
     </div>
 
-    <!-- PAGE 2: CHAPTER 1 INTRO -->
-    <div class="page" id="page2">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="chapter-title">
-          <h1>CHAPTER 1</h1>
-          <p>Origin Story: The Boy from Juna Bilaspur</p>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">JUNA BILASPUR, INDIA</div>
-          <div class="caption-box">
-            Every hero has an origin. This one begins with trees, parrots, and endless cricket...
-          </div>
-          <div class="panel-text">
-            <h3>The City That Made Him</h3>
-            <p>Juna Bilaspur. Evening chai on terraces. Parrots at sunset. A boy with three sisters and loving parents learning what generosity means.</p>
-            <p>His room faced a beautiful tree. Every evening, watching parrots return home. Later, he'd become the person people return to.</p>
-          </div>
-        </div>
-      </div>
-      <div class="turn-hint">Click right to continue →</div>
+    <div class="main-headline">
+      <h2>THE BATMAN OF BILASPUR TURNS 34</h2>
+      <p class="subheadline">Local Hero "Kaddu-Paddu" Defies Aging Process</p>
+      <p class="subheadline">How One Man Cycles 200km, Loses Every Bet, Conquers Hearts</p>
     </div>
 
-    <!-- PAGE 3: FAMILY & IDOLS -->
-    <div class="page" id="page3">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">THE FOUNDATION</div>
-          <div class="panel-text">
-            <h3>Built by Love</h3>
-            <p><strong>From Aai:</strong> Generosity without bounds<br>
-            <strong>From Pappa:</strong> Unwavering righteousness</p>
-            <p>Three sisters. Aunt's legendary cooking. Ganesh Chaturthi festivals. Gupchup runs. Samosa missions.</p>
-            <div class="speech-bubble">
-              "Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off!"
-            </div>
-          </div>
+    <div class="hero-image" style="text-align: center; margin: 1.5rem 0;">
+      <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/fe4624a3-cfba-417d-ac20-2657436ff15f.JPG" alt="Batman">
+      <p class="image-caption">EXCLUSIVE: The hero revealed.</p>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <h3>Year of Excellence</h3>
+        <p><strong>JUNA BILASPUR</strong> — Akshay completes 34th year of being unreasonably generous.</p>
+        <div class="quote">"I'm an undercover agent, Saranya."</div>
+      </div>
+
+      <div class="column">
+        <h3>Reads to Girlfriend 7,000km Away</h3>
+        <p>"Every. Single. Night."</p>
+        <div class="quote">"Tu khush, toh main khush."</div>
+        <div class="side-image" style="margin: 0.8rem 0;">
+          <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3782_(1).jpg" alt="Hero">
         </div>
-        <div class="comic-panel">
-          <div class="panel-header">THREE HEROES</div>
-          <div class="hero-stats">
-            <div class="stat-box">
-              <h4>🏏 SACHIN</h4>
-              <p>Excellence speaks</p>
-            </div>
-            <div class="stat-box">
-              <h4>🦇 BATMAN</h4>
-              <p>Helps everyone</p>
-            </div>
-            <div class="stat-box">
-              <h4>⚽ GERRARD</h4>
-              <p>Never gives up</p>
-            </div>
-          </div>
+      </div>
+
+      <div class="column">
+        <h3>Betting Crisis</h3>
+        <p>Zero wins. Unlimited veto powers.</p>
+        <div class="info-box">
+          <h4>🦇 STATS</h4>
+          <p><strong>Cycling:</strong> 150, 200km ✓</p>
+          <p><strong>Quiz:</strong> Undefeated</p>
+          <p><strong>Bets:</strong> 0%</p>
         </div>
       </div>
     </div>
 
-    <!-- PAGE 4: MEET AKSHAY -->
-    <div class="page" id="page4">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel">
-          <div class="panel-header">MEET THE HERO</div>
-          <div class="panel-content">
-            <div class="panel-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Akshay">
-            </div>
-            <div class="panel-text">
-              <h3>AKSHAY</h3>
-              <p><strong>Age:</strong> 34 (like fine wine)</p>
-              <p><strong>AKA:</strong> Kaddu-Paddu, Quiz Master, Future London Detective</p>
-              <p><strong>Powers:</strong> Generosity, Adventure, Humor, Making Time for All</p>
-              <p><strong>Weaknesses:</strong> Betting, Sleeping, Spaghetti Methods</p>
-            </div>
-          </div>
-          <div class="speech-bubble">
-            "Main theek hoon! Adventure racing at dawn, quiz at night, bedtime stories across 7,000km? Just another Tuesday."
-          </div>
-        </div>
-      </div>
+    <div class="continue-button">
+      <button onclick="openGrid()">📖 ENTER COMIC BOOK →</button>
     </div>
-
-    <!-- PAGE 5: CHAPTER 2 INTRO -->
-    <div class="page" id="page5">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="chapter-title">
-          <h1>CHAPTER 2</h1>
-          <p>The Bangalore Era: Where Heroes Are Made</p>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">BANGALORE, 2024 — THE INTERVIEW</div>
-          <div class="caption-box">
-            She was hiring. He was applying. She almost said no. History almost changed.
-          </div>
-          <div class="panel-text">
-            <h3>The Decision</h3>
-            <p>"I reviewed his application. Competent. Qualified. But I hesitated. Almost clicked 'reject.'"</p>
-            <p>She didn't know 'yes' meant morning chai, campus walks, and someone who'd read to her from 7,000km away.</p>
-            <p><strong>Best hiring decision ever made.</strong></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 6: MAKING HOME -->
-    <div class="page" id="page6">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">TINY ROOMS, BIG HEARTS</div>
-          <div class="panel-content">
-            <div class="panel-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home">
-            </div>
-            <div class="panel-text">
-              <h3>Building Home</h3>
-              <p>Morning: chai delivered. Evening: Amul walks.</p>
-              <div class="speech-bubble" style="font-size: 0.95rem;">
-                "Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."
-              </div>
-              <p style="font-size: 0.9rem; font-style: italic;">(She watched anyway. He slept anyway.)</p>
-            </div>
-          </div>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">SPAGHETTI DISASTER</div>
-          <div class="sound-effect" style="font-size: 2rem; color: #FF0000;">BUBBLE! POP!</div>
-          <div class="speech-bubble">
-            "Pagluuu, this is authentic Italian. Trust the process."
-          </div>
-          <p style="text-align: center; margin-top: 1rem;">Process not trusted. Spaghetti survived. Laughter lasted longer.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 7: BANGALORE MAP -->
-    <div class="page" id="page7">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel">
-          <div class="panel-header">BANGALORE MISSION MAP</div>
-          <div class="caption-box">
-            Every hero has territory. Every couple has spots. Where adventures happened daily.
-          </div>
-          <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
-            <div class="stat-box">
-              <h4>☕ AMUL</h4>
-              <p>Chai + Bread-Butter. "Tu mera sabse bada distraction hai."</p>
-            </div>
-            <div class="stat-box">
-              <h4>🍫 LAVONNE</h4>
-              <p>Hot chocolate = You. Nickname stuck.</p>
-            </div>
-            <div class="stat-box">
-              <h4>🍕 TAAZA THINDI</h4>
-              <p>Morning dosa & coffee ritual</p>
-            </div>
-            <div class="stat-box">
-              <h4>🎳 BOWLING</h4>
-              <p>Competition. Trash talk. (He won.)</p>
-            </div>
-            <div class="stat-box">
-              <h4>🎪 SODABOTTLE</h4>
-              <p>Making up stranger stories</p>
-            </div>
-            <div class="stat-box">
-              <h4>🏨 UB CITY</h4>
-              <p>Rooftop views. City was theirs.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 8: VALENTINE'S DAY -->
-    <div class="page" id="page8">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel">
-          <div class="panel-header">FEBRUARY 14, 2025 — THE BET</div>
-          <div class="panel-content">
-            <div class="panel-text">
-              <h3>Valentine's Day Saree</h3>
-              <p>Bet challenged. Dare: wear saree Valentine's Day.</p>
-              <p>He wore THE EXACT BLUE matching her saree! Tiny bet. Worlds together.</p>
-              <p><strong>The first kiss. Perfect moment. Perfect person.</strong></p>
-              <div class="speech-bubble">
-                "Okay okay loserrrr! But... wow."
-              </div>
-            </div>
-            <div class="panel-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Hey Bob">
-            </div>
-          </div>
-          <div class="caption-box">
-            She wore the saree. Won the bet. He lost his heart. Best bet ever.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 9: PARTNERSHIP -->
-    <div class="page" id="page9">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">COMPETITIVE EVERYTHING</div>
-          <div class="panel-text">
-            <h3>The Alliance</h3>
-            <p>Mornings: Crossword, Wordle. Evenings: Cinema, Lit Fest, stand-up. Nights: Him singing lyrics about her.</p>
-            <div class="speech-bubble">"Panchayat and Hot Chocolate tonight?"</div>
-            <div class="caption-box" style="font-size: 0.85rem;">
-              Harry Potter Hindi titles (Paras Patthar!): inside joke. Dumbledore for students: "It is our choices that show what we truly are."
-            </div>
-          </div>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">WORKPLACE ROMANCE</div>
-          <div class="speech-bubble">"I'm an undercover agent. Nobody suspects."</div>
-          <p style="text-align: center; font-style: italic;">(Everyone suspected. Everyone delighted.)</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 10: CHAPTER 3 INTRO -->
-    <div class="page" id="page10">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="chapter-title">
-          <h1>CHAPTER 3</h1>
-          <p>The Adventures: Conquering Everything</p>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">THE STORYTELLER</div>
-          <div class="panel-content">
-            <div class="panel-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Audience">
-            </div>
-            <div class="panel-text">
-              <h3>Room Goes Silent</h3>
-              <p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p>
-              <p><strong>#1 fan? Sarayu. Obviously.</strong></p>
-            </div>
-          </div>
-          <div class="caption-box">
-            Master storyteller. Notice how everyone leans in. Nobody checks phones. Superpower.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 11: QUIZ MASTERS -->
-    <div class="page" id="page11">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel">
-          <div class="panel-header">UNDEFEATED CHAMPIONS</div>
-          <div class="sound-effect" style="color: #00A8E8;">*APPLAUSE*</div>
-          <div class="panel-text">
-            <h3>The Last-Minute Answer</h3>
-            <p>Final question. Teams stumped. Clock ticking.</p>
-            <p>Akshay: "Wait... I know this one!"</p>
-            <p><strong>Perfect answer. Dramatic timing. Crowd clapping.</strong></p>
-            <p>Every. Single. Time.</p>
-          </div>
-          <div class="caption-box">
-            Quiz record: UNDEFEATED. Method: Her strategy + His brilliance. Result: Glory.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 12: BETS & SONGS -->
-    <div class="page" id="page12">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">THE LOSING STREAK</div>
-          <div class="panel-text">
-            <h3>Statistical Analysis</h3>
-            <p style="font-size: 1.8rem; text-align: center; margin: 1.5rem 0;">
-              Akshay's Wins: <span style="color: #FF0000; font-family: 'Bangers', cursive; font-size: 2.5rem;">0%</span><br>
-              Saranya's Veto: <span style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 2.5rem;">100%</span>
-            </p>
-            <div class="speech-bubble">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
-          </div>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">SONG WEAKNESS</div>
-          <p><strong>Quiz:</strong> Unbeatable ✅ <strong>Songs:</strong> Uh... ❌</p>
-          <div class="speech-bubble">"Wait, I know this! *hums wrong song*"</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 13: CYCLING -->
-    <div class="page" id="page13">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel">
-          <div class="panel-header">LIMITS? WHAT LIMITS?</div>
-          <div class="panel-content">
-            <div class="panel-image">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cyclist">
-            </div>
-            <div class="panel-text">
-              <h3>The Journey Continues</h3>
-              <p style="font-size: 1.5rem; font-family: 'Bangers', cursive; margin: 1rem 0;">
-                ✅ 150km: DONE<br>
-                ✅ 200km: DONE<br>
-                🎯 300km: NEXT
-              </p>
-              <div class="speech-bubble">
-                "Three hundred? These aged legs need a cycle upgrade or they'll mutiny."
-              </div>
-            </div>
-          </div>
-          <div class="caption-box">
-            Spirit: unstoppable. Knees: negotiating. Bike: doing its best. Legend: continues.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 14: ADVENTURES -->
-    <div class="page" id="page14">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="click-zone right" onclick="nextPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">ONLY MAN STANDING</div>
-          <div class="panel-text">
-            <h3>Adventure Racer</h3>
-            <p><strong>Team:</strong> One man. Fearless women. Zero intimidation.</p>
-            <p><strong>Trek leader:</strong> Mountains conquered. Teams inspired.</p>
-            <div class="speech-bubble">"I'm just the luckiest to be here."</div>
-          </div>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">GANPATHI DREAMS</div>
-          <div class="sound-effect" style="font-size: 2rem; color: #FF6600;">DHINA-DIN-THA!</div>
-          <div class="panel-image">
-            <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol">
-          </div>
-          <div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div>
-          <div class="caption-box">Most EXCITED. Like everything he does.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 15: FINALE (FOR NOW) -->
-    <div class="page" id="page15">
-      <div class="click-zone left" onclick="prevPage()"></div>
-      <div class="comic-page">
-        <div class="comic-panel" style="margin-bottom: 2rem;">
-          <div class="panel-header">FLIGHT DISASTER</div>
-          <div class="sound-effect" style="font-size: 2rem; color: #FF0000;">GASP!</div>
-          <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
-          <div class="caption-box">Even heroes have moments. Cab driver still tells this story.</div>
-        </div>
-        <div class="comic-panel">
-          <div class="panel-header">TOGETHER</div>
-          <div class="panel-image">
-            <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together">
-          </div>
-          <div class="caption-box">
-            Cinema. Lit Fest. Stand-up. SodaBottle stories. Every moment an adventure. Every adventure together.
-          </div>
-          <div class="speech-bubble">"Tu khush, toh main khush."</div>
-        </div>
-        <div class="sound-effect">TO BE CONTINUED...</div>
-        <p style="text-align: center; color: white; margin-top: 2rem;">More chapters coming soon! 🦇💕</p>
-      </div>
-    </div>
-
   </div>
 
-  <!-- Navigation Controls -->
-  <div class="nav-controls">
-    <button class="nav-btn" id="prevBtn" onclick="prevPage()" disabled>← PREV</button>
-    <span class="page-counter" id="pageCounter">Page 1 of 15</span>
-    <button class="nav-btn" id="nextBtn" onclick="nextPage()">NEXT →</button>
+  <!-- Chapter Grid -->
+  <div class="chapter-grid-section" id="chapterGrid">
+    <div class="grid-header">
+      <h1>THE BATMAN FROM BILASPUR</h1>
+      <p>Choose Your Chapter</p>
+    </div>
+
+    <div class="chapter-grid">
+      
+      <!-- Chapter 1 -->
+      <div class="chapter-box" onclick="openChapter(1)">
+        <div class="chapter-number">CHAPTER 1</div>
+        <h2>Origin Story</h2>
+        <img class="chapter-preview-img" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Origin">
+        <p class="chapter-desc">The boy from Juna Bilaspur. Trees, parrots, and the family that built a hero. Sachin, Batman, Gerrard. Three idols. One legend begins.</p>
+        <button class="read-btn">READ CHAPTER 1 →</button>
+      </div>
+
+      <!-- Chapter 2 -->
+      <div class="chapter-box" onclick="openChapter(2)">
+        <div class="chapter-number">CHAPTER 2</div>
+        <h2>Bangalore Era</h2>
+        <img class="chapter-preview-img" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Bangalore">
+        <p class="chapter-desc">The interview. The tiny rooms. Morning chai deliveries. Campus walks. The saree bet. Valentine's Day. The first kiss. Making a home together.</p>
+        <button class="read-btn">READ CHAPTER 2 →</button>
+      </div>
+
+      <!-- Chapter 3 -->
+      <div class="chapter-box" onclick="openChapter(3)">
+        <div class="chapter-number">CHAPTER 3</div>
+        <h2>Adventures</h2>
+        <img class="chapter-preview-img" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Adventures">
+        <p class="chapter-desc">Quiz victories. Bet failures. 150km, 200km, 300km next. Dhol-tasha dreams. Flight disasters. Cinema marathons. Every moment together.</p>
+        <button class="read-btn">READ CHAPTER 3 →</button>
+      </div>
+
+      <!-- Chapter 4 -->
+      <div class="chapter-box coming-soon">
+        <div class="chapter-number">CHAPTER 4</div>
+        <h2>Long Distance</h2>
+        <p class="chapter-desc">7,000 kilometers apart. 365 nights of reading. Gifts across continents. "Aaajjaaawww!" Making London feel less lonely.</p>
+        <p style="margin-top: auto; font-style: italic; color: #666;">Coming soon...</p>
+      </div>
+
+      <!-- Chapter 5 -->
+      <div class="chapter-box coming-soon">
+        <div class="chapter-number">CHAPTER 5</div>
+        <h2>Mission: London</h2>
+        <p class="chapter-desc">A girl lost in London streets. Dark secrets to uncover. Batman's greatest mission yet. The mystery awaits...</p>
+        <p style="margin-top: auto; font-style: italic; color: #666;">Coming soon...</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Chapter Viewer -->
+  <div class="chapter-viewer" id="chapterViewer">
+    <div class="viewer-header">
+      <div class="viewer-title" id="viewerTitle">CHAPTER 1</div>
+      <button class="back-to-grid-btn" onclick="closeChapter()">← BACK TO CHAPTERS</button>
+    </div>
+    <div class="chapter-viewer-content" id="chapterContent"></div>
   </div>
 
   <script>
-    let currentPage = 1;
-    const totalPages = 15;
     let musicPlaying = false;
-
-    function updatePage() {
-      // Hide all pages
-      document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active', 'turning-out');
-      });
-
-      // Show current page
-      const page = document.getElementById(`page${currentPage}`);
-      page.classList.add('active');
-
-      // Update controls
-      document.getElementById('prevBtn').disabled = currentPage === 1;
-      document.getElementById('nextBtn').disabled = currentPage === totalPages;
-      document.getElementById('pageCounter').textContent = `Page ${currentPage} of ${totalPages}`;
-    }
-
-    function nextPage() {
-      if (currentPage < totalPages) {
-        const currentPageEl = document.getElementById(`page${currentPage}`);
-        currentPageEl.classList.add('turning-out');
-        
-        setTimeout(() => {
-          currentPage++;
-          updatePage();
-        }, 400);
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        updatePage();
-      }
-    }
 
     function toggleMusic() {
       const btn = document.getElementById('musicBtn');
@@ -1070,14 +757,274 @@
       btn.textContent = musicPlaying ? '🔊' : '🔇';
     }
 
+    function openGrid() {
+      document.getElementById('newspaper').classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('newspaper').style.display = 'none';
+        document.getElementById('chapterGrid').classList.add('active');
+      }, 1000);
+    }
+
+    function openChapter(chapterNum) {
+      const content = getChapterContent(chapterNum);
+      document.getElementById('chapterContent').innerHTML = content;
+      document.getElementById('viewerTitle').textContent = `CHAPTER ${chapterNum}`;
+      document.getElementById('chapterViewer').classList.add('active');
+      document.getElementById('chapterGrid').style.display = 'none';
+      window.scrollTo(0, 0);
+    }
+
+    function closeChapter() {
+      document.getElementById('chapterViewer').classList.remove('active');
+      document.getElementById('chapterGrid').style.display = 'block';
+    }
+
+    function getChapterContent(chapterNum) {
+      const chapters = {
+        1: `
+          <div class="chapter-title-section">
+            <h1>CHAPTER 1</h1>
+            <p>Origin Story: The Boy from Juna Bilaspur</p>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">JUNA BILASPUR, INDIA</div>
+            <div class="caption-box">Every hero has an origin. This one begins with trees, parrots, and endless cricket...</div>
+            <div class="panel-text">
+              <h3>The City That Made Him</h3>
+              <p>Juna Bilaspur. Evening chai on terraces. Parrots at sunset. A boy with three sisters and loving parents learning generosity.</p>
+              <p>His room faced a beautiful tree. Every evening, watching parrots return home. Later, he'd become the person people return to.</p>
+            </div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">THE FOUNDATION</div>
+            <div class="panel-text">
+              <h3>Built by Love</h3>
+              <p><strong>From Aai:</strong> Generosity without bounds<br><strong>From Pappa:</strong> Unwavering righteousness</p>
+              <p>Three sisters. Aunt's legendary cooking. Ganesh Chaturthi. Gupchup runs. Samosa missions.</p>
+            </div>
+            <div class="speech-bubble">"Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off!"</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">THREE HEROES, ONE DREAM</div>
+            <div class="hero-stats">
+              <div class="stat-box"><h4>🏏 SACHIN</h4><p>Master Blaster. Excellence speaks.</p></div>
+              <div class="stat-box"><h4>🦇 BATMAN</h4><p>Dark Knight. Helps everyone.</p></div>
+              <div class="stat-box"><h4>⚽ GERRARD</h4><p>Liverpool legend. Never gives up.</p></div>
+            </div>
+            <div class="caption-box">Three lessons: Play with heart. Help without credit. Fight for what matters. Liverpool forever.</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">MEET THE HERO</div>
+            <div class="panel-content-grid">
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Akshay">
+              </div>
+              <div class="panel-text">
+                <h3>AKSHAY</h3>
+                <p><strong>Age:</strong> 34 (like fine wine)</p>
+                <p><strong>AKA:</strong> Kaddu-Paddu, Quiz Master, Future London Detective</p>
+                <p><strong>Powers:</strong> Generosity, Adventure, Humor, Making Time for All</p>
+                <p><strong>Weaknesses:</strong> Betting, Sleeping, Spaghetti Methods</p>
+              </div>
+            </div>
+            <div class="speech-bubble">"Main theek hoon! Adventure racing, quiz championships, bedtime stories across 7,000km? Just another Tuesday."</div>
+          </div>
+        `,
+        
+        2: `
+          <div class="chapter-title-section">
+            <h1>CHAPTER 2</h1>
+            <p>The Bangalore Era: Where Heroes Are Made</p>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">THE INTERVIEW</div>
+            <div class="caption-box">She was hiring. He was applying. She almost said no. History almost changed.</div>
+            <div class="panel-text">
+              <h3>The Decision</h3>
+              <p>"I reviewed his application. Competent. Qualified. But I hesitated. Almost clicked 'reject.'"</p>
+              <p>She didn't know 'yes' meant morning chai, endless laughter, and someone who'd read from 7,000km away.</p>
+              <p><strong>Best hiring decision ever made.</strong></p>
+            </div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">MAKING HOME</div>
+            <div class="panel-content-grid">
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home">
+              </div>
+              <div class="panel-text">
+                <h3>Building Together</h3>
+                <p>Tiny rooms. Morning chai deliveries. Evening Amul walks.</p>
+              </div>
+            </div>
+            <div class="speech-bubble">"Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."</div>
+            <p style="font-style: italic; text-align: center;">(She watched anyway. He slept anyway.)</p>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">SPAGHETTI DISASTER</div>
+            <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">BUBBLE! POP!</div>
+            <div class="speech-bubble">"Pagluuu, this is authentic Italian. Trust the process."</div>
+            <p style="text-align: center; margin-top: 1rem;">Process not trusted. Spaghetti survived. Laughter lasted longer.</p>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">BANGALORE MAP</div>
+            <div class="caption-box">Every couple has their spots. Where adventures happened daily.</div>
+            <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
+              <div class="stat-box"><h4>☕ AMUL</h4><p>"Tu mera sabse bada distraction hai."</p></div>
+              <div class="stat-box"><h4>🍫 LAVONNE</h4><p>Hot Chocolate = You</p></div>
+              <div class="stat-box"><h4>🍕 TAAZA THINDI</h4><p>Morning dosa ritual</p></div>
+              <div class="stat-box"><h4>🎳 BOWLING</h4><p>He won. Obviously.</p></div>
+              <div class="stat-box"><h4>🎪 SODABOTTLE</h4><p>Making up stories</p></div>
+              <div class="stat-box"><h4>🏨 UB CITY</h4><p>City was theirs</p></div>
+            </div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">VALENTINE'S DAY 2025</div>
+            <div class="panel-content-grid">
+              <div class="panel-text">
+                <h3>The Saree Bet</h3>
+                <p>Bet challenged. Dare: saree on Valentine's.</p>
+                <p>He wore THE EXACT BLUE matching her saree!</p>
+                <p><strong>The first kiss. Perfect moment.</strong></p>
+                <div class="speech-bubble">"Okay okay loserrrr! But... wow."</div>
+              </div>
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Valentine">
+              </div>
+            </div>
+            <div class="caption-box">She wore the saree. Won the bet. He lost his heart.</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">PARTNERSHIP</div>
+            <div class="panel-text">
+              <h3>Competitive Everything</h3>
+              <p>Mornings: Crossword, Wordle. Evenings: Cinema, Lit Fest. Nights: Singing lyrics about her.</p>
+            </div>
+            <div class="speech-bubble">"Panchayat and Hot Chocolate tonight?"</div>
+            <div class="caption-box">Harry Potter Hindi titles: inside joke. Dumbledore wisdom: "It is our choices that show what we truly are."</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">WORKPLACE ROMANCE</div>
+            <div class="speech-bubble">"I'm an undercover agent. Nobody suspects."</div>
+            <p style="text-align: center; font-style: italic; margin-top: 1rem;">(Everyone suspected. Everyone delighted.)</p>
+          </div>
+        `,
+        
+        3: `
+          <div class="chapter-title-section">
+            <h1>CHAPTER 3</h1>
+            <p>The Adventures: Conquering Everything</p>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">THE STORYTELLER</div>
+            <div class="panel-content-grid">
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Storyteller">
+              </div>
+              <div class="panel-text">
+                <h3>Room Goes Silent</h3>
+                <p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p>
+                <p><strong>#1 fan? Sarayu. Obviously.</strong></p>
+              </div>
+            </div>
+            <div class="caption-box">Master storyteller. Everyone leans in. Nobody checks phones. Superpower.</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">QUIZ CHAMPIONS</div>
+            <div class="sound-effect" style="color: #00A8E8;">*APPLAUSE*</div>
+            <div class="panel-text">
+              <h3>Last-Minute Answer</h3>
+              <p>Final question. Teams stumped. Clock ticking.</p>
+              <p>Akshay: "Wait... I know this one!"</p>
+              <p><strong>Perfect. Dramatic. Crowd clapping. Every time.</strong></p>
+            </div>
+            <div class="caption-box">Record: UNDEFEATED. Her strategy + His brilliance = Glory.</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">BET WARS</div>
+            <div class="panel-text">
+              <p style="font-size: 2rem; text-align: center; margin: 2rem 0;">
+                Akshay: <span style="color: #FF0000; font-family: 'Bangers', cursive; font-size: 3rem;">0%</span><br>
+                Saranya: <span style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 3rem;">100%</span>
+              </p>
+            </div>
+            <div class="speech-bubble">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">CYCLING CONQUEST</div>
+            <div class="panel-content-grid">
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cycling">
+              </div>
+              <div class="panel-text">
+                <h3>The Journey</h3>
+                <p style="font-size: 1.6rem; font-family: 'Bangers', cursive;">
+                  ✅ 150km: DONE<br>✅ 200km: DONE<br>🎯 300km: NEXT
+                </p>
+                <div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">DHOL-TASHA DREAMS</div>
+            <div class="sound-effect" style="color: #FF6600;">DHINA-DIN-THA!</div>
+            <div class="panel-content-grid">
+              <div class="panel-image">
+                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol">
+              </div>
+              <div class="panel-text">
+                <h3>Most Excited</h3>
+                <p>Amateur? Yes. Skilled? Getting there. Excited? ABSOLUTELY.</p>
+                <div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">FLIGHT DISASTER</div>
+            <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">GASP!</div>
+            <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
+            <div class="caption-box">Even heroes have moments. Cab driver still tells this story.</div>
+          </div>
+
+          <div class="comic-panel">
+            <div class="panel-header">TOGETHER</div>
+            <div class="panel-image" style="text-align: center;">
+              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together" style="max-width: 600px;">
+            </div>
+            <div class="caption-box">Cinema. Lit Fest. Stand-up. SodaBottle stories. Bowling. Every moment an adventure. Together.</div>
+            <div class="speech-bubble">"Tu khush, toh main khush."</div>
+          </div>
+
+          <div class="sound-effect">TO BE CONTINUED...</div>
+        `
+      };
+
+      return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
+    }
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') nextPage();
-      if (e.key === 'ArrowLeft') prevPage();
+      if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) {
+        closeChapter();
+      }
     });
-
-    // Initialize
-    updatePage();
   </script>
 
 </body>
