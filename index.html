@@ -6,630 +6,86 @@
   <title>The Batman from Bilaspur</title>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background: #1a1a1a;
-      color: #2c2c2c;
-      overflow-x: hidden;
-    }
-
-    /* Music Control */
-    .music-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10000;
-      background: rgba(0,0,0,0.8);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1.5rem;
-      border: 2px solid #FFD700;
-      transition: all 0.3s;
-    }
-
-    .music-control:hover {
-      transform: scale(1.1);
-    }
-
-    /* Newspaper */
-    .newspaper {
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: linear-gradient(to bottom, #f9f6f0 0%, #f4e8d0 100%);
-      padding: 3rem;
-      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-      border: 2px solid #8B7355;
-      position: relative;
-      transition: all 1s ease;
-      font-size: 1.8rem;
-    }
-
-    .newspaper.hidden {
-      opacity: 0;
-      transform: scale(0.8);
-      pointer-events: none;
-    }
-
-    .newspaper::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,115,85,0.03) 2px, rgba(139,115,85,0.03) 4px);
-      pointer-events: none;
-    }
-
-    .masthead {
-      text-align: center;
-      border-bottom: 4px double #2c2c2c;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .masthead h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
-    }
-
-    .tagline {
-      font-size: 0.9rem;
-      font-style: italic;
-      color: #555;
-    }
-
-    .edition-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid #2c2c2c;
-    }
-
-    .main-headline {
-      text-align: center;
-      margin: 1.5rem 0;
-      padding: 1.5rem 0;
-      border-top: 3px solid #2c2c2c;
-      border-bottom: 3px solid #2c2c2c;
-    }
-
-    .main-headline h2 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .subheadline {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-
-    .hero-image img {
-      max-width: 500px;
-      width: 100%;
-      border: 3px solid #2c2c2c;
-      filter: grayscale(100%) contrast(1.2);
-    }
-
-    .image-caption {
-      font-size: 0.85rem;
-      font-style: italic;
-      margin-top: 0.5rem;
-      color: #555;
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
-    }
-
-    .column {
-      border-right: 1px solid #ccc;
-      padding-right: 1rem;
-    }
-
-    .column:last-child {
-      border-right: none;
-    }
-
-    .column h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      border-bottom: 2px solid #2c2c2c;
-      padding-bottom: 0.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .column p {
-      font-size: 0.85rem;
-      text-align: justify;
-      margin-bottom: 0.8rem;
-    }
-
-    .quote {
-      font-style: italic;
-      font-size: 0.95rem;
-      padding: 0.8rem;
-      border-left: 3px solid #2c2c2c;
-      margin: 0.8rem 0;
-      background: rgba(255,255,255,0.3);
-    }
-
-    .side-image img {
-      max-width: 100%;
-      border: 2px solid #2c2c2c;
-      filter: grayscale(100%) contrast(1.1);
-    }
-
-    .info-box {
-      border: 2px solid #2c2c2c;
-      padding: 0.8rem;
-      margin: 0.8rem 0;
-      background: rgba(255,255,255,0.5);
-      font-size: 0.8rem;
-    }
-
-    .info-box h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      text-transform: uppercase;
-    }
-
-    .info-box p {
-      margin: 0.2rem 0;
-    }
-
-    .continue-button {
-      text-align: center;
-      margin: 3rem 0;
-      animation: pulse 2s infinite;
-    }
-
-    .continue-button button {
-      background: #2c2c2c;
-      color: #f4e8d0;
-      border: 3px solid #2c2c2c;
-      padding: 1.5rem 3rem;
-      font-size: 1.3rem;
-      font-family: 'Georgia', serif;
-      font-weight: 700;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: all 0.3s;
-    }
-
-    .continue-button button:hover {
-      background: #f4e8d0;
-      color: #2c2c2c;
-      transform: scale(1.05);
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
-    /* Chapter Grid */
-    .chapter-grid-section {
-      display: none;
-      opacity: 0;
-      background: #1a1a1a;
-      min-height: 100vh;
-      padding: 4rem 2rem;
-    }
-
-    .chapter-grid-section.active {
-      display: block;
-      animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .grid-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .grid-header h1 {
-      font-family: 'Bangers', cursive;
-      font-size: 5rem;
-      color: #FFD700;
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      text-shadow: 6px 6px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-      margin-bottom: 1rem;
-    }
-
-    .grid-header p {
-      color: white;
-      font-size: 1.5rem;
-      font-family: 'Permanent Marker', cursive;
-      letter-spacing: 2px;
-    }
-
-    .chapter-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .chapter-box {
-      background: white;
-      border: 8px solid #000;
-      border-radius: 12px;
-      padding: 2rem;
-      cursor: pointer;
-      transition: all 0.4s;
-      box-shadow: 12px 12px 0 rgba(0,0,0,0.5);
-      position: relative;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .chapter-box:hover:not(.coming-soon) {
-      transform: scale(1.05) rotate(-1deg);
-      box-shadow: 16px 16px 0 rgba(255,215,0,0.4);
-      border-color: #FFD700;
-    }
-
-    .chapter-box.coming-soon {
-      opacity: 0.4;
-      cursor: default;
-      background: #e0e0e0;
-    }
-
-    .chapter-number {
-      background: #FFD700;
-      color: #000;
-      font-family: 'Bangers', cursive;
-      font-size: 2rem;
-      padding: 0.5rem 1.5rem;
-      border: 5px solid #000;
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      transform: rotate(-3deg);
-      box-shadow: 6px 6px 0 #000;
-    }
-
-    .chapter-box.coming-soon .chapter-number {
-      background: #ccc;
-    }
-
-    .chapter-box h2 {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 2.5rem;
-      color: #FF0000;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-
-    .chapter-preview-img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border: 5px solid #000;
-      filter: grayscale(100%) contrast(1.3);
-      margin: 1rem 0;
-      box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
-    }
-
-    .chapter-desc {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #333;
-      flex-grow: 1;
-    }
-
-    .read-btn {
-      background: #2c2c2c;
-      color: white;
-      border: 4px solid #000;
-      padding: 1rem 2rem;
-      font-family: 'Bangers', cursive;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-top: 1.5rem;
-      transition: all 0.3s;
-      box-shadow: 4px 4px 0 #000;
-    }
-
-    .read-btn:hover {
-      background: #FFD700;
-      color: #000;
-      transform: translateY(-2px);
-      box-shadow: 6px 6px 0 #000;
-    }
-
-    /* Chapter Viewer */
-    .chapter-viewer {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #1a1a1a;
-      z-index: 20000;
-      overflow-y: auto;
-      padding: 2rem;
-    }
-
-    .chapter-viewer.active {
-      display: block;
-      animation: fadeIn 0.3s;
-    }
-
-    .chapter-viewer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-bottom: 5rem;
-    }
-
-    .viewer-header {
-      position: sticky;
-      top: 0;
-      background: rgba(26,26,26,0.95);
-      padding: 1.5rem;
-      z-index: 100;
-      border-bottom: 4px solid #FFD700;
-      margin-bottom: 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .viewer-title {
-      font-family: 'Bangers', cursive;
-      font-size: 2.5rem;
-      color: #FFD700;
-      text-shadow: 3px 3px 0 #000;
-    }
-
-    .back-to-grid-btn {
-      background: #FFD700;
-      color: #000;
-      border: 4px solid #000;
-      padding: 0.8rem 2rem;
-      font-family: 'Bangers', cursive;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: all 0.3s;
-      text-transform: uppercase;
-    }
-
-    .back-to-grid-btn:hover {
-      background: #FFF;
-      transform: scale(1.05);
-    }
-
-    /* Comic Panel Styles */
-    .comic-panel {
-      background: white;
-      border: 8px solid #000;
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin: 3rem auto;
-      max-width: 1000px;
-      box-shadow: 12px 12px 0 rgba(0,0,0,0.5);
-      position: relative;
-    }
-
-    .comic-panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: radial-gradient(circle, #000 1px, transparent 1px);
-      background-size: 4px 4px;
-      opacity: 0.05;
-      pointer-events: none;
-    }
-
-    .panel-header {
-      background: #FFD700;
-      color: #000;
-      padding: 0.6rem 1.5rem;
-      border: 5px solid #000;
-      display: inline-block;
-      font-family: 'Bangers', cursive;
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
-      transform: rotate(-2deg);
-      box-shadow: 5px 5px 0 #000;
-    }
-
-    .panel-content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      margin: 2rem 0;
-    }
-
-    .panel-text {
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .panel-text h3 {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 2.2rem;
-      color: #FF0000;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-    }
-
-    .panel-image img {
-      max-width: 100%;
-      border: 6px solid #000;
-      filter: grayscale(100%) contrast(1.3);
-      box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
-    }
-
-    .speech-bubble {
-      background: white;
-      border: 4px solid #000;
-      border-radius: 20px;
-      padding: 1.5rem;
-      position: relative;
-      margin: 2rem 0;
-      font-family: 'Permanent Marker', cursive;
-      font-size: 1.3rem;
-      box-shadow: 4px 4px 0 #000;
-    }
-
-    .speech-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50px;
-      border: 20px solid transparent;
-      border-top-color: #000;
-      border-bottom: 0;
-    }
-
-    .speech-bubble::before {
-      content: '';
-      position: absolute;
-      bottom: -13px;
-      left: 54px;
-      border: 16px solid transparent;
-      border-top-color: white;
-      border-bottom: 0;
-      z-index: 1;
-    }
-
-    .caption-box {
-      background: #FFD700;
-      border: 3px solid #000;
-      padding: 1rem 1.5rem;
-      margin: 1.5rem 0;
-      font-family: 'Georgia', serif;
-      font-size: 1rem;
-      font-style: italic;
-      box-shadow: 4px 4px 0 #000;
-    }
-
-    .sound-effect {
-      font-family: 'Bangers', cursive;
-      font-size: 3.5rem;
-      color: #FFD700;
-      text-align: center;
-      margin: 2rem 0;
-      text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .stat-box {
-      background: #FFD700;
-      border: 5px solid #000;
-      padding: 1.5rem;
-      text-align: center;
-      transform: rotate(-1deg);
-      box-shadow: 6px 6px 0 #000;
-    }
-
-    .stat-box:nth-child(even) {
-      transform: rotate(1deg);
-      background: #FF0000;
-      color: white;
-    }
-
-    .stat-box h4 {
-      font-family: 'Bangers', cursive;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-    }
-
-    .stat-box p {
-      font-size: 0.95rem;
-    }
-
-    .chapter-title-section {
-      text-align: center;
-      margin: 4rem 0;
-    }
-
-    .chapter-title-section h1 {
-      font-family: 'Bangers', cursive;
-      font-size: 5rem;
-      color: #FFD700;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-      margin-bottom: 1rem;
-    }
-
-    .chapter-title-section p {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 2rem;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .chapter-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .panel-content-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .columns {
-        grid-template-columns: 1fr;
-      }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', 'Times New Roman', serif; background: #1a1a1a; color: #2c2c2c; overflow-x: hidden; }
+    .music-control { position: fixed; top: 20px; right: 20px; z-index: 10000; background: rgba(0,0,0,0.8); color: white; padding: 0.5rem 1rem; border-radius: 30px; cursor: pointer; font-size: 1.5rem; border: 2px solid #FFD700; transition: all 0.3s; }
+    .music-control:hover { transform: scale(1.1); }
+    .newspaper { max-width: 1200px; margin: 2rem auto; background: linear-gradient(to bottom, #f9f6f0 0%, #f4e8d0 100%); padding: 3rem; box-shadow: 0 10px 50px rgba(0,0,0,0.5); border: 2px solid #8B7355; position: relative; transition: all 1s ease; font-size: 1.1rem; }
+    .newspaper.hidden { opacity: 0; transform: scale(0.8); pointer-events: none; }
+    .newspaper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,115,85,0.03) 2px, rgba(139,115,85,0.03) 4px); pointer-events: none; }
+    .masthead { text-align: center; border-bottom: 4px double #2c2c2c; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .masthead h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: 0.3rem; text-transform: uppercase; }
+    .tagline { font-size: 1rem; font-style: italic; color: #555; }
+    .edition-info { display: flex; justify-content: space-between; font-size: 0.95rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #2c2c2c; }
+    .main-headline { text-align: center; margin: 1.5rem 0; padding: 1.5rem 0; border-top: 3px solid #2c2c2c; border-bottom: 3px solid #2c2c2c; }
+    .main-headline h2 { font-size: 2.8rem; font-weight: 900; line-height: 1.2; text-transform: uppercase; }
+    .subheadline { font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0; }
+    .hero-image img { max-width: 500px; width: 100%; border: 3px solid #2c2c2c; filter: grayscale(100%) contrast(1.2); }
+    .image-caption { font-size: 0.95rem; font-style: italic; margin-top: 0.5rem; color: #555; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .column { border-right: 1px solid #ccc; padding-right: 1rem; }
+    .column:last-child { border-right: none; }
+    .column h3 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #2c2c2c; padding-bottom: 0.3rem; margin-bottom: 0.5rem; }
+    .column p { font-size: 1rem; text-align: justify; margin-bottom: 0.8rem; line-height: 1.5; }
+    .quote { font-style: italic; font-size: 1.05rem; padding: 0.8rem; border-left: 3px solid #2c2c2c; margin: 0.8rem 0; background: rgba(255,255,255,0.3); }
+    .side-image img { max-width: 100%; border: 2px solid #2c2c2c; filter: grayscale(100%) contrast(1.1); }
+    .info-box { border: 2px solid #2c2c2c; padding: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.5); font-size: 0.95rem; }
+    .info-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; }
+    .info-box p { margin: 0.2rem 0; }
+    .continue-button { text-align: center; margin: 3rem 0; animation: pulse 2s infinite; }
+    .continue-button button { background: #2c2c2c; color: #f4e8d0; border: 3px solid #2c2c2c; padding: 1.5rem 3rem; font-size: 1.3rem; font-family: 'Georgia', serif; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; }
+    .continue-button button:hover { background: #f4e8d0; color: #2c2c2c; transform: scale(1.05); }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+    .chapter-grid-section { display: none; opacity: 0; background: #1a1a1a; min-height: 100vh; padding: 4rem 2rem; }
+    .chapter-grid-section.active { display: block; animation: fadeIn 1s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .grid-header { text-align: center; margin-bottom: 4rem; }
+    .grid-header h1 { font-family: 'Bangers', cursive; font-size: 5rem; color: #FFD700; text-transform: uppercase; letter-spacing: 6px; text-shadow: 6px 6px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; margin-bottom: 1rem; }
+    .grid-header p { color: white; font-size: 1.5rem; font-family: 'Permanent Marker', cursive; letter-spacing: 2px; }
+    .chapter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+    .chapter-box { background: white; border: 8px solid #000; border-radius: 12px; padding: 2rem; cursor: pointer; transition: all 0.4s; box-shadow: 12px 12px 0 rgba(0,0,0,0.5); position: relative; min-height: 400px; display: flex; flex-direction: column; }
+    .chapter-box:hover:not(.coming-soon) { transform: scale(1.05) rotate(-1deg); box-shadow: 16px 16px 0 rgba(255,215,0,0.4); border-color: #FFD700; }
+    .chapter-box.coming-soon { opacity: 0.4; cursor: default; background: #e0e0e0; }
+    .chapter-number { background: #FFD700; color: #000; font-family: 'Bangers', cursive; font-size: 2rem; padding: 0.5rem 1.5rem; border: 5px solid #000; display: inline-block; margin-bottom: 1.5rem; transform: rotate(-3deg); box-shadow: 6px 6px 0 #000; }
+    .chapter-box.coming-soon .chapter-number { background: #ccc; }
+    .chapter-box h2 { font-family: 'Permanent Marker', cursive; font-size: 2.5rem; color: #FF0000; margin-bottom: 1rem; text-transform: uppercase; }
+    .chapter-preview-img { width: 100%; height: 250px; object-fit: cover; border: 5px solid #000; filter: grayscale(100%) contrast(1.3); margin: 1rem 0; box-shadow: 6px 6px 0 rgba(0,0,0,0.3); }
+    .chapter-desc { font-size: 1.1rem; line-height: 1.6; color: #333; flex-grow: 1; }
+    .read-btn { background: #2c2c2c; color: white; border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; text-transform: uppercase; cursor: pointer; margin-top: 1.5rem; transition: all 0.3s; box-shadow: 4px 4px 0 #000; }
+    .read-btn:hover { background: #FFD700; color: #000; transform: translateY(-2px); box-shadow: 6px 6px 0 #000; }
+    .chapter-viewer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1a1a; z-index: 20000; overflow-y: auto; padding: 2rem; }
+    .chapter-viewer.active { display: block; animation: fadeIn 0.3s; }
+    .chapter-viewer-content { max-width: 1200px; margin: 0 auto; padding-bottom: 5rem; }
+    .viewer-header { position: sticky; top: 0; background: rgba(26,26,26,0.95); padding: 1.5rem; z-index: 100; border-bottom: 4px solid #FFD700; margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; }
+    .viewer-title { font-family: 'Bangers', cursive; font-size: 2.5rem; color: #FFD700; text-shadow: 3px 3px 0 #000; }
+    .back-to-grid-btn { background: #FFD700; color: #000; border: 4px solid #000; padding: 0.8rem 2rem; font-family: 'Bangers', cursive; font-size: 1.2rem; cursor: pointer; border-radius: 30px; transition: all 0.3s; text-transform: uppercase; }
+    .back-to-grid-btn:hover { background: #FFF; transform: scale(1.05); }
+    .comic-panel { background: white; border: 8px solid #000; border-radius: 12px; padding: 2.5rem; margin: 3rem auto; max-width: 1000px; box-shadow: 12px 12px 0 rgba(0,0,0,0.5); position: relative; }
+    .comic-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 4px 4px; opacity: 0.05; pointer-events: none; border-radius: 12px; }
+    .panel-header { background: #FFD700; color: #000; padding: 0.6rem 1.5rem; border: 5px solid #000; display: inline-block; font-family: 'Bangers', cursive; font-size: 1.6rem; margin-bottom: 2rem; transform: rotate(-2deg); box-shadow: 5px 5px 0 #000; }
+    .panel-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; margin: 2rem 0; }
+    .panel-text { font-size: 1.2rem; line-height: 1.8; }
+    .panel-text h3 { font-family: 'Permanent Marker', cursive; font-size: 2.2rem; color: #FF0000; margin-bottom: 1.5rem; text-transform: uppercase; }
+    .panel-image img { max-width: 100%; border: 6px solid #000; filter: grayscale(100%) contrast(1.3); box-shadow: 8px 8px 0 rgba(0,0,0,0.3); }
+    .speech-bubble { background: white; border: 4px solid #000; border-radius: 20px; padding: 1.5rem; position: relative; margin: 2rem 0; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; box-shadow: 4px 4px 0 #000; }
+    .speech-bubble::after { content: ''; position: absolute; bottom: -20px; left: 50px; border: 20px solid transparent; border-top-color: #000; border-bottom: 0; }
+    .speech-bubble::before { content: ''; position: absolute; bottom: -13px; left: 54px; border: 16px solid transparent; border-top-color: white; border-bottom: 0; z-index: 1; }
+    .caption-box { background: #FFD700; border: 3px solid #000; padding: 1rem 1.5rem; margin: 1.5rem 0; font-family: 'Georgia', serif; font-size: 1rem; font-style: italic; box-shadow: 4px 4px 0 #000; }
+    .sound-effect { font-family: 'Bangers', cursive; font-size: 3.5rem; color: #FFD700; text-align: center; margin: 2rem 0; text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+    .stat-box { background: #FFD700; border: 5px solid #000; padding: 1.5rem; text-align: center; transform: rotate(-1deg); box-shadow: 6px 6px 0 #000; }
+    .stat-box:nth-child(even) { transform: rotate(1deg); background: #FF0000; color: white; }
+    .stat-box h4 { font-family: 'Bangers', cursive; font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-box p { font-size: 0.95rem; }
+    .chapter-title-section { text-align: center; margin: 4rem 0; }
+    .chapter-title-section h1 { font-family: 'Bangers', cursive; font-size: 5rem; color: #FFD700; text-transform: uppercase; letter-spacing: 4px; text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; margin-bottom: 1rem; }
+    .chapter-title-section p { font-family: 'Permanent Marker', cursive; font-size: 2rem; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+    @media (max-width: 768px) { .chapter-grid { grid-template-columns: 1fr; } .panel-content-grid { grid-template-columns: 1fr; } .hero-stats { grid-template-columns: 1fr; } .columns { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
-  <!-- Music Control -->
   <div class="music-control" onclick="toggleMusic()" id="musicBtn">🔊</div>
 
-  <!-- Newspaper -->
   <div class="newspaper" id="newspaper">
     <div class="masthead">
       <h1>THE BILASPUR TIMES</h1>
@@ -654,112 +110,72 @@
     </div>
 
     <div class="columns">
-      
       <div class="column">
         <h3>Hero Completes Another Year of Excellence</h3>
         <p><strong>JUNA BILASPUR</strong> — In a development that surprises absolutely no one familiar with local legend Akshay (known affectionately as "Kaddu-Paddu" and "That Guy Who Helps Everyone"), the beloved hero has completed his 34th year of being unreasonably generous, unfairly funny, and suspiciously good at literally everything.</p>
-        
         <p>"We've run the numbers," reports Dr. Statistics from the Bilaspur Institute of Obvious Facts. "This man has a 100% success rate at making time for people, a 0% record in winning bets against his girlfriend, and somehow maintains hero status. The math doesn't add up."</p>
-
-        <div class="quote">
-          "I'm an undercover agent, Saranya."
-          <br>— Akshay, explaining his heroic activities
-        </div>
-
-        <p>When asked about his secret, insiders cite a rare combination of discipline, chaos, and an alarming ability to survive on minimal sleep and maximum confidence. “Science has no explanation,” one observer admitted. “We’ve stopped trying.”
-
-Eyewitnesses report that morale improves by at least 37% in his presence, partly due to his steady leadership and partly because he somehow makes suffering look fun. Nutritionists remain baffled by his ability to perform at elite levels while treating hydration and recovery as suggestions.
-
-Despite repeated attempts, no one has successfully humbled him. “We’ve tried hills, heat, heartbreak, and long-distance endurance events,” said a source close to the matter. “He just smiled and went faster."</p>
-
+        <div class="quote">"I'm an undercover agent, Saranya."<br>— Akshay, explaining his heroic activities</div>
+        <p>When asked about his secret, insiders cite a rare combination of discipline, chaos, and an alarming ability to survive on minimal sleep and maximum confidence. "Science has no explanation," one observer admitted. "We've stopped trying."</p>
+        <p>Eyewitnesses report that morale improves by at least 37% in his presence, partly due to his steady leadership and partly because he somehow makes suffering look fun.</p>
         <p>At press time, the hero was last seen casually planning his next challenge, fully unaware that he is, in fact, a public safety hazard for average men everywhere.</p>
-<div class="info-box" style="background: rgba(255,255,255,0.5); border: 2px solid #2c2c2c; padding: 0.8rem; margin: 0.8rem 0;">
-  <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center;">♒ HOROSCOPE FOR THE BEST BIRTHDAY BOY ♒</h4>
-  <p style="font-size: 0.8rem; margin: 0.4rem 0; text-align: justify; line-height: 1.4;">
-    <strong>The stars say:</strong> You will dream big today, laugh a lot, and somehow still end up being right (even when you're wrong). Your girlfriend's veto power remains undefeated — but it's only because she loves you and wants you alive, fed, and financially stable. Accept this blessing, tutuuu 💫
-  </p>
-  <p style="font-size: 0.78rem; margin: 0.3rem 0;"><strong>Lucky Number:</strong> Whatever number makes you smile today</p>
-  <p style="font-size: 0.78rem; margin: 0.3rem 0;"><strong>Lucky Activity:</strong> Celebrating yourself, being cute, and letting your girlfriend spoil you</p>
-  <p style="font-size: 0.78rem; margin: 0.3rem 0;"><strong>Lucky Colour:</strong> White (only because Sarayu loves you in it)</p>
-  <p style="font-size: 0.78rem; margin: 0.4rem 0; font-style: italic;"><strong>Avoid:</strong> Forgetting how loved you are</p>
-</div>
+        <div class="info-box" style="background: rgba(255,255,255,0.5);">
+          <h4 style="text-align: center;">♒ HOROSCOPE FOR THE BEST BIRTHDAY BOY ♒</h4>
+          <p><strong>The stars say:</strong> You will dream big today, laugh a lot, and somehow still end up being right (even when you're wrong). Your girlfriend's veto power remains undefeated — but it's only because she loves you and wants you alive, fed, and financially stable. Accept this blessing, tutuuu 💫</p>
+          <p><strong>Lucky Number:</strong> Whatever makes you smile today</p>
+          <p><strong>Lucky Activity:</strong> Celebrating yourself, being cute, letting your girlfriend spoil you</p>
+          <p><strong>Lucky Colour:</strong> White (only because Sarayu loves you in it)</p>
+          <p style="font-style: italic;"><strong>Avoid:</strong> Forgetting how loved you are</p>
+        </div>
       </div>
 
       <div class="column">
         <h3>Breaking: Man Reads Books Nightly to Girlfriend 7,000km Away</h3>
         <p><strong>LONG DISTANCE DEPARTMENT</strong> — Romance researchers have declared Akshay's nightly book-reading tradition "the most romantic thing we've documented in our 40-year research history."</p>
-
         <p>"Every. Single. Night," emphasizes Dr. Heart from the University of Long Distance Love. "Not sometimes. Not when convenient. Every night. While also maintaining quiz championship status AND training for 200km cycling. This shouldn't be physically possible."</p>
-
-        <div class="quote">
-          "Tu khush, toh main khush."
-          <br>— The hero's reported philosophy
-        </div>
-
+        <div class="quote">"Tu khush, toh main khush."<br>— The hero's reported philosophy</div>
         <p>The recipient of these literary adventures, an LSE student who wishes to remain mysterious, was unavailable for comment but was reportedly seen smiling at her phone at all hours.</p>
-
         <div class="side-image" style="margin: 1rem 0; text-align: center;">
           <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3782_(1).jpg" alt="Off-duty hero">
-          <p class="image-caption">RARE SIGHTING: The Batman of Bilaspur photographed during rare moment of rest. Witnesses report "he was probably planning his next adventure."</p>
+          <p class="image-caption">RARE SIGHTING: The Batman of Bilaspur photographed during rare moment of rest.</p>
         </div>
-
         <h3>Quiz Teams Consider Retirement</h3>
         <p><strong>NATIONAL</strong> — Quiz organizations across India report "devastating morale" following Akshay's latest last-minute answer that "literally left people clapping."</p>
-
         <p>"The pattern is clear," sighs defeated Quiz Master Ramesh. "They arrive together. They're adorable. Then HE drops an answer that makes the entire room applaud. It's not fair. It's also extremely impressive."</p>
       </div>
 
       <div class="column">
         <h3>Betting Industry in Crisis</h3>
         <p><strong>ECONOMICS DESK</strong> — The International Association of Wagers has issued an emergency bulletin following Akshay's unprecedented losing streak.</p>
-
         <p>"Zero wins. Every single bet lost to his girlfriend," explains economist Dr. Probability. "She now has unlimited veto power. He keeps betting anyway. We suspect he's either terrible at gambling or brilliant at romance. Likely both."</p>
-
-        <div class="quote">
-          "Okay okay loserrrr!"
-          <br>— Unidentified girlfriend, reportedly
-        </div>
-
+        <div class="quote">"Okay okay loserrrr!"<br>— Unidentified girlfriend, reportedly</div>
         <div class="info-box">
           <h4>🦇 HERO STATS</h4>
           <p><strong>Age:</strong> 34 (getting better)</p>
-          <p><strong>Cycling Distance:</strong> 150km (completed), 200km (this weekend)</p>
-          <p><strong>Adventure Roles:</strong> Trek Leader, Adventure Racer, Endurance Cyclist</p>
+          <p><strong>Cycling:</strong> 150km ✓, 200km (this weekend)</p>
+          <p><strong>Adventure Roles:</strong> Trek Leader, Racer, Cyclist</p>
           <p><strong>Quiz Record:</strong> Undefeated</p>
           <p><strong>Bet Record:</strong> 0% wins, 100% adorable</p>
-          <p><strong>Nightly Reading Streak:</strong> 365+ days unbroken</p>
+          <p><strong>Reading Streak:</strong> 365+ days unbroken</p>
           <p><strong>Makes Time For:</strong> Everyone</p>
         </div>
-
         <div class="info-box">
           <h4>📰 CLASSIFIED</h4>
           <p><strong>WANTED:</strong> Someone who can beat him at quizzes. Reward unlikely to be claimed.</p>
           <p><strong>LOST:</strong> Every bet ever made. If found, girlfriend is keeping them.</p>
-          <p><strong>PUBLIC SERVICE:</strong> Sachin Tendulkar is not a cheater. This message brought to you by Concerned Bilaspur Citizens.</p>
+          <p><strong>PUBLIC SERVICE:</strong> Sachin Tendulkar is not a cheater. — Concerned Bilaspur Citizens</p>
         </div>
-
         <h3>Local Opinion</h3>
-        <div class="quote">
-          "Ayy dayya! This man is unbelievable. Generous, adventurous, funny. And he reads to his girlfriend every night? Pagluuu in the best way possible."
-          <br>— Juna Bilaspur Residents Association
-        </div>
-
+        <div class="quote">"Ayy dayya! This man is unbelievable. Generous, adventurous, funny. And he reads to his girlfriend every night? Pagluuu in the best way possible."<br>— Juna Bilaspur Residents Association</div>
         <h3>Valentine's Day Miracle</h3>
         <p><strong>ROMANCE SECTION</strong> — Sources confirm the hero's first kiss occurred on Valentine's Day, marking what experts call "peak romantic timing."</p>
-
         <p>"Statistically perfect," notes Dr. Romance. "Valentine's Day first kiss? That's storybook material."</p>
-      <div class="info-box" style="background: rgba(255,255,255,0.7); border: 3px solid #2c2c2c; padding: 1rem; margin: 0.8rem 0;">
-  <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase; text-align: center; border-bottom: 1px solid #2c2c2c; padding-bottom: 0.3rem;">💛 Thank You Notice</h4>
-  <p style="font-size: 0.8rem; margin: 0.4rem 0; text-align: center; line-height: 1.5;">
-    To all the women who raised this man,<br>
-    To all the friends who kept him loved and protected through all the tough times,<br>
-    To all the team members who ensured his energy always shined bright,<br>
-    And finally, to all the chai and sleep that made him more tolerable:
-  </p>
-  <p style="font-size: 0.95rem; font-weight: 700; text-align: center; margin: 0.6rem 0 0.3rem 0;">Thank you.</p>
-  <p style="font-size: 0.75rem; font-style: italic; text-align: right; margin-top: 0.5rem; color: #555;">— A very sincere, lucky girlfriend</p>
-</div>
-         </div>
+        <div class="info-box" style="background: rgba(255,255,255,0.7);">
+          <h4 style="text-align: center; border-bottom: 1px solid #2c2c2c; padding-bottom: 0.3rem;">💛 Thank You Notice</h4>
+          <p style="text-align: center; line-height: 1.5;">To all the women who raised this man,<br>To all the friends who kept him loved and protected through all the tough times,<br>To all the team members who ensured his energy always shined bright,<br>And finally, to all the chai and sleep that made him more tolerable:</p>
+          <p style="font-weight: 700; text-align: center;">Thank you.</p>
+          <p style="font-style: italic; text-align: right; color: #555;">— A very sincere, lucky girlfriend</p>
+        </div>
+      </div>
     </div>
 
     <div class="continue-button">
@@ -767,16 +183,12 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
     </div>
   </div>
 
-  <!-- Chapter Grid -->
   <div class="chapter-grid-section" id="chapterGrid">
     <div class="grid-header">
       <h1>THE BATMAN FROM BILASPUR</h1>
       <p>Choose Your Chapter</p>
     </div>
-
     <div class="chapter-grid">
-      
-      <!-- Chapter 1 -->
       <div class="chapter-box" onclick="openChapter(1)">
         <div class="chapter-number">CHAPTER 1</div>
         <h2>Origin Story</h2>
@@ -784,8 +196,6 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
         <p class="chapter-desc">The boy from Juna Bilaspur. Trees, parrots, and the family that built a hero. Sachin, Batman, Gerrard. Three idols. One legend begins.</p>
         <button class="read-btn">READ CHAPTER 1 →</button>
       </div>
-
-      <!-- Chapter 2 -->
       <div class="chapter-box" onclick="openChapter(2)">
         <div class="chapter-number">CHAPTER 2</div>
         <h2>Bangalore Era</h2>
@@ -793,8 +203,6 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
         <p class="chapter-desc">The interview. The tiny rooms. Morning chai deliveries. Campus walks. The saree bet. Valentine's Day. The first kiss. Making a home together.</p>
         <button class="read-btn">READ CHAPTER 2 →</button>
       </div>
-
-      <!-- Chapter 3 -->
       <div class="chapter-box" onclick="openChapter(3)">
         <div class="chapter-number">CHAPTER 3</div>
         <h2>Adventures</h2>
@@ -802,184 +210,22 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
         <p class="chapter-desc">Quiz victories. Bet failures. 150km, 200km, 300km next. Dhol-tasha dreams. Flight disasters. Cinema marathons. Every moment together.</p>
         <button class="read-btn">READ CHAPTER 3 →</button>
       </div>
-
-      <!-- Chapter 4 --> `
-  <div class="chapter-title-section">
-    <h1>CHAPTER 4</h1>
-    <p>Long Distance: 7,000 Kilometers of Love</p>
-    <button class="read-btn">READ CHAPTER 4 →</button>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">7,000 KM APART</div>
-    <div class="caption-box">They said long distance doesn't work. They clearly haven't met these two.</div>
-    <div class="panel-text">
-      <h3>The Distance</h3>
-      <p>Just months after they found each other, life pulled them 7,000 kilometers apart. London called. Bilaspur stayed.</p>
-      <p>It came too soon. It hurt like hell. But giving up? <strong>Never an option.</strong></p>
-    </div>
-    <div class="speech-bubble">"Tu khush, toh main khush. Even from 7,000km away."</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">THE HARD PARTS</div>
-    <div class="panel-text">
-      <h3>What They Survived</h3>
-      <p>Life-altering losses. Health crises. Days when she couldn't get out of bed. Tough financial times. Loneliness that hit like waves.</p>
-      <p>But through every storm, they made each other their anchor.</p>
-    </div>
-    <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="stat-box"><h4>📞</h4><p>Calls during the mundane — chai, coffee, walking home alone</p></div>
-      <div class="stat-box"><h4>🫂</h4><p>Anchor through losses no one else understood</p></div>
-      <div class="stat-box"><h4>💪</h4><p>Pushed each other when getting up felt impossible</p></div>
-      <div class="stat-box"><h4>🏠</h4><p>Made "home" a feeling, not a place</p></div>
-    </div>
-    <div class="caption-box">The distance was painful. But they chose each other. Every single day.</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">VIRTUAL DATE NIGHTS</div>
-    <div class="panel-content-grid">
-      <div class="panel-image">
-        <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5961.jpg" alt="Virtual Date Night">
+      <div class="chapter-box" onclick="openChapter(4)">
+        <div class="chapter-number">CHAPTER 4</div>
+        <h2>Long Distance</h2>
+        <img class="chapter-preview-img" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5961.jpg" alt="Long Distance">
+        <p class="chapter-desc">7,000 kilometers apart. 365 nights of reading. Gifts across continents. "Aaajjaaawww!" Making London feel less lonely.</p>
+        <button class="read-btn">READ CHAPTER 4 →</button>
       </div>
-      <div class="panel-text">
-        <h3>Dressed Up, 7,000km Apart</h3>
-        <p>He wears white — her favorite.</p>
-        <p>She wears a saree, bindi, his favorite jhumkas.</p>
-        <p>Elaborate. Intentional. <strong>Romantic as hell.</strong></p>
-      </div>
-    </div>
-    <div class="speech-bubble">"Just because we're on a screen doesn't mean I won't dress up for you."</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">THE EVERYDAY MAGIC</div>
-    <div class="panel-text">
-      <h3>It's the Little Things</h3>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-box"><h4>🎵 PLAYLISTS</h4><p>Created together. Listened together.</p></div>
-      <div class="stat-box"><h4>🍳 RECIPES</h4><p>Shared across continents</p></div>
-      <div class="stat-box"><h4>📱 REMINDERS</h4><p>"Call your mom." "Text your friend."</p></div>
-    </div>
-    <div class="caption-box">He has an incredible social life — and pushes her to build hers in London too. Love that makes you grow.</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">SURPRISE DELIVERIES</div>
-    <div class="panel-text">
-      <h3>Gifts Across Continents</h3>
-      <p>Random. Thoughtful. Perfect.</p>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-box"><h4>🧦</h4><p>Cute socks (because he knows)</p></div>
-      <div class="stat-box"><h4>🕯️</h4><p>Candles for Diwali (so London felt like home)</p></div>
-      <div class="stat-box"><h4>🔋</h4><p>Purple power bank (because her battery ALWAYS dies)</p></div>
-    </div>
-    <div class="speech-bubble">"Pagluuu, your phone died AGAIN? Check your mailbox tomorrow."</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">SLEEPING TOGETHER, APART</div>
-    <div class="panel-content-grid">
-      <div class="panel-text">
-        <h3>The Nightly Ritual</h3>
-        <p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">"Good night, sleep tight, I love you."</p>
-        <p>Every. Single. Night.</p>
-        <p>She cannot sleep without hearing it. Neither can he.</p>
-        <p style="font-style: italic; margin-top: 1rem;">(Sometimes he falls asleep during movies. She gets mad. He's still cute.)</p>
-      </div>
-      <div class="panel-image">
-        <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_6123.PNG" alt="Sleeping on video call">
-      </div>
-    </div>
-    <div class="caption-box">365+ nights. Unbroken streak. This is what commitment looks like.</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">AAAJJAAAWWW!</div>
-    <div class="sound-effect" style="font-size: 4rem;">AAAJJAAAWWW!</div>
-    <div class="panel-text" style="text-align: center;">
-      <p>There's a video of his niece as a baby, saying "Aaajjaaawww!"</p>
-      <p>Now, whenever she says "I want to be home with you," he sends it.</p>
-      <p><strong>Instant comfort. Every time.</strong></p>
-    </div>
-    <div class="speech-bubble">"I miss you." / "Aaajjaaawww! 🥺"</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">THEIR SONG</div>
-    <div class="panel-text" style="text-align: center;">
-      <h3>🎵 The Anthem 🎵</h3>
-      <p style="font-size: 1.2rem; font-family: 'Permanent Marker', cursive; line-height: 2; margin: 1.5rem 0;">
-        "I love you, you love me,<br>
-        We make a happy family.<br>
-        With a great big hug and a kiss from me to you,<br>
-        Won't you say you love me too?"
-      </p>
-    </div>
-    <div class="caption-box">Sung across timezones. Silly? Yes. Theirs? Absolutely.</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">THE POET</div>
-    <div class="panel-content-grid">
-      <div class="panel-image">
-        <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/592834CF-DAD0-4522-978F-B1099AD67A9A.JPG" alt="Shayari">
-      </div>
-      <div class="panel-text">
-        <h3>Shayaris That Heal</h3>
-        <p>When London feels cold and lonely, he sends poems.</p>
-        <p>He always knows exactly which shayari to send at exactly the right moment.</p>
-        <p><strong>Words across continents. Warmth that travels 7,000km.</strong></p>
-      </div>
-    </div>
-    <div class="speech-bubble">"Feeling low? Check your messages, Sarayu."</div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">THE SILLY FIGHTS</div>
-    <div class="panel-text" style="text-align: center;">
-      <h3>Their Only Argument</h3>
-      <p style="font-size: 1.3rem; margin: 1.5rem 0;">"I love you more."</p>
-      <p style="font-size: 1.3rem; margin: 1.5rem 0;">"No, I love YOU more."</p>
-      <p style="font-size: 1.3rem; margin: 1.5rem 0;">"Impossible. I love you MORE."</p>
-      <p style="font-style: italic;">(This continues indefinitely. No winner declared. Both victorious.)</p>
-    </div>
-  </div>
-
-  <div class="comic-panel">
-    <div class="panel-header">7,000 KM. ZERO DOUBTS.</div>
-    <div class="panel-text" style="text-align: center;">
-      <h3>The Truth</h3>
-      <p style="font-size: 1.2rem; line-height: 1.8;">
-        Long distance is hard.<br>
-        Losing people is harder.<br>
-        Health scares are terrifying.<br>
-        Bad days feel endless.<br><br>
-        But having someone who stays on call while you make chai?<br>
-        Who sends shayaris at 2am?<br>
-        Who dresses up in white for a video call date?<br>
-        Who says "good night, sleep tight, I love you" for 365 nights straight?<br><br>
-        <strong>That's not hard. That's home.</strong>
-      </p>
-    </div>
-    <div class="sound-effect">TO BE CONTINUED...</div>
-  </div>
-
-      <!-- Chapter 5 -->
       <div class="chapter-box coming-soon">
         <div class="chapter-number">CHAPTER 5</div>
         <h2>Mission: London</h2>
         <p class="chapter-desc">A girl lost in London streets. Dark secrets to uncover. Batman's greatest mission yet. The mystery awaits...</p>
         <p style="margin-top: auto; font-style: italic; color: #666;">Coming soon...</p>
       </div>
-
     </div>
   </div>
 
-  <!-- Chapter Viewer -->
   <div class="chapter-viewer" id="chapterViewer">
     <div class="viewer-header">
       <div class="viewer-title" id="viewerTitle">CHAPTER 1</div>
@@ -990,130 +236,93 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
 
   <script>
     let musicPlaying = false;
-
-    function toggleMusic() {
-      const btn = document.getElementById('musicBtn');
-      musicPlaying = !musicPlaying;
-      btn.textContent = musicPlaying ? '🔊' : '🔇';
-    }
-
-    function openGrid() {
-      document.getElementById('newspaper').classList.add('hidden');
-      setTimeout(() => {
-        document.getElementById('newspaper').style.display = 'none';
-        document.getElementById('chapterGrid').classList.add('active');
-      }, 1000);
-    }
-
-    function openChapter(chapterNum) {
-      const content = getChapterContent(chapterNum);
-      document.getElementById('chapterContent').innerHTML = content;
-      document.getElementById('viewerTitle').textContent = `CHAPTER ${chapterNum}`;
-      document.getElementById('chapterViewer').classList.add('active');
-      document.getElementById('chapterGrid').style.display = 'none';
-      window.scrollTo(0, 0);
-    }
-
-    function closeChapter() {
-      document.getElementById('chapterViewer').classList.remove('active');
-      document.getElementById('chapterGrid').style.display = 'block';
-    }
+    function toggleMusic() { const btn = document.getElementById('musicBtn'); musicPlaying = !musicPlaying; btn.textContent = musicPlaying ? '🔊' : '🔇'; }
+    function openGrid() { document.getElementById('newspaper').classList.add('hidden'); setTimeout(() => { document.getElementById('newspaper').style.display = 'none'; document.getElementById('chapterGrid').classList.add('active'); }, 1000); }
+    function openChapter(chapterNum) { const content = getChapterContent(chapterNum); document.getElementById('chapterContent').innerHTML = content; document.getElementById('viewerTitle').textContent = 'CHAPTER ' + chapterNum; document.getElementById('chapterViewer').classList.add('active'); document.getElementById('chapterGrid').style.display = 'none'; window.scrollTo(0, 0); }
+    function closeChapter() { document.getElementById('chapterViewer').classList.remove('active'); document.getElementById('chapterGrid').style.display = 'block'; }
 
     function getChapterContent(chapterNum) {
       const chapters = {
         1: `
-          <div class="chapter-title-section">
-            <h1>CHAPTER 1</h1>
-            <p>Origin Story: The Boy from Juna Bilaspur</p>
-          </div>
-
+          <div class="chapter-title-section"><h1>CHAPTER 1</h1><p>Origin Story: The Boy from Juna Bilaspur</p></div>
           <div class="comic-panel">
             <div class="panel-header">JUNA BILASPUR, INDIA</div>
-            <div class="caption-box">Every hero has an origin. This one begins with trees, parrots, and endless cricket...</div>
+            <div class="caption-box">Every hero has an origin. This one begins with trees, parrots, and endless cricket matches that only stopped when someone's mother yelled from the balcony.</div>
             <div class="panel-text">
               <h3>The City That Made Him</h3>
-              <p>Juna Bilaspur. Evening chai on terraces. Parrots at sunset. A boy with three sisters and loving parents learning generosity.</p>
-              <p>His room faced a beautiful tree. Every evening, watching parrots return home. Later, he'd become the person people return to.</p>
+              <p>Juna Bilaspur. Evening chai on sun-warmed terraces. Parrots slicing the sky at sunset. A boy growing up with three sisters, loving parents, and a home where doors—and hearts—were always open.</p>
+              <p>His room faced a beautiful tree. Every evening, he watched parrots return home in noisy, chaotic flocks. Much later, he would become the kind of person people return to — for advice, comfort, laughter, and the quiet reassurance that everything will be okay.</p>
+              <p>Cricket was not a hobby; it was a way of life. Stumps improvised from bricks. Bats older than the players. Arguments about rules that lasted longer than the match itself. Winning mattered — but playing together mattered more.</p>
             </div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">THE FOUNDATION</div>
             <div class="panel-text">
               <h3>Built by Love</h3>
-              <p><strong>From Aai:</strong> Generosity without bounds<br><strong>From Pappa:</strong> Unwavering righteousness</p>
-              <p>Three sisters. Aunt's legendary cooking. Ganesh Chaturthi. Gupchup runs. Samosa missions.</p>
+              <p><strong>From Aai:</strong> Generosity without calculation. The instinct to give first, ask later, and never keep score.</p>
+              <p><strong>From Pappa:</strong> Unwavering righteousness. Doing the right thing even when it's inconvenient, unpopular, or costs you something.</p>
+              <p>Three sisters taught him negotiation, empathy, and how to lose an argument gracefully (a skill he still practices, unsuccessfully). An aunt whose cooking achieved near-mythical status. Ganesh Chaturthi celebrations that spilled into the streets. Gupchup runs that were less about hunger and more about joy. Samosa missions conducted with military precision.</p>
             </div>
-            <div class="speech-bubble">"Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off!"</div>
+            <div class="speech-bubble">"Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off."</div>
+            <div class="caption-box">Historians agree: this was the moment his moral compass fully aligned.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">THREE HEROES, ONE DREAM</div>
+            <div class="panel-text"><h3>Every Hero Has Role Models. He Had Three.</h3></div>
             <div class="hero-stats">
-              <div class="stat-box"><h4>🏏 SACHIN</h4><p>Master Blaster. Excellence speaks.</p></div>
-              <div class="stat-box"><h4>🦇 BATMAN</h4><p>Dark Knight. Helps everyone.</p></div>
-              <div class="stat-box"><h4>⚽ GERRARD</h4><p>Liverpool legend. Never gives up.</p></div>
+              <div class="stat-box"><h4>🏏 SACHIN</h4><p>Master Blaster. Excellence without arrogance. Let your work speak louder than you ever need to.</p></div>
+              <div class="stat-box"><h4>🦇 BATMAN</h4><p>The Dark Knight. No superpowers. Just discipline, sacrifice, and showing up when no one's watching.</p></div>
+              <div class="stat-box"><h4>⚽ GERRARD</h4><p>Liverpool legend. Never gives up. Plays for the badge, not the applause. Fights till the final whistle.</p></div>
             </div>
-            <div class="caption-box">Three lessons: Play with heart. Help without credit. Fight for what matters. Liverpool forever.</div>
+            <div class="caption-box">Three lessons became law: Play with heart. Help without credit. Fight for what matters. Liverpool forever. No debates entertained.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">MEET THE HERO</div>
             <div class="panel-content-grid">
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Akshay">
-              </div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Akshay"></div>
               <div class="panel-text">
                 <h3>AKSHAY</h3>
-                <p><strong>Age:</strong> 34 (like fine wine)</p>
-                <p><strong>AKA:</strong> Kaddu-Paddu, Quiz Master, Future London Detective</p>
-                <p><strong>Powers:</strong> Generosity, Adventure, Humor, Making Time for All</p>
-                <p><strong>Weaknesses:</strong> Betting, Sleeping, Spaghetti Methods</p>
+                <p><strong>Age:</strong> 34 (like fine wine, but more athletic)</p>
+                <p><strong>Also Known As:</strong> Kaddu-Paddu, Quiz Master, Future London Detective, The Guy Who Somehow Knows This</p>
+                <p><strong>Powers:</strong> Radical generosity, Adventure endurance, Weaponised humor, Making time for everyone, Calm in chaos, Showing up always</p>
+                <p><strong>Weaknesses:</strong> Betting (believes he's "due" a win), Sleeping (optional, apparently), Spaghetti-related decision-making, Underestimating how much people adore him</p>
               </div>
             </div>
-            <div class="speech-bubble">"Main theek hoon! Adventure racing, quiz championships, bedtime stories across 7,000km? Just another Tuesday."</div>
+            <div class="speech-bubble">"Main theek hoon!" Adventure racing? Quiz championships? Bedtime stories across 7,000 km? Just another Tuesday.</div>
           </div>
+          <div class="comic-panel">
+            <div class="panel-header">EARLY SIGNS OF GREATNESS</div>
+            <div class="panel-text">
+              <p>Teachers recall a quiet confidence. Friends recall loyalty that never wavered. Family recalls a boy who would give away his last sweet and still smile.</p>
+              <p>Even then, he had the rare ability to make people feel seen — whether they were teammates, siblings, or strangers passing through his life.</p>
+              <p style="font-size: 1.4rem; text-align: center; margin-top: 2rem;"><strong>What no one knew yet was that this boy from Juna Bilaspur was not just growing older.</strong></p>
+              <p style="font-size: 1.6rem; text-align: center; font-family: 'Permanent Marker', cursive;"><strong>He was growing into a legend.</strong></p>
+            </div>
+          </div>
+          <div class="sound-effect">TO BE CONTINUED...</div>
         `,
-        
         2: `
-          <div class="chapter-title-section">
-            <h1>CHAPTER 2</h1>
-            <p>The Bangalore Era: Where Heroes Are Made</p>
-          </div>
-
+          <div class="chapter-title-section"><h1>CHAPTER 2</h1><p>The Bangalore Era: Where Heroes Are Made</p></div>
           <div class="comic-panel">
             <div class="panel-header">THE INTERVIEW</div>
             <div class="caption-box">She was hiring. He was applying. She almost said no. History almost changed.</div>
-            <div class="panel-text">
-              <h3>The Decision</h3>
-              <p>"I reviewed his application. Competent. Qualified. But I hesitated. Almost clicked 'reject.'"</p>
-              <p>She didn't know 'yes' meant morning chai, endless laughter, and someone who'd read from 7,000km away.</p>
-              <p><strong>Best hiring decision ever made.</strong></p>
-            </div>
+            <div class="panel-text"><h3>The Decision</h3><p>"I reviewed his application. Competent. Qualified. But I hesitated. Almost clicked 'reject.'"</p><p>She didn't know 'yes' meant morning chai, endless laughter, and someone who'd read from 7,000km away.</p><p><strong>Best hiring decision ever made.</strong></p></div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">MAKING HOME</div>
             <div class="panel-content-grid">
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home">
-              </div>
-              <div class="panel-text">
-                <h3>Building Together</h3>
-                <p>Tiny rooms. Morning chai deliveries. Evening Amul walks.</p>
-              </div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home"></div>
+              <div class="panel-text"><h3>Building Together</h3><p>Tiny rooms. Morning chai deliveries. Evening Amul walks.</p></div>
             </div>
             <div class="speech-bubble">"Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."</div>
             <p style="font-style: italic; text-align: center;">(She watched anyway. He slept anyway.)</p>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">SPAGHETTI DISASTER</div>
             <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">BUBBLE! POP!</div>
             <div class="speech-bubble">"Pagluuu, this is authentic Italian. Trust the process."</div>
             <p style="text-align: center; margin-top: 1rem;">Process not trusted. Spaghetti survived. Laughter lasted longer.</p>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">BANGALORE MAP</div>
             <div class="caption-box">Every couple has their spots. Where adventures happened daily.</div>
@@ -1126,146 +335,166 @@ Despite repeated attempts, no one has successfully humbled him. “We’ve tried
               <div class="stat-box"><h4>🏨 UB CITY</h4><p>City was theirs</p></div>
             </div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">VALENTINE'S DAY 2025</div>
             <div class="panel-content-grid">
-              <div class="panel-text">
-                <h3>The Saree Bet</h3>
-                <p>Bet challenged. Dare: saree on Valentine's.</p>
-                <p>He wore THE EXACT BLUE matching her saree!</p>
-                <p><strong>The first kiss. Perfect moment.</strong></p>
-                <div class="speech-bubble">"Okay okay loserrrr! But... wow."</div>
-              </div>
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Valentine">
-              </div>
+              <div class="panel-text"><h3>The Saree Bet</h3><p>Bet challenged. Dare: saree on Valentine's.</p><p>He wore THE EXACT BLUE matching her saree!</p><p><strong>The first kiss. Perfect moment.</strong></p><div class="speech-bubble">"Okay okay loserrrr! But... wow."</div></div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Valentine"></div>
             </div>
             <div class="caption-box">She wore the saree. Won the bet. He lost his heart.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">PARTNERSHIP</div>
-            <div class="panel-text">
-              <h3>Competitive Everything</h3>
-              <p>Mornings: Crossword, Wordle. Evenings: Cinema, Lit Fest. Nights: Singing lyrics about her.</p>
-            </div>
+            <div class="panel-text"><h3>Competitive Everything</h3><p>Mornings: Crossword, Wordle. Evenings: Cinema, Lit Fest. Nights: Singing lyrics about her.</p></div>
             <div class="speech-bubble">"Panchayat and Hot Chocolate tonight?"</div>
             <div class="caption-box">Harry Potter Hindi titles: inside joke. Dumbledore wisdom: "It is our choices that show what we truly are."</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">WORKPLACE ROMANCE</div>
             <div class="speech-bubble">"I'm an undercover agent. Nobody suspects."</div>
             <p style="text-align: center; font-style: italic; margin-top: 1rem;">(Everyone suspected. Everyone delighted.)</p>
           </div>
+          <div class="sound-effect">TO BE CONTINUED...</div>
         `,
-        
         3: `
-          <div class="chapter-title-section">
-            <h1>CHAPTER 3</h1>
-            <p>The Adventures: Conquering Everything</p>
-          </div>
-
+          <div class="chapter-title-section"><h1>CHAPTER 3</h1><p>The Adventures: Conquering Everything</p></div>
           <div class="comic-panel">
             <div class="panel-header">THE STORYTELLER</div>
             <div class="panel-content-grid">
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Storyteller">
-              </div>
-              <div class="panel-text">
-                <h3>Room Goes Silent</h3>
-                <p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p>
-                <p><strong>#1 fan? Sarayu. Obviously.</strong></p>
-              </div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Storyteller"></div>
+              <div class="panel-text"><h3>Room Goes Silent</h3><p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p><p><strong>#1 fan? Sarayu. Obviously.</strong></p></div>
             </div>
             <div class="caption-box">Master storyteller. Everyone leans in. Nobody checks phones. Superpower.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">QUIZ CHAMPIONS</div>
             <div class="sound-effect" style="color: #00A8E8;">*APPLAUSE*</div>
-            <div class="panel-text">
-              <h3>Last-Minute Answer</h3>
-              <p>Final question. Teams stumped. Clock ticking.</p>
-              <p>Akshay: "Wait... I know this one!"</p>
-              <p><strong>Perfect. Dramatic. Crowd clapping. Every time.</strong></p>
-            </div>
+            <div class="panel-text"><h3>Last-Minute Answer</h3><p>Final question. Teams stumped. Clock ticking.</p><p>Akshay: "Wait... I know this one!"</p><p><strong>Perfect. Dramatic. Crowd clapping. Every time.</strong></p></div>
             <div class="caption-box">Record: UNDEFEATED. Her strategy + His brilliance = Glory.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">BET WARS</div>
-            <div class="panel-text">
-              <p style="font-size: 2rem; text-align: center; margin: 2rem 0;">
-                Akshay: <span style="color: #FF0000; font-family: 'Bangers', cursive; font-size: 3rem;">0%</span><br>
-                Saranya: <span style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 3rem;">100%</span>
-              </p>
-            </div>
+            <div class="panel-text"><p style="font-size: 2rem; text-align: center; margin: 2rem 0;">Akshay: <span style="color: #FF0000; font-family: 'Bangers', cursive; font-size: 3rem;">0%</span><br>Saranya: <span style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 3rem;">100%</span></p></div>
             <div class="speech-bubble">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">CYCLING CONQUEST</div>
             <div class="panel-content-grid">
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cycling">
-              </div>
-              <div class="panel-text">
-                <h3>The Journey</h3>
-                <p style="font-size: 1.6rem; font-family: 'Bangers', cursive;">
-                  ✅ 150km: DONE<br>✅ 200km: DONE<br>🎯 300km: NEXT
-                </p>
-                <div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div>
-              </div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cycling"></div>
+              <div class="panel-text"><h3>The Journey</h3><p style="font-size: 1.6rem; font-family: 'Bangers', cursive;">✅ 150km: DONE<br>✅ 200km: DONE<br>🎯 300km: NEXT</p><div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div></div>
             </div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">DHOL-TASHA DREAMS</div>
             <div class="sound-effect" style="color: #FF6600;">DHINA-DIN-THA!</div>
             <div class="panel-content-grid">
-              <div class="panel-image">
-                <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol">
-              </div>
-              <div class="panel-text">
-                <h3>Most Excited</h3>
-                <p>Amateur? Yes. Skilled? Getting there. Excited? ABSOLUTELY.</p>
-                <div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div>
-              </div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol"></div>
+              <div class="panel-text"><h3>Most Excited</h3><p>Amateur? Yes. Skilled? Getting there. Excited? ABSOLUTELY.</p><div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div></div>
             </div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">FLIGHT DISASTER</div>
             <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">GASP!</div>
             <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
             <div class="caption-box">Even heroes have moments. Cab driver still tells this story.</div>
           </div>
-
           <div class="comic-panel">
             <div class="panel-header">TOGETHER</div>
-            <div class="panel-image" style="text-align: center;">
-              <img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together" style="max-width: 600px;">
-            </div>
+            <div class="panel-image" style="text-align: center;"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together" style="max-width: 600px;"></div>
             <div class="caption-box">Cinema. Lit Fest. Stand-up. SodaBottle stories. Bowling. Every moment an adventure. Together.</div>
             <div class="speech-bubble">"Tu khush, toh main khush."</div>
           </div>
-
           <div class="sound-effect">TO BE CONTINUED...</div>
+        `,
+        4: `
+          <div class="chapter-title-section"><h1>CHAPTER 4</h1><p>Long Distance: 7,000 Kilometers of Love</p></div>
+          <div class="comic-panel">
+            <div class="panel-header">7,000 KM APART</div>
+            <div class="caption-box">They said long distance doesn't work. They clearly haven't met these two.</div>
+            <div class="panel-text"><h3>The Distance</h3><p>Just months after they found each other, life pulled them 7,000 kilometers apart. London called. Bilaspur stayed.</p><p>It came too soon. It hurt like hell. But giving up? <strong>Never an option.</strong></p></div>
+            <div class="speech-bubble">"Tu khush, toh main khush. Even from 7,000km away."</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">THE HARD PARTS</div>
+            <div class="panel-text"><h3>What They Survived</h3><p>Life-altering losses. Health crises. Days when she couldn't get out of bed. Tough financial times. Loneliness that hit like waves.</p><p>But through every storm, they made each other their anchor.</p></div>
+            <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
+              <div class="stat-box"><h4>📞</h4><p>Calls during the mundane — chai, coffee, walking home alone</p></div>
+              <div class="stat-box"><h4>🫂</h4><p>Anchor through losses no one else understood</p></div>
+              <div class="stat-box"><h4>💪</h4><p>Pushed each other when getting up felt impossible</p></div>
+              <div class="stat-box"><h4>🏠</h4><p>Made "home" a feeling, not a place</p></div>
+            </div>
+            <div class="caption-box">The distance was painful. But they chose each other. Every single day.</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">VIRTUAL DATE NIGHTS</div>
+            <div class="panel-content-grid">
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5961.jpg" alt="Virtual Date Night"></div>
+              <div class="panel-text"><h3>Dressed Up, 7,000km Apart</h3><p>He wears white — her favorite.</p><p>She wears a saree, bindi, his favorite jhumkas.</p><p>Elaborate. Intentional. <strong>Romantic as hell.</strong></p></div>
+            </div>
+            <div class="speech-bubble">"Just because we're on a screen doesn't mean I won't dress up for you."</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">THE EVERYDAY MAGIC</div>
+            <div class="panel-text"><h3>It's the Little Things</h3></div>
+            <div class="hero-stats">
+              <div class="stat-box"><h4>🎵 PLAYLISTS</h4><p>Created together. Listened together.</p></div>
+              <div class="stat-box"><h4>🍳 RECIPES</h4><p>Shared across continents</p></div>
+              <div class="stat-box"><h4>📱 REMINDERS</h4><p>"Call your mom." "Text your friend."</p></div>
+            </div>
+            <div class="caption-box">He has an incredible social life — and pushes her to build hers in London too. Love that makes you grow.</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">SURPRISE DELIVERIES</div>
+            <div class="panel-text"><h3>Gifts Across Continents</h3><p>Random. Thoughtful. Perfect.</p></div>
+            <div class="hero-stats">
+              <div class="stat-box"><h4>🧦</h4><p>Cute socks (because he knows)</p></div>
+              <div class="stat-box"><h4>🕯️</h4><p>Candles for Diwali (so London felt like home)</p></div>
+              <div class="stat-box"><h4>🔋</h4><p>Purple power bank (because her battery ALWAYS dies)</p></div>
+            </div>
+            <div class="speech-bubble">"Pagluuu, your phone died AGAIN? Check your mailbox tomorrow."</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">SLEEPING TOGETHER, APART</div>
+            <div class="panel-content-grid">
+              <div class="panel-text"><h3>The Nightly Ritual</h3><p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">"Good night, sleep tight, I love you."</p><p>Every. Single. Night.</p><p>She cannot sleep without hearing it. Neither can he.</p><p style="font-style: italic; margin-top: 1rem;">(Sometimes he falls asleep during movies. She gets mad. He's still cute.)</p></div>
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_6123.PNG" alt="Sleeping on video call"></div>
+            </div>
+            <div class="caption-box">365+ nights. Unbroken streak. This is what commitment looks like.</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">AAAJJAAAWWW!</div>
+            <div class="sound-effect" style="font-size: 4rem;">AAAJJAAAWWW!</div>
+            <div class="panel-text" style="text-align: center;"><p>There's a video of his niece as a baby, saying "Aaajjaaawww!"</p><p>Now, whenever she says "I want to be home with you," he sends it.</p><p><strong>Instant comfort. Every time.</strong></p></div>
+            <div class="speech-bubble">"I miss you." / "Aaajjaaawww! 🥺"</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">THEIR SONG</div>
+            <div class="panel-text" style="text-align: center;"><h3>🎵 The Anthem 🎵</h3><p style="font-size: 1.2rem; font-family: 'Permanent Marker', cursive; line-height: 2; margin: 1.5rem 0;">"I love you, you love me,<br>We make a happy family.<br>With a great big hug and a kiss from me to you,<br>Won't you say you love me too?"</p></div>
+            <div class="caption-box">Sung across timezones. Silly? Yes. Theirs? Absolutely.</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">THE POET</div>
+            <div class="panel-content-grid">
+              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/592834CF-DAD0-4522-978F-B1099AD67A9A.JPG" alt="Shayari"></div>
+              <div class="panel-text"><h3>Shayaris That Heal</h3><p>When London feels cold and lonely, he sends poems.</p><p>He always knows exactly which shayari to send at exactly the right moment.</p><p><strong>Words across continents. Warmth that travels 7,000km.</strong></p></div>
+            </div>
+            <div class="speech-bubble">"Feeling low? Check your messages, Sarayu."</div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">THE SILLY FIGHTS</div>
+            <div class="panel-text" style="text-align: center;"><h3>Their Only Argument</h3><p style="font-size: 1.3rem; margin: 1.5rem 0;">"I love you more."</p><p style="font-size: 1.3rem; margin: 1.5rem 0;">"No, I love YOU more."</p><p style="font-size: 1.3rem; margin: 1.5rem 0;">"Impossible. I love you MORE."</p><p style="font-style: italic;">(This continues indefinitely. No winner declared. Both victorious.)</p></div>
+          </div>
+          <div class="comic-panel">
+            <div class="panel-header">7,000 KM. ZERO DOUBTS.</div>
+            <div class="panel-text" style="text-align: center;"><h3>The Truth</h3><p style="font-size: 1.2rem; line-height: 1.8;">Long distance is hard.<br>Losing people is harder.<br>Health scares are terrifying.<br>Bad days feel endless.<br><br>But having someone who stays on call while you make chai?<br>Who sends shayaris at 2am?<br>Who dresses up in white for a video call date?<br>Who says "good night, sleep tight, I love you" for 365 nights straight?<br><br><strong>That's not hard. That's home.</strong></p></div>
+            <div class="sound-effect">TO BE CONTINUED...</div>
+          </div>
         `
       };
-
       return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
     }
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) {
-        closeChapter();
-      }
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) { closeChapter(); } });
   </script>
-
 </body>
 </html>
