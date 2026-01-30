@@ -126,16 +126,6 @@
           <p><strong>Lucky Colour:</strong> White (only because Sarayu loves you in it)</p>
           <p style="font-style: italic;"><strong>Avoid:</strong> Forgetting how loved you are</p>
         </div>
-        <div class="info-box" style="background: rgba(255,255,255,0.5); border: 2px solid #2c2c2c; padding: 0.8rem; margin: 0.8rem 0;">
-  <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center; border-bottom: 1px solid #2c2c2c; padding-bottom: 0.3rem;">📋 NOTICE: PROPERTY CLAIMED</h4>
-  <p style="font-size: 0.85rem; margin: 0.4rem 0; text-align: center; line-height: 1.5;">
-    <strong>Taken. Fully. Irrevocably.</strong><br><br>
-    Known for morning chai, late-night check-ins, and showing up exactly when needed.<br><br>
-    If found wandering Bangalore memories or lost in sleep, please return him to the woman who calls him <em>tutuuuu</em>.<br><br>
-    <strong>She cannot live without him.</strong>
-  </p>
-  <p style="font-size: 0.75rem; font-style: italic; text-align: right; margin-top: 0.5rem; color: #555;">— The Management</p>
-</div>
       </div>
 
       <div class="column">
@@ -433,54 +423,311 @@
           <div class="sound-effect">TO BE CONTINUED...</div>
         `,
         3: `
+          <style>
+            .storyteller-effect { animation: spellcast 3s infinite; }
+            @keyframes spellcast { 0%, 100% { text-shadow: 0 0 5px #FFD700; } 50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FF6600; } }
+            .applause-btn { background: linear-gradient(135deg, #FFD700, #FF6600); border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; cursor: pointer; border-radius: 50px; transition: all 0.3s; box-shadow: 4px 4px 0 #000; }
+            .applause-btn:hover { transform: scale(1.1) rotate(-3deg); }
+            .applause-btn:active { transform: scale(0.95); }
+            .clap-explosion { position: fixed; pointer-events: none; font-size: 3rem; animation: floatUp 1s forwards; z-index: 9999; }
+            @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
+            .bet-counter { background: #1a1a1a; border: 5px solid #FFD700; border-radius: 15px; padding: 2rem; text-align: center; }
+            .bet-score { font-family: 'Bangers', cursive; font-size: 4rem; transition: all 0.3s; }
+            .bet-btn { background: #FF0000; color: white; border: 3px solid #000; padding: 0.8rem 1.5rem; font-family: 'Bangers', cursive; font-size: 1.2rem; cursor: pointer; margin: 0.5rem; border-radius: 10px; transition: all 0.2s; }
+            .bet-btn:hover { transform: scale(1.05); }
+            .bet-btn.saranya { background: #FFD700; color: #000; }
+            .shake { animation: shake 0.5s; }
+            @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px) rotate(-5deg); } 75% { transform: translateX(10px) rotate(5deg); } }
+            .cycling-progress { background: #333; border-radius: 50px; height: 40px; overflow: hidden; border: 3px solid #000; position: relative; }
+            .cycling-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6600); border-radius: 50px; transition: width 1s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
+            .bike-icon { font-size: 1.5rem; animation: pedal 0.3s infinite; }
+            @keyframes pedal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+            .dhol-btn { background: #FF6600; border: 5px solid #000; border-radius: 50%; width: 120px; height: 120px; font-size: 3rem; cursor: pointer; transition: all 0.1s; box-shadow: 5px 5px 0 #000; }
+            .dhol-btn:active { transform: scale(0.9); box-shadow: 2px 2px 0 #000; }
+            .dhol-text { font-family: 'Bangers', cursive; font-size: 2rem; color: #FF6600; text-shadow: 2px 2px 0 #000; animation: none; }
+            .dhol-text.playing { animation: dholBeat 0.2s infinite; }
+            @keyframes dholBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+            .flight-panel { position: relative; overflow: hidden; }
+            .flight-cloud { position: absolute; font-size: 2rem; opacity: 0.3; animation: floatCloud 10s infinite linear; }
+            @keyframes floatCloud { 0% { transform: translateX(-100px); } 100% { transform: translateX(1000px); } }
+            .gasp-btn { background: #FF0000; color: white; border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; cursor: pointer; border-radius: 10px; }
+            .gasp-btn:active { animation: gasp 0.5s; }
+            @keyframes gasp { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+            .love-meter { background: linear-gradient(135deg, #ff6b6b, #ee5a24); border: 5px solid #000; border-radius: 20px; padding: 2rem; text-align: center; }
+            .heart-container { font-size: 4rem; cursor: pointer; transition: all 0.3s; display: inline-block; }
+            .heart-container:hover { transform: scale(1.2); }
+            .heart-container.clicked { animation: heartBurst 0.6s; }
+            @keyframes heartBurst { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1); } }
+            .love-count { font-family: 'Bangers', cursive; font-size: 2rem; color: white; text-shadow: 2px 2px 0 #000; }
+            .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; animation: confettiFall 3s forwards; z-index: 9999; }
+            @keyframes confettiFall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+            .quiz-reveal { background: #000; color: #FFD700; padding: 1rem; text-align: center; cursor: pointer; font-family: 'Bangers', cursive; font-size: 1.5rem; border: 3px solid #FFD700; margin: 1rem 0; transition: all 0.3s; }
+            .quiz-reveal:hover { background: #FFD700; color: #000; }
+          </style>
+
           <div class="chapter-title-section"><h1>CHAPTER 3</h1><p>The Adventures: Conquering Everything</p></div>
+          
           <div class="comic-panel">
             <div class="panel-header">THE STORYTELLER</div>
             <div class="panel-content-grid">
               <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Storyteller"></div>
-              <div class="panel-text"><h3>Room Goes Silent</h3><p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p><p><strong>#1 fan? Sarayu. Obviously.</strong></p></div>
+              <div class="panel-text">
+                <h3 class="storyteller-effect">Room Goes Silent</h3>
+                <p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p>
+                <p>Not just "listening" silence. The <em>lean-forward, chai-forgotten, mouth-half-open</em> silence. Even ceiling fans slow down to hear him better.</p>
+                <p>He doesn't narrate — <strong>he casts spells.</strong> Side characters get arcs. Background noises get emotions. Somewhere between sentence three and dramatic pause two, you forget where you are entirely.</p>
+              </div>
             </div>
-            <div class="caption-box">Master storyteller. Everyone leans in. Nobody checks phones. Superpower.</div>
+            <div class="caption-box">
+              <strong>#1 fan? Sarayu. Obviously.</strong><br>
+              Front row. Permanent subscription. Laughs before the punchline. Defends the story in post-story debates like it's peer-reviewed research.
+            </div>
+            <p style="text-align: center; margin-top: 1rem; font-style: italic;">Master storyteller. Everyone leans in. Nobody checks phones. Superpower.</p>
           </div>
+
           <div class="comic-panel">
             <div class="panel-header">QUIZ CHAMPIONS</div>
-            <div class="sound-effect" style="color: #00A8E8;">*APPLAUSE*</div>
-            <div class="panel-text"><h3>Last-Minute Answer</h3><p>Final question. Teams stumped. Clock ticking.</p><p>Akshay: "Wait... I know this one!"</p><p><strong>Perfect. Dramatic. Crowd clapping. Every time.</strong></p></div>
-            <div class="caption-box">Record: UNDEFEATED. Her strategy + His brilliance = Glory.</div>
+            <div class="panel-text">
+              <h3>Last-Minute Answer</h3>
+              <p>Final question. Teams stumped. Clock ticking.</p>
+              <p>Panic in the air. Whispers. Fake confidence. That one teammate Googling mentally and failing.</p>
+              <p style="font-size: 1.5rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">Akshay: "Wait... I know this one!"</p>
+              <p style="text-align: center;">Cue cinematic zoom-in. Cue Saranya already smiling because she knows.</p>
+            </div>
+            <div style="text-align: center; margin: 2rem 0;">
+              <button class="applause-btn" onclick="triggerApplause()">👏 APPLAUD THE GENIUS 👏</button>
+              <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">(Click to celebrate!)</p>
+            </div>
+            <div class="caption-box">
+              <strong>Perfect. Dramatic. Crowd clapping. Every time.</strong><br>
+              Even the quizmaster is impressed but pretending not to be.<br><br>
+              <strong>Record: UNDEFEATED.</strong> Her strategy + His brilliance = Glory.<br>
+              She plots. He delivers.
+            </div>
           </div>
+
           <div class="comic-panel">
             <div class="panel-header">BET WARS</div>
-            <div class="panel-text"><p style="font-size: 2rem; text-align: center; margin: 2rem 0;">Akshay: <span style="color: #FF0000; font-family: 'Bangers', cursive; font-size: 3rem;">0%</span><br>Saranya: <span style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 3rem;">100%</span></p></div>
-            <div class="speech-bubble">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
+            <div class="bet-counter">
+              <p style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 1.5rem; margin-bottom: 1rem;">📊 OFFICIAL BET SCOREBOARD 📊</p>
+              <div style="display: flex; justify-content: center; gap: 3rem; align-items: center;">
+                <div>
+                  <p style="color: #FF6666; font-size: 1.2rem;">AKSHAY</p>
+                  <p class="bet-score" style="color: #FF0000;" id="akshayScore">0%</p>
+                </div>
+                <div style="color: #FFD700; font-size: 2rem;">VS</div>
+                <div>
+                  <p style="color: #FFD700; font-size: 1.2rem;">SARANYA</p>
+                  <p class="bet-score" style="color: #FFD700;" id="saranyaScore">100%</p>
+                </div>
+              </div>
+              <p style="color: #888; margin-top: 1rem; font-size: 0.9rem;">Statistics don't lie. History has receipts.</p>
+              <div style="margin-top: 1.5rem;">
+                <button class="bet-btn" onclick="tryBet()">🎲 Akshay tries another bet</button>
+                <button class="bet-btn saranya" onclick="saranyaWins()">👑 Saranya wins (obviously)</button>
+              </div>
+            </div>
+            <div class="speech-bubble" style="margin-top: 1.5rem;">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
+            <p style="text-align: center; font-style: italic; margin-top: 1rem;">Every bet starts with confidence. Every bet ends with negotiation. Somehow he still agrees to the next one.<br><strong>Hope is a dangerous thing.</strong></p>
           </div>
+
           <div class="comic-panel">
             <div class="panel-header">CYCLING CONQUEST</div>
             <div class="panel-content-grid">
               <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cycling"></div>
-              <div class="panel-text"><h3>The Journey</h3><p style="font-size: 1.6rem; font-family: 'Bangers', cursive;">✅ 150km: DONE<br>✅ 200km: DONE<br>🎯 300km: NEXT</p><div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div></div>
+              <div class="panel-text">
+                <h3>The Journey</h3>
+                <div style="margin: 1.5rem 0;">
+                  <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">150km: CONQUERED! 🏆</p>
+                  <div class="cycling-progress"><div class="cycling-fill" style="width: 100%;"><span class="bike-icon">🚴</span></div></div>
+                </div>
+                <div style="margin: 1.5rem 0;">
+                  <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">200km: DESTROYED! 🏆</p>
+                  <div class="cycling-progress"><div class="cycling-fill" style="width: 100%;"><span class="bike-icon">🚴</span></div></div>
+                </div>
+                <div style="margin: 1.5rem 0;">
+                  <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">300km: LOADING... 🎯</p>
+                  <div class="cycling-progress"><div class="cycling-fill" id="progress300" style="width: 0%;"><span class="bike-icon">🚴</span></div></div>
+                  <button onclick="start300km()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-family: 'Bangers', cursive; cursor: pointer;">START THE RIDE 🚀</button>
+                </div>
+              </div>
             </div>
+            <div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div>
+            <p style="text-align: center; font-style: italic;">Says the man who finishes rides and immediately starts planning longer ones.<br><strong>Threatens rebellion. Delivers excellence.</strong></p>
           </div>
+
           <div class="comic-panel">
             <div class="panel-header">DHOL-TASHA DREAMS</div>
-            <div class="sound-effect" style="color: #FF6600;">DHINA-DIN-THA!</div>
+            <div style="text-align: center; margin: 2rem 0;">
+              <p class="dhol-text" id="dholText">🥁 TAP THE DHOL! 🥁</p>
+              <button class="dhol-btn" onclick="playDhol()" id="dholBtn">🪘</button>
+              <p style="font-size: 0.9rem; margin-top: 1rem; color: #666;">Click repeatedly for MAXIMUM DHOL ENERGY!</p>
+            </div>
             <div class="panel-content-grid">
               <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol"></div>
-              <div class="panel-text"><h3>Most Excited</h3><p>Amateur? Yes. Skilled? Getting there. Excited? ABSOLUTELY.</p><div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div></div>
+              <div class="panel-text">
+                <h3>Most Excited Human Ever</h3>
+                <p>Amateur? Yes. Skilled? Getting there. Excited? <strong>ABSOLUTELY.</strong></p>
+                <p>Volume: maximum. Enthusiasm: illegal in some neighbourhoods.</p>
+              </div>
+            </div>
+            <div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div>
+            <p style="text-align: center; font-style: italic;">Local aunties already emotionally preparing.</p>
+          </div>
+
+          <div class="comic-panel flight-panel">
+            <span class="flight-cloud" style="top: 20%; animation-delay: 0s;">☁️</span>
+            <span class="flight-cloud" style="top: 40%; animation-delay: 3s;">☁️</span>
+            <span class="flight-cloud" style="top: 60%; animation-delay: 6s;">✈️</span>
+            <div class="panel-header">FLIGHT DISASTER</div>
+            <div style="text-align: center; margin: 2rem 0;">
+              <button class="gasp-btn" onclick="triggerGasp()">😱 CLICK FOR DRAMATIC GASP</button>
+            </div>
+            <div class="sound-effect" id="gaspText" style="font-size: 2.5rem; color: #FF0000;">GASP!</div>
+            <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
+            <div class="panel-text" style="text-align: center;">
+              <p>The moment. The realisation. The pure, cinematic horror.</p>
+            </div>
+            <div class="caption-box">
+              <strong>Even heroes have moments.</strong> Cab driver still tells this story.<br>
+              Probably adds sound effects now. Probably says, "Very smart guy… but that day 😌"
             </div>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">FLIGHT DISASTER</div>
-            <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">GASP!</div>
-            <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
-            <div class="caption-box">Even heroes have moments. Cab driver still tells this story.</div>
-          </div>
+
           <div class="comic-panel">
             <div class="panel-header">TOGETHER</div>
             <div class="panel-image" style="text-align: center;"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together" style="max-width: 600px;"></div>
-            <div class="caption-box">Cinema. Lit Fest. Stand-up. SodaBottle stories. Bowling. Every moment an adventure. Together.</div>
-            <div class="speech-bubble">"Tu khush, toh main khush."</div>
+            <div class="panel-text" style="text-align: center; margin: 1.5rem 0;">
+              <p>Cinema. Lit Fest. Stand-up. SodaBottle stories. Bowling.</p>
+              <p>Inside jokes no one else understands. Laughing at the same thing for the 47th time. Competing, collaborating, conspiring.</p>
+              <p><strong>Every moment an adventure. Together.</strong></p>
+            </div>
+            <div class="love-meter">
+              <p style="color: white; font-family: 'Bangers', cursive; font-size: 1.5rem;">💕 LOVE-O-METER 💕</p>
+              <div class="heart-container" onclick="clickHeart()" id="heartBtn">❤️</div>
+              <p class="love-count">Tap the heart! <span id="loveCount">0</span> loves</p>
+              <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem;">How much do you love them? Keep clicking!</p>
+            </div>
+            <div class="speech-bubble" style="margin-top: 1.5rem; text-align: center;">
+              <p style="font-size: 1.5rem;">"Tu khush, toh main khush."</p>
+              <p style="font-size: 1rem; font-family: Georgia, serif; font-style: italic;">Soft. Simple. Deadly effective.</p>
+            </div>
           </div>
-          <div class="sound-effect">TO BE CONTINUED...</div>
+
+          <div class="comic-panel" style="background: linear-gradient(135deg, #FFD700 0%, #FF6600 100%); text-align: center;">
+            <div class="sound-effect" style="color: #000; text-shadow: 3px 3px 0 #fff;">TO BE CONTINUED...</div>
+            <p style="font-size: 1.3rem; margin-top: 1rem;">Because with these two, there's always another story loading. 💛</p>
+            <button onclick="triggerConfetti()" style="margin-top: 1.5rem; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; background: #000; color: #FFD700; border: none; border-radius: 50px; cursor: pointer;">🎉 CELEBRATE CHAPTER 3! 🎉</button>
+          </div>
+
+          <script>
+            let loveCount = 0;
+            let dholCount = 0;
+            const dholSounds = ['DHINA!', 'DIN!', 'THA!', 'DHINA-DIN-THA!', 'BOOM!', 'TAKA-TAKA!', 'DHAM!'];
+            
+            function triggerApplause() {
+              for(let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                  const clap = document.createElement('div');
+                  clap.className = 'clap-explosion';
+                  clap.textContent = ['👏', '🎉', '✨', '🌟', '👑'][Math.floor(Math.random() * 5)];
+                  clap.style.left = Math.random() * window.innerWidth + 'px';
+                  clap.style.top = Math.random() * window.innerHeight + 'px';
+                  document.body.appendChild(clap);
+                  setTimeout(() => clap.remove(), 1000);
+                }, i * 100);
+              }
+            }
+            
+            function tryBet() {
+              const scoreEl = document.getElementById('akshayScore');
+              scoreEl.classList.add('shake');
+              setTimeout(() => {
+                scoreEl.classList.remove('shake');
+                scoreEl.textContent = '0%';
+                alert('Nice try, Pagluuu! 😂 Still 0%!');
+              }, 500);
+            }
+            
+            function saranyaWins() {
+              const scoreEl = document.getElementById('saranyaScore');
+              scoreEl.style.transform = 'scale(1.2)';
+              setTimeout(() => scoreEl.style.transform = 'scale(1)', 300);
+              triggerConfetti();
+            }
+            
+            function start300km() {
+              const progress = document.getElementById('progress300');
+              let width = 0;
+              const interval = setInterval(() => {
+                width += 2;
+                progress.style.width = width + '%';
+                if(width >= 100) {
+                  clearInterval(interval);
+                  alert('🏆 300KM CONQUERED! Legend status: CONFIRMED!');
+                  triggerConfetti();
+                }
+              }, 50);
+            }
+            
+            function playDhol() {
+              dholCount++;
+              const text = document.getElementById('dholText');
+              const btn = document.getElementById('dholBtn');
+              text.textContent = dholSounds[Math.floor(Math.random() * dholSounds.length)];
+              text.classList.add('playing');
+              btn.style.transform = 'scale(0.9)';
+              setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+              }, 100);
+              if(dholCount > 10) {
+                text.textContent = '🔥 DHOL MASTER UNLOCKED! 🔥';
+              }
+            }
+            
+            function triggerGasp() {
+              const text = document.getElementById('gaspText');
+              text.style.fontSize = '5rem';
+              text.textContent = '😱 GASP!!!';
+              setTimeout(() => {
+                text.style.fontSize = '2.5rem';
+                text.textContent = 'GASP!';
+              }, 1000);
+            }
+            
+            function clickHeart() {
+              loveCount++;
+              document.getElementById('loveCount').textContent = loveCount;
+              const heart = document.getElementById('heartBtn');
+              heart.classList.add('clicked');
+              setTimeout(() => heart.classList.remove('clicked'), 600);
+              
+              if(loveCount === 50) alert('50 loves! You really love them! 💕');
+              if(loveCount === 100) { alert('💯 MAXIMUM LOVE ACHIEVED! 💯'); triggerConfetti(); }
+              
+              // Floating heart
+              const floatHeart = document.createElement('div');
+              floatHeart.textContent = '❤️';
+              floatHeart.style.cssText = 'position:fixed;font-size:2rem;pointer-events:none;animation:floatUp 1s forwards;z-index:9999;left:' + (Math.random()*window.innerWidth) + 'px;top:' + (Math.random()*window.innerHeight) + 'px;';
+              document.body.appendChild(floatHeart);
+              setTimeout(() => floatHeart.remove(), 1000);
+            }
+            
+            function triggerConfetti() {
+              const colors = ['#FFD700', '#FF0000', '#00FF00', '#FF69B4', '#00BFFF', '#FF6600'];
+              for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                  const confetti = document.createElement('div');
+                  confetti.className = 'confetti';
+                  confetti.style.left = Math.random() * window.innerWidth + 'px';
+                  confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                  confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                  document.body.appendChild(confetti);
+                  setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+              }
+            }
+          </script>
         `,
         4: `
           <div class="chapter-title-section"><h1>CHAPTER 4</h1><p>Long Distance: 7,000 Kilometers of Love</p></div>
