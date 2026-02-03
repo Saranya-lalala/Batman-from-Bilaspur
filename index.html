@@ -36,24 +36,8 @@
     .continue-button button { background: #2c2c2c; color: #f4e8d0; border: 3px solid #2c2c2c; padding: 1.5rem 3rem; font-size: 1.3rem; font-family: 'Georgia', serif; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; }
     .continue-button button:hover { background: #f4e8d0; color: #2c2c2c; transform: scale(1.05); }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-.chapter-grid-section { 
-  display: none; 
-  opacity: 0; 
-  background: #1a1a1a; 
-  min-height: 100vh; 
-  padding: 4rem 2rem; 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  overflow-y: auto;
-}  
-    .chapter-grid-section.active { 
-  display: block !important; 
-  animation: fadeIn 1s forwards; 
-}
+    .chapter-grid-section { display: none; opacity: 0; background: #1a1a1a; min-height: 100vh; padding: 4rem 2rem; }
+    .chapter-grid-section.active { display: block; animation: fadeIn 1s forwards; }
     @keyframes fadeIn { to { opacity: 1; } }
     .grid-header { text-align: center; margin-bottom: 4rem; }
     .grid-header h1 { font-family: 'Bangers', cursive; font-size: 5rem; color: #FFD700; text-transform: uppercase; letter-spacing: 6px; text-shadow: 6px 6px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; margin-bottom: 1rem; }
@@ -252,83 +236,9 @@
 
   <script>
     let musicPlaying = false;
-    let loveCount = 0;
-let dholCount = 0;
-const dholSounds = ['DHINA!', 'DIN!', 'THA!', 'DHINA-DIN-THA!', 'BOOM!', 'TAKA-TAKA!', 'DHAM!'];
-
-function triggerApplause() {
-  for(let i = 0; i < 10; i++) {
-    setTimeout(function() {
-      var clap = document.createElement('div');
-      clap.textContent = ['👏', '🎉', '✨', '🌟', '👑'][Math.floor(Math.random() * 5)];
-      clap.style.cssText = 'position:fixed;font-size:3rem;pointer-events:none;z-index:9999;left:' + (Math.random() * window.innerWidth) + 'px;top:' + (Math.random() * window.innerHeight) + 'px;animation:floatUp 1s forwards;';
-      document.body.appendChild(clap);
-      setTimeout(function() { clap.remove(); }, 1000);
-    }, i * 100);
-  }
-}
-
-function tryBet() {
-  var scoreEl = document.getElementById('akshayScore');
-  if(scoreEl) { alert('Nice try, Pagluuu! 😂 Still 0%!'); }
-}
-
-function saranyaWins() { triggerConfetti(); }
-
-function start300km() {
-  var progress = document.getElementById('progress300');
-  if(progress) {
-    var width = 0;
-    var interval = setInterval(function() {
-      width += 2;
-      progress.style.width = width + '%';
-      if(width >= 100) { clearInterval(interval); alert('🏆 300KM CONQUERED!'); triggerConfetti(); }
-    }, 50);
-  }
-}
-
-function playDhol() {
-  dholCount++;
-  var text = document.getElementById('dholText');
-  if(text) { text.textContent = dholSounds[Math.floor(Math.random() * dholSounds.length)]; }
-  if(dholCount > 10) { text.textContent = '🔥 DHOL MASTER! 🔥'; dholCount = 0; }
-}
-
-function triggerGasp() {
-  var text = document.getElementById('gaspText');
-  if(text) { text.style.fontSize = '5rem'; text.textContent = '😱 GASP!!!'; setTimeout(function() { text.style.fontSize = '2.5rem'; text.textContent = 'GASP!'; }, 1000); }
-}
-
-function clickHeart() {
-  loveCount++;
-  var countEl = document.getElementById('loveCount');
-  if(countEl) countEl.textContent = loveCount;
-  if(loveCount === 100) { alert('💯 MAXIMUM LOVE! 💯'); triggerConfetti(); }
-}
-
-function triggerConfetti() {
-  var colors = ['#FFD700', '#FF0000', '#00FF00', '#FF69B4', '#00BFFF'];
-  for(var i = 0; i < 30; i++) {
-    setTimeout(function() {
-      var c = document.createElement('div');
-      c.style.cssText = 'position:fixed;width:10px;height:10px;pointer-events:none;z-index:9999;left:' + (Math.random()*window.innerWidth) + 'px;top:-20px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation:confettiFall 3s forwards;';
-      document.body.appendChild(c);
-      setTimeout(function() { c.remove(); }, 3000);
-    }, i * 30);
-  }
-}
-    @keyframes floatUp { 0% { opacity:1; transform:translateY(0); } 100% { opacity:0; transform:translateY(-100px); } }
-@keyframes confettiFall { 0% { transform:translateY(0) rotate(0deg); } 100% { transform:translateY(100vh) rotate(720deg); opacity:0; } }
-    
     function toggleMusic() { const btn = document.getElementById('musicBtn'); musicPlaying = !musicPlaying; btn.textContent = musicPlaying ? '🔊' : '🔇'; }
-function openGrid() { 
-  document.getElementById('newspaper').classList.add('hidden'); 
-  setTimeout(() => { 
-    document.getElementById('newspaper').style.display = 'none'; 
-    document.getElementById('chapterGrid').classList.add('active'); 
-    document.getElementById('chapterGrid').style.display = 'block';
-  }, 1000); 
-}    function openChapter(chapterNum) { const content = getChapterContent(chapterNum); document.getElementById('chapterContent').innerHTML = content; document.getElementById('viewerTitle').textContent = 'CHAPTER ' + chapterNum; document.getElementById('chapterViewer').classList.add('active'); document.getElementById('chapterGrid').style.display = 'none'; window.scrollTo(0, 0); }
+    function openGrid() { document.getElementById('newspaper').classList.add('hidden'); setTimeout(() => { document.getElementById('newspaper').style.display = 'none'; document.getElementById('chapterGrid').classList.add('active'); }, 1000); }
+    function openChapter(chapterNum) { const content = getChapterContent(chapterNum); document.getElementById('chapterContent').innerHTML = content; document.getElementById('viewerTitle').textContent = 'CHAPTER ' + chapterNum; document.getElementById('chapterViewer').classList.add('active'); document.getElementById('chapterGrid').style.display = 'none'; window.scrollTo(0, 0); }
     function closeChapter() { document.getElementById('chapterViewer').classList.remove('active'); document.getElementById('chapterGrid').style.display = 'block'; }
 
     function getChapterContent(chapterNum) {
