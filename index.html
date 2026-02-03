@@ -124,12 +124,251 @@
 }
 
 @media (max-width: 768px) { .chapter-grid { grid-template-columns: 1fr; } .panel-content-grid { grid-template-columns: 1fr; } .hero-stats { grid-template-columns: 1fr; } .columns { grid-template-columns: 1fr; } }
-</style>
+.audio-btn {
+  background: linear-gradient(135deg, #FFD700, #FF6600);
+  border: 4px solid #000;
+  padding: 1rem 2rem;
+  font-family: 'Bangers', cursive;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 #000;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.audio-btn:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.audio-btn:active {
+  transform: scale(0.95);
+}
+
+.audio-btn.playing {
+  animation: audioPlaying 0.5s infinite;
+}
+
+@keyframes audioPlaying {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.chai-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.chai-flask {
+  font-size: 5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+  position: relative;
+}
+
+.chai-flask:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.chai-mugs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-size: 3rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.chai-mugs.filled {
+  opacity: 1;
+  animation: fillMugs 1s forwards;
+}
+
+@keyframes fillMugs {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.steam {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: riseUp 2s infinite;
+}
+
+@keyframes riseUp {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+}
+
+.cricket-bat {
+  font-size: 4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.cricket-bat:active {
+  transform: rotate(45deg) scale(1.2);
+}
+
+.six-animation {
+  font-family: 'Bangers', cursive;
+  font-size: 4rem;
+  color: #FFD700;
+  text-shadow: 3px 3px 0 #000;
+  animation: sixPop 1s forwards;
+}
+
+@keyframes sixPop {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.5) rotate(360deg); }
+  100% { transform: scale(1) rotate(360deg); opacity: 0; }
+}
+
+.parrot-tree {
+  font-size: 5rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.flying-parrot {
+  position: fixed;
+  font-size: 3rem;
+  animation: flyAcross 3s forwards;
+  z-index: 9999;
+}
+
+@keyframes flyAcross {
+  0% { left: -100px; top: 50%; }
+  100% { left: 110%; top: 20%; }
+}
+
+.spaghetti-pot {
+  font-size: 5rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.spaghetti-pot:active {
+  transform: scale(1.1);
+}
+
+.bubble {
+  position: absolute;
+  font-size: 2rem;
+  animation: bubblePop 0.8s forwards;
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(0) translateY(0); opacity: 1; }
+  50% { transform: scale(1.2) translateY(-30px); opacity: 1; }
+  100% { transform: scale(0) translateY(-60px); opacity: 0; }
+}
+
+.gift-box {
+  font-size: 4rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.gift-box:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.gift-traveling {
+  position: fixed;
+  font-size: 3rem;
+  animation: travelGift 3s forwards;
+  z-index: 9999;
+}
+
+@keyframes travelGift {
+  0% { left: 0%; top: 50%; }
+  50% { left: 50%; top: 20%; transform: scale(0.5); }
+  100% { left: 100%; top: 50%; transform: scale(1); }
+}
+
+.video-call-btn {
+  background: #25D366;
+  border: 5px solid #000;
+  padding: 1.5rem 3rem;
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s;
+  box-shadow: 5px 5px 0 #000;
+  margin: 2rem;
+}
+
+.video-call-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 0 #000;
+}
+
+.video-call-btn.ringing {
+  animation: ringRing 0.5s infinite;
+}
+
+@keyframes ringRing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.poll-container {
+  background: #FFD700;
+  border: 5px solid #000;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 15px;
+  box-shadow: 6px 6px 0 #000;
+}
+
+.poll-btn {
+  background: white;
+  border: 3px solid #000;
+  padding: 1rem 2rem;
+  margin: 0.5rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.poll-btn:hover {
+  background: #FFD700;
+  transform: scale(1.05);
+}
+
+.poll-result {
+  margin-top: 1rem;
+  font-family: 'Bangers', cursive;
+  font-size: 1.5rem;
+}
+
+  </style>
 </head>
 <body>
   <audio id="bgMusic" loop>
     <source src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/Chalao%20Na%20Naino%20Se%20Music%20Ringtone.mp3" type="audio/mpeg">
   </audio>
+  <audio id="sillySong" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/Me%20and%20My%20Darling_funny%20singing.m4a"></audio>
+<audio id="homeAudio" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/Home.m4a"></audio>
+<audio id="goodnightAudio" src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/Good%20night%20message.m4a"></audio>
 
   <div class="music-control" onclick="toggleMusic()" id="musicBtn">🔊</div>
 
@@ -881,7 +1120,168 @@ function triggerConfetti() {
     }, i * 30);
   }
 }
-    
+    // Audio playback functions
+function playSillySong() {
+  const audio = document.getElementById('sillySong');
+  const btn = document.getElementById('sillySongBtn');
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('playing');
+    btn.textContent = '⏸️ PAUSE THE CUTENESS';
+    audio.onended = () => {
+      btn.classList.remove('playing');
+      btn.textContent = '🎤 HEAR HIM SING';
+    };
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    btn.classList.remove('playing');
+    btn.textContent = '🎤 HEAR HIM SING';
+  }
+}
+
+function playHomeAudio() {
+  const audio = document.getElementById('homeAudio');
+  const btn = document.getElementById('homeAudioBtn');
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('playing');
+    btn.textContent = '⏸️ PAUSE';
+    audio.onended = () => {
+      btn.classList.remove('playing');
+      btn.textContent = '🏠 HEAR HIM TALK TO HOME';
+    };
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    btn.classList.remove('playing');
+    btn.textContent = '🏠 HEAR HIM TALK TO HOME';
+  }
+}
+
+function playGoodnightAudio() {
+  const audio = document.getElementById('goodnightAudio');
+  const btn = document.getElementById('goodnightAudioBtn');
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('playing');
+    btn.textContent = '⏸️ PAUSE';
+    audio.onended = () => {
+      btn.classList.remove('playing');
+      btn.textContent = '🌙 HEAR OUR GOOD NIGHT MESSAGE';
+    };
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    btn.classList.remove('playing');
+    btn.textContent = '🌙 HEAR OUR GOOD NIGHT MESSAGE';
+  }
+}
+
+function hitCricketBat() {
+  const six = document.createElement('div');
+  six.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Bangers,cursive;font-size:4rem;color:#FFD700;text-shadow:3px 3px 0 #000;z-index:9999;animation:sixPop 1s forwards;';
+  six.textContent = 'SIX!';
+  document.body.appendChild(six);
+  setTimeout(() => six.remove(), 1000);
+}
+
+function releaseParrots() {
+  for(let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const parrot = document.createElement('div');
+      parrot.textContent = '🦜';
+      parrot.style.cssText = 'position:fixed;font-size:3rem;animation:flyAcross 3s forwards;z-index:9999;left:-100px;top:' + (Math.random() * 50 + 20) + '%;';
+      document.body.appendChild(parrot);
+      setTimeout(() => parrot.remove(), 3000);
+    }, i * 300);
+  }
+}
+
+let samosaVotes = 0;
+let kachoriVotes = 0;
+
+function votePoll(choice) {
+  if(choice === 'samosa') samosaVotes++;
+  else kachoriVotes++;
+  
+  const result = document.getElementById('pollResult');
+  result.innerHTML = '<p>🥟 Samosa: ' + samosaVotes + ' votes</p><p>🥙 Kachori: ' + kachoriVotes + ' votes</p><p style="color: #FF0000; margin-top: 1rem;">Akshay is still right. Samosas win. No debates.</p>';
+}
+
+function pourChai() {
+  const mugs = document.getElementById('chaiMugs');
+  const flask = document.getElementById('chaiFlask');
+  
+  flask.style.transform = 'rotate(45deg)';
+  setTimeout(() => {
+    mugs.classList.add('filled');
+    flask.style.transform = 'rotate(0deg)';
+  }, 500);
+}
+
+function popSpaghetti() {
+  const pot = document.getElementById('pastaContainer');
+  for(let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      const bubble = document.createElement('div');
+      bubble.textContent = '💥';
+      bubble.style.cssText = 'position:absolute;font-size:2rem;left:' + (Math.random() * 100) + 'px;top:-50px;animation:bubblePop 0.8s forwards;';
+      pot.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 800);
+    }, i * 200);
+  }
+}
+
+function ringVideoCall() {
+  const btn = document.getElementById('videoCallBtn');
+  btn.classList.add('ringing');
+  btn.textContent = '📞 RINGING...';
+  
+  setTimeout(() => {
+    btn.classList.remove('ringing');
+    btn.textContent = '💕 CONNECTED!';
+    btn.style.background = '#FF69B4';
+    setTimeout(() => alert('💛 "Hi Sarayu! Tu khush?"'), 500);
+  }, 2000);
+  
+  setTimeout(() => {
+    btn.textContent = '📞 CALL AKSHAY';
+    btn.style.background = '#25D366';
+  }, 5000);
+}
+
+function deliverGift() {
+  const gift = document.createElement('div');
+  gift.textContent = '🎁';
+  gift.style.cssText = 'position:fixed;font-size:3rem;animation:travelGift 3s forwards;z-index:9999;';
+  document.body.appendChild(gift);
+  
+  setTimeout(() => {
+    gift.remove();
+    alert('📦 Package delivered! Purple power bank has arrived in London! 💜🔋');
+  }, 3000);
+}
+
+let shayaris = [
+  "Tum saath ho ya na ho, kya fark hai\nTumhari yaad ke sahare zinda hoon main",
+  "7000 km door ho, phir bhi dil ke kitne paas ho\nHar raat tumhari awaaz mein so jaata hoon",
+  "Tu khush, toh main khush\nYahi toh hai pyaar ka sabse seedha formula",
+  "London ki thand me bhi\nTeri baaton ki garmi mehsoos hoti hai"
+];
+
+let currentShayari = 0;
+
+function revealShayari() {
+  const container = document.getElementById('shayariText');
+  container.style.fontFamily = 'Permanent Marker, cursive';
+  container.style.fontSize = '1.3rem';
+  container.style.lineHeight = '2';
+  container.style.color = '#FFD700';
+  container.style.textAlign = 'center';
+  container.innerHTML = shayaris[currentShayari];
+  currentShayari = (currentShayari + 1) % shayaris.length;
+}
     document.addEventListener('keydown', (e) => { 
       if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) { 
         closeChapter(); 
