@@ -305,8 +305,14 @@ function triggerConfetti() {
 @keyframes confettiFall { 0% { transform:translateY(0) rotate(0deg); } 100% { transform:translateY(100vh) rotate(720deg); opacity:0; } }
     
     function toggleMusic() { const btn = document.getElementById('musicBtn'); musicPlaying = !musicPlaying; btn.textContent = musicPlaying ? '🔊' : '🔇'; }
-    function openGrid() { document.getElementById('newspaper').classList.add('hidden'); setTimeout(() => { document.getElementById('newspaper').style.display = 'none'; document.getElementById('chapterGrid').classList.add('active'); }, 1000); }
-    function openChapter(chapterNum) { const content = getChapterContent(chapterNum); document.getElementById('chapterContent').innerHTML = content; document.getElementById('viewerTitle').textContent = 'CHAPTER ' + chapterNum; document.getElementById('chapterViewer').classList.add('active'); document.getElementById('chapterGrid').style.display = 'none'; window.scrollTo(0, 0); }
+function openGrid() { 
+  document.getElementById('newspaper').classList.add('hidden'); 
+  setTimeout(() => { 
+    document.getElementById('newspaper').style.display = 'none'; 
+    document.getElementById('chapterGrid').classList.add('active'); 
+    document.getElementById('chapterGrid').style.display = 'block';
+  }, 1000); 
+}    function openChapter(chapterNum) { const content = getChapterContent(chapterNum); document.getElementById('chapterContent').innerHTML = content; document.getElementById('viewerTitle').textContent = 'CHAPTER ' + chapterNum; document.getElementById('chapterViewer').classList.add('active'); document.getElementById('chapterGrid').style.display = 'none'; window.scrollTo(0, 0); }
     function closeChapter() { document.getElementById('chapterViewer').classList.remove('active'); document.getElementById('chapterGrid').style.display = 'block'; }
 
     function getChapterContent(chapterNum) {
