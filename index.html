@@ -601,86 +601,87 @@
     }
 
     function getChapterContent(chapterNum) {
-      const chapters = {
-        1: `
-          <div class="chapter-title-section"><h1>CHAPTER 1</h1><p>Origin Story: The Boy from Juna Bilaspur</p></div>
-          <div class="comic-panel">
-            <div class="panel-header">JUNA BILASPUR, INDIA</div>
-            <div class="caption-box">Every hero has an origin. This one begins with trees, parrots, and endless cricket matches that only stopped when someone's mother yelled from the balcony.</div>
-            <div class="panel-text">
-              <h3>The City That Made Him</h3>
-              <p>Juna Bilaspur. Evening chai on sun-warmed terraces. Parrots slicing the sky at sunset. A boy growing up with three sisters, loving parents, and a home where doors—and hearts—were always open.</p>
-              <p>His room faced a beautiful tree. Every evening, he watched parrots return home in noisy, chaotic flocks. Much later, he would become the kind of person people return to — for advice, comfort, laughter, and the quiet reassurance that everything will be okay.</p>
-              <p>Cricket was not a hobby; it was a way of life. Stumps improvised from bricks. Bats older than the players. Arguments about rules that lasted longer than the match itself. Winning mattered — but playing together mattered more.</p>
-            </div>
+  function getChapterContent(chapterNum) {
+  const chapters = {
+    1: `
+      <div class="chapter-title-section"><h1>CHAPTER 1</h1><p>Origin Story: The Boy from Juna Bilaspur</p></div>
+      <div class="comic-panel">
+        <div class="panel-header">JUNA BILASPUR, INDIA</div>
+        <div class="caption-box">Every hero has an origin. This one begins with trees, parrots, and endless cricket matches that only stopped when someone's mother yelled from the balcony.</div>
+        <div class="panel-text">
+          <h3>The City That Made Him</h3>
+          <p>Juna Bilaspur. Evening chai on sun-warmed terraces. Parrots slicing the sky at sunset. A boy growing up with three sisters, loving parents, and a home where doors—and hearts—were always open.</p>
+          <p>His room faced a beautiful tree. Every evening, he watched parrots return home in noisy, chaotic flocks. Much later, he would become the kind of person people return to — for advice, comfort, laughter, and the quiet reassurance that everything will be okay.</p>
+          <p>Cricket was not a hobby; it was a way of life. Stumps improvised from bricks. Bats older than the players. Arguments about rules that lasted longer than the match itself. Winning mattered — but playing together mattered more.</p>
+        </div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <div class="cricket-bat" onclick="hitCricketBat()">🏏</div>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Click the bat for a SIX!</p>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE FOUNDATION</div>
+        <div class="panel-text">
+          <h3>Built by Love</h3>
+          <p><strong>From Aai:</strong> Generosity without calculation. The instinct to give first, ask later, and never keep score.</p>
+          <p><strong>From Pappa:</strong> Unwavering righteousness. Doing the right thing even when it's inconvenient, unpopular, or costs you something.</p>
+          <p>Three sisters taught him negotiation, empathy, and how to lose an argument gracefully (a skill he still practices, unsuccessfully). An aunt whose cooking achieved near-mythical status. Ganesh Chaturthi celebrations that spilled into the streets. Gupchup runs that were less about hunger and more about joy. Samosa missions conducted with military precision.</p>
+        </div>
+        <div class="speech-bubble">"Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off."</div>
+        <div class="caption-box">Historians agree: this was the moment his moral compass fully aligned.</div>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+          <div style="margin: 2rem 0;">
+            <div class="parrot-tree" onclick="releaseParrots()">🌳</div>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Click the tree to see parrots fly home!</p>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE FOUNDATION</div>
-            <div class="panel-text">
-              <h3>Built by Love</h3>
-              <p><strong>From Aai:</strong> Generosity without calculation. The instinct to give first, ask later, and never keep score.</p>
-              <p><strong>From Pappa:</strong> Unwavering righteousness. Doing the right thing even when it's inconvenient, unpopular, or costs you something.</p>
-              <p>Three sisters taught him negotiation, empathy, and how to lose an argument gracefully (a skill he still practices, unsuccessfully). An aunt whose cooking achieved near-mythical status. Ganesh Chaturthi celebrations that spilled into the streets. Gupchup runs that were less about hunger and more about joy. Samosa missions conducted with military precision.</p>
-            </div>
-            <div class="speech-bubble">"Samosas are superior to Kachoris, Saranya. Whoever disagrees can go straight, take right and fuck off."</div>
-            <div class="caption-box">Historians agree: this was the moment his moral compass fully aligned.</div>
-            
-            <div style="text-align: center; margin: 2rem 0;">
-              <div style="margin: 2rem 0;">
-                <div class="cricket-bat" onclick="hitCricketBat()">🏏</div>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Click the bat!</p>
-              </div>
-              
-              <div style="margin: 2rem 0;">
-                <div class="parrot-tree" onclick="releaseParrots()">🌳</div>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Click the tree to release parrots!</p>
-              </div>
-              
-              <div class="poll-container">
-                <h3 style="font-family: 'Bangers', cursive; font-size: 2rem;">SETTLE IT ONCE AND FOR ALL</h3>
-                <p style="margin: 1rem 0;">What's better?</p>
-                <button class="poll-btn" onclick="votePoll('samosa')">🥟 SAMOSA</button>
-                <button class="poll-btn" onclick="votePoll('kachori')">🥙 KACHORI</button>
-                <div id="pollResult" class="poll-result"></div>
-              </div>
-            </div>
+          
+          <div class="poll-container">
+            <h3 style="font-family: 'Bangers', cursive; font-size: 2rem;">⚖️ SETTLE IT ONCE AND FOR ALL ⚖️</h3>
+            <p style="margin: 1rem 0;">What's better?</p>
+            <button class="poll-btn" onclick="votePoll('samosa')">🥟 SAMOSA</button>
+            <button class="poll-btn" onclick="votePoll('kachori')">🥙 KACHORI</button>
+            <div id="pollResult" class="poll-result"></div>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">THREE HEROES, ONE DREAM</div>
-            <div class="panel-text"><h3>Every Hero Has Role Models. He Had Three.</h3></div>
-            <div class="hero-stats">
-              <div class="stat-box"><h4>🏏 SACHIN</h4><p>Master Blaster. Excellence without arrogance. Let your work speak louder than you ever need to.</p></div>
-              <div class="stat-box"><h4>🦇 BATMAN</h4><p>The Dark Knight. No superpowers. Just discipline, sacrifice, and showing up when no one's watching.</p></div>
-              <div class="stat-box"><h4>⚽ GERRARD</h4><p>Liverpool legend. Never gives up. Plays for the badge, not the applause. Fights till the final whistle.</p></div>
-            </div>
-            <div class="caption-box">Three lessons became law: Play with heart. Help without credit. Fight for what matters. Liverpool forever. No debates entertained.</div>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THREE HEROES, ONE DREAM</div>
+        <div class="panel-text"><h3>Every Hero Has Role Models. He Had Three.</h3></div>
+        <div class="hero-stats">
+          <div class="stat-box"><h4>🏏 SACHIN</h4><p>Master Blaster. Excellence without arrogance. Let your work speak louder than you ever need to.</p></div>
+          <div class="stat-box"><h4>🦇 BATMAN</h4><p>The Dark Knight. No superpowers. Just discipline, sacrifice, and showing up when no one's watching.</p></div>
+          <div class="stat-box"><h4>⚽ GERRARD</h4><p>Liverpool legend. Never gives up. Plays for the badge, not the applause. Fights till the final whistle.</p></div>
+        </div>
+        <div class="caption-box">Three lessons became law: Play with heart. Help without credit. Fight for what matters. Liverpool forever. No debates entertained.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">MEET THE HERO</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Akshay"></div>
+          <div class="panel-text">
+            <h3>AKSHAY</h3>
+            <p><strong>Age:</strong> 34 (like fine wine, but more athletic)</p>
+            <p><strong>Also Known As:</strong> Kaddu-Paddu, Quiz Master, Future London Detective, The Guy Who Somehow Knows This</p>
+            <p><strong>Powers:</strong> Radical generosity, Adventure endurance, Weaponised humor, Making time for everyone, Calm in chaos, Showing up always</p>
+            <p><strong>Weaknesses:</strong> Betting (believes he's "due" a win), Sleeping (optional, apparently), Spaghetti-related decision-making, Underestimating how much people adore him</p>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">MEET THE HERO</div>
-            <div class="panel-content-grid">
-              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7794.jpg" alt="Akshay"></div>
-              <div class="panel-text">
-                <h3>AKSHAY</h3>
-                <p><strong>Age:</strong> 34 (like fine wine, but more athletic)</p>
-                <p><strong>Also Known As:</strong> Kaddu-Paddu, Quiz Master, Future London Detective, The Guy Who Somehow Knows This</p>
-                <p><strong>Powers:</strong> Radical generosity, Adventure endurance, Weaponised humor, Making time for everyone, Calm in chaos, Showing up always</p>
-                <p><strong>Weaknesses:</strong> Betting (believes he's "due" a win), Sleeping (optional, apparently), Spaghetti-related decision-making, Underestimating how much people adore him</p>
-              </div>
-            </div>
-            <div class="speech-bubble">"Main theek hoon!" Adventure racing? Quiz championships? Bedtime stories across 7,000 km? Just another Tuesday.</div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">EARLY SIGNS OF GREATNESS</div>
-            <div class="panel-text">
-              <p>Teachers recall a quiet confidence. Friends recall loyalty that never wavered. Family recalls a boy who would give away his last sweet and still smile.</p>
-              <p>Even then, he had the rare ability to make people feel seen — whether they were teammates, siblings, or strangers passing through his life.</p>
-              <p style="font-size: 1.4rem; text-align: center; margin-top: 2rem;"><strong>What no one knew yet was that this boy from Juna Bilaspur was not just growing older.</strong></p>
-              <p style="font-size: 1.6rem; text-align: center; font-family: 'Permanent Marker', cursive;"><strong>He was growing into a legend.</strong></p>
-            </div>
-          </div>
-          <div class="sound-effect">TO BE CONTINUED...</div>
-        `,
-       2: `
+        </div>
+        <div class="speech-bubble">"Main theek hoon!" Adventure racing? Quiz championships? Bedtime stories across 7,000 km? Just another Tuesday.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">EARLY SIGNS OF GREATNESS</div>
+        <div class="panel-text">
+          <p>Teachers recall a quiet confidence. Friends recall loyalty that never wavered. Family recalls a boy who would give away his last sweet and still smile.</p>
+          <p>Even then, he had the rare ability to make people feel seen — whether they were teammates, siblings, or strangers passing through his life.</p>
+          <p style="font-size: 1.4rem; text-align: center; margin-top: 2rem;"><strong>What no one knew yet was that this boy from Juna Bilaspur was not just growing older.</strong></p>
+          <p style="font-size: 1.6rem; text-align: center; font-family: 'Permanent Marker', cursive;"><strong>He was growing into a legend.</strong></p>
+        </div>
+      </div>
+      <div class="sound-effect">TO BE CONTINUED...</div>
+    `,
+    2: `
       <div class="chapter-title-section"><h1>CHAPTER 2</h1><p>The Bangalore Era: Where Heroes Are Made</p></div>
       <div class="comic-panel">
         <div class="panel-header">BANGALORE, INDIA</div>
@@ -721,11 +722,26 @@
         </div>
         <div class="speech-bubble">"Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."</div>
         <p style="font-style: italic; text-align: center;">She watched anyway. He slept anyway. Balance was maintained.</p>
+        
+        <div class="chai-container">
+          <div id="chaiFlask" class="chai-flask" onclick="pourChai()">🫖</div>
+          <p style="font-size: 0.9rem;">Click to pour chai for two! ☕☕</p>
+          <div id="chaiMugs" class="chai-mugs">
+            <div>☕</div>
+            <div>☕</div>
+          </div>
+        </div>
       </div>
       <div class="comic-panel">
         <div class="panel-header">THE SPAGHETTI DISASTER</div>
         <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">BUBBLE. POP.</div>
         <div class="speech-bubble">"Pagluuu, this is authentic Italian. Trust the process."</div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <div id="pastaContainer" class="spaghetti-pot" onclick="popSpaghetti()">🍝</div>
+          <p style="font-size: 0.9rem;">Click the pot to see it bubble!</p>
+        </div>
+        
         <div class="panel-text" style="text-align: center;">
           <p>The process was not trusted.</p>
           <p>The spaghetti survived out of spite.</p>
@@ -779,6 +795,13 @@
           <p style="font-family: 'Permanent Marker', cursive; font-size: 1.3rem;">"It is our choices that show what we truly are."</p>
           <p><strong>And together, they kept choosing each other.</strong></p>
         </div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="audio-btn" id="sillySongBtn" onclick="playSillySong()">🎤 HEAR HIM SING</button>
+          <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
+            Warning: Extremely adorable. May cause uncontrollable smiling. 😊
+          </p>
+        </div>
       </div>
       <div class="comic-panel">
         <div class="panel-header">WORKPLACE ROMANCE</div>
@@ -807,23 +830,19 @@
         @keyframes spellcast { 0%, 100% { text-shadow: 0 0 5px #FFD700; } 50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FF6600; } }
         .applause-btn { background: linear-gradient(135deg, #FFD700, #FF6600); border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; cursor: pointer; border-radius: 50px; transition: all 0.3s; box-shadow: 4px 4px 0 #000; }
         .applause-btn:hover { transform: scale(1.1) rotate(-3deg); }
-        .applause-btn:active { transform: scale(0.95); }
         .bet-counter { background: #1a1a1a; border: 5px solid #FFD700; border-radius: 15px; padding: 2rem; text-align: center; }
         .bet-score { font-family: 'Bangers', cursive; font-size: 4rem; transition: all 0.3s; }
-        .bet-btn { background: #FF0000; color: white; border: 3px solid #000; padding: 0.8rem 1.5rem; font-family: 'Bangers', cursive; font-size: 1.2rem; cursor: pointer; margin: 0.5rem; border-radius: 10px; transition: all 0.2s; }
-        .bet-btn:hover { transform: scale(1.05); }
+        .bet-btn { background: #FF0000; color: white; border: 3px solid #000; padding: 0.8rem 1.5rem; font-family: 'Bangers', cursive; font-size: 1.2rem; cursor: pointer; margin: 0.5rem; border-radius: 10px; }
         .bet-btn.saranya { background: #FFD700; color: #000; }
-        .cycling-progress { background: #333; border-radius: 50px; height: 40px; overflow: hidden; border: 3px solid #000; position: relative; }
+        .cycling-progress { background: #333; border-radius: 50px; height: 40px; overflow: hidden; border: 3px solid #000; }
         .cycling-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6600); border-radius: 50px; transition: width 1s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
         .bike-icon { font-size: 1.5rem; animation: pedal 0.3s infinite; }
         @keyframes pedal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        .dhol-btn { background: #FF6600; border: 5px solid #000; border-radius: 50%; width: 120px; height: 120px; font-size: 3rem; cursor: pointer; transition: all 0.1s; box-shadow: 5px 5px 0 #000; }
-        .dhol-btn:active { transform: scale(0.9); box-shadow: 2px 2px 0 #000; }
+        .dhol-btn { background: #FF6600; border: 5px solid #000; border-radius: 50%; width: 120px; height: 120px; font-size: 3rem; cursor: pointer; box-shadow: 5px 5px 0 #000; }
         .dhol-text { font-family: 'Bangers', cursive; font-size: 2rem; color: #FF6600; text-shadow: 2px 2px 0 #000; }
         .gasp-btn { background: #FF0000; color: white; border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; cursor: pointer; border-radius: 10px; }
         .love-meter { background: linear-gradient(135deg, #ff6b6b, #ee5a24); border: 5px solid #000; border-radius: 20px; padding: 2rem; text-align: center; }
-        .heart-container { font-size: 4rem; cursor: pointer; transition: all 0.3s; display: inline-block; }
-        .heart-container:hover { transform: scale(1.2); }
+        .heart-container { font-size: 4rem; cursor: pointer; display: inline-block; }
         .love-count { font-family: 'Bangers', cursive; font-size: 2rem; color: white; text-shadow: 2px 2px 0 #000; }
       </style>
 
@@ -910,7 +929,7 @@
             <div style="margin: 1.5rem 0;">
               <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">300km: LOADING... 🎯</p>
               <div class="cycling-progress"><div class="cycling-fill" id="progress300" style="width: 0%;"><span class="bike-icon">🚴</span></div></div>
-              <button onclick="start300km()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-family: 'Bangers', cursive; cursor: pointer;">START THE RIDE 🚀</button>
+              <button onclick="start300km()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-family: 'Bangers', cursive; cursor: pointer; background: #FFD700; border: 3px solid #000; border-radius: 10px;">START THE RIDE 🚀</button>
             </div>
           </div>
         </div>
@@ -975,7 +994,7 @@
 
       <div class="comic-panel" style="background: linear-gradient(135deg, #FFD700 0%, #FF6600 100%); text-align: center;">
         <div class="sound-effect" style="color: #000; text-shadow: 3px 3px 0 #fff;">TO BE CONTINUED...</div>
-        <p style="font-size: 1.3rem; margin-top: 1rem;">Because with these two, there's always another story loading. 💛</p>
+        <p style="font-size: 1.3rem; margin-top: 1rem; color: #000;">Because with these two, there's always another story loading. 💛</p>
         <button onclick="triggerConfetti()" style="margin-top: 1.5rem; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; background: #000; color: #FFD700; border: none; border-radius: 50px; cursor: pointer;">🎉 CELEBRATE CHAPTER 3! 🎉</button>
       </div>
     `,
@@ -997,6 +1016,13 @@
           <div class="stat-box"><h4>🏠</h4><p>Made "home" a feeling, not a place</p></div>
         </div>
         <div class="caption-box">The distance was painful. But they chose each other. Every single day.</div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="audio-btn" id="homeAudioBtn" onclick="playHomeAudio()">🏠 HEAR HIM TALK TO HOME</button>
+          <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
+            Get ready to cry happy tears 💛
+          </p>
+        </div>
       </div>
       <div class="comic-panel">
         <div class="panel-header">VIRTUAL DATE NIGHTS</div>
@@ -1005,6 +1031,13 @@
           <div class="panel-text"><h3>Dressed Up, 7,000km Apart</h3><p>He wears white — her favorite.</p><p>She wears a saree, bindi, his favorite jhumkas.</p><p>Elaborate. Intentional. <strong>Romantic as hell.</strong></p></div>
         </div>
         <div class="speech-bubble">"Just because we're on a screen doesn't mean I won't dress up for you."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">STAYING CONNECTED</div>
+        <div style="text-align: center;">
+          <button class="video-call-btn" id="videoCallBtn" onclick="ringVideoCall()">📞 CALL AKSHAY</button>
+        </div>
+        <div class="caption-box">7,000 km feels like nothing when you hear "Hi Sarayu!"</div>
       </div>
       <div class="comic-panel">
         <div class="panel-header">THE EVERYDAY MAGIC</div>
@@ -1019,6 +1052,12 @@
       <div class="comic-panel">
         <div class="panel-header">SURPRISE DELIVERIES</div>
         <div class="panel-text"><h3>Gifts Across Continents</h3><p>Random. Thoughtful. Perfect.</p></div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <div style="font-size: 4rem; cursor: pointer; display: inline-block; transition: all 0.3s;" onclick="deliverGift()">🎁</div>
+          <p style="font-size: 0.9rem;">Click to send gift from India to London!</p>
+        </div>
+        
         <div class="hero-stats">
           <div class="stat-box"><h4>🧦</h4><p>Cute socks (because he knows)</p></div>
           <div class="stat-box"><h4>🕯️</h4><p>Candles for Diwali (so London felt like home)</p></div>
@@ -1032,6 +1071,14 @@
           <div class="panel-text"><h3>The Nightly Ritual</h3><p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">"Good night, sleep tight, I love you."</p><p>Every. Single. Night.</p><p>She cannot sleep without hearing it. Neither can he.</p><p style="font-style: italic; margin-top: 1rem;">(Sometimes he falls asleep during movies. She gets mad. He's still cute.)</p></div>
           <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_6123.PNG" alt="Sleeping on video call"></div>
         </div>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="audio-btn" id="goodnightAudioBtn" onclick="playGoodnightAudio()">🌙 HEAR OUR GOOD NIGHT MESSAGE</button>
+          <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
+            365+ nights. This is the one. 🌙💛
+          </p>
+        </div>
+        
         <div class="caption-box">365+ nights. Unbroken streak. This is what commitment looks like.</div>
       </div>
       <div class="comic-panel">
@@ -1052,6 +1099,12 @@
           <div class="panel-text"><h3>Shayaris That Heal</h3><p>When London feels cold and lonely, he sends poems.</p><p>He always knows exactly which shayari to send at exactly the right moment.</p><p><strong>Words across continents. Warmth that travels 7,000km.</strong></p></div>
         </div>
         <div class="speech-bubble">"Feeling low? Check your messages, Sarayu."</div>
+        
+        <div style="text-align: center; margin: 2rem 0; background: rgba(0,0,0,0.8); padding: 2rem; border-radius: 15px; border: 3px solid #FFD700;">
+          <button class="audio-btn" onclick="revealShayari()" style="background: #FF69B4;">💝 REVEAL SHAYARI 💝</button>
+          <div id="shayariText" style="margin-top: 1.5rem; min-height: 80px; color: #FFD700;"></div>
+          <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 1rem;">Click multiple times for different shayaris!</p>
+        </div>
       </div>
       <div class="comic-panel">
         <div class="panel-header">THE SILLY FIGHTS</div>
@@ -1064,9 +1117,8 @@
       </div>
     `
   };
-      return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
-    }
-
+  return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
+}
     document.addEventListener('keydown', (e) => { 
       if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) { 
         closeChapter(); 
