@@ -580,12 +580,12 @@
       }, 3000);
     }
 
-    let shayaris = [
-      "Tum saath ho ya na ho, kya fark hai\\nTumhari yaad ke sahare zinda hoon main",
-      "7000 km door ho, phir bhi dil ke kitne paas ho\\nHar raat tumhari awaaz mein so jaata hoon",
-      "Tu khush, toh main khush\\nYahi toh hai pyaar ka sabse seedha formula",
-      "London ki thand me bhi\\nTeri baaton ki garmi mehsoos hoti hai"
-    ];
+   let shayaris = [
+  "Tum saath ho ya na ho, kya fark hai<br>Tumhari yaad ke sahare zinda hoon main",
+  "7000 km door ho, phir bhi dil ke kitne paas ho<br>Har raat tumhari awaaz mein so jaata hoon",
+  "Tu khush, toh main khush<br>Yahi toh hai pyaar ka sabse seedha formula",
+  "London ki thand me bhi<br>Teri baaton ki garmi mehsoos hoti hai"
+];
 
     let currentShayari = 0;
 
@@ -600,7 +600,6 @@
       currentShayari = (currentShayari + 1) % shayaris.length;
     }
 
-    function getChapterContent(chapterNum) {
   function getChapterContent(chapterNum) {
   const chapters = {
     1: `
