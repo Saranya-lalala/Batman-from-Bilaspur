@@ -37,24 +37,8 @@
     .continue-button button:hover { background: #f4e8d0; color: #2c2c2c; transform: scale(1.05); }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
     
-    .chapter-grid-section { 
-      display: none !important;
-      opacity: 0; 
-      background: #1a1a1a; 
-      min-height: 100vh; 
-      padding: 4rem 2rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 5000;
-      overflow-y: auto;
-    }
-    .chapter-grid-section.active { 
-      display: block !important;
-      animation: fadeIn 1s forwards; 
-    }
+    .chapter-grid-section { display: none !important; opacity: 0; background: #1a1a1a; min-height: 100vh; padding: 4rem 2rem; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 5000; overflow-y: auto; }
+    .chapter-grid-section.active { display: block !important; animation: fadeIn 1s forwards; }
     @keyframes fadeIn { to { opacity: 1; } }
     
     .grid-header { text-align: center; margin-bottom: 4rem; }
@@ -72,18 +56,7 @@
     .read-btn { background: #2c2c2c; color: white; border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; text-transform: uppercase; cursor: pointer; margin-top: 1.5rem; transition: all 0.3s; box-shadow: 4px 4px 0 #000; }
     .read-btn:hover { background: #FFD700; color: #000; transform: translateY(-2px); box-shadow: 6px 6px 0 #000; }
     
-    .chapter-viewer { 
-      display: none; 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      bottom: 0; 
-      background: #1a1a1a; 
-      z-index: 20000; 
-      overflow-y: auto; 
-      padding: 2rem; 
-    }
+    .chapter-viewer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1a1a; z-index: 20000; overflow-y: auto; padding: 2rem; }
     .chapter-viewer.active { display: block; animation: fadeIn 0.3s; }
     .chapter-viewer-content { max-width: 1200px; margin: 0 auto; padding-bottom: 5rem; }
     .viewer-header { position: sticky; top: 0; background: rgba(26,26,26,0.95); padding: 1.5rem; z-index: 100; border-bottom: 4px solid #FFD700; margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; }
@@ -111,178 +84,41 @@
     .chapter-title-section h1 { font-family: 'Bangers', cursive; font-size: 5rem; color: #FFD700; text-transform: uppercase; letter-spacing: 4px; text-shadow: 5px 5px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; margin-bottom: 1rem; }
     .chapter-title-section p { font-family: 'Permanent Marker', cursive; font-size: 2rem; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
 
-    @keyframes floatUp { 
-      0% { opacity: 1; transform: translateY(0); } 
-      100% { opacity: 0; transform: translateY(-100px); } 
-    }
+    @keyframes floatUp { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-100px); } }
+    @keyframes confettiFall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 
-    @keyframes confettiFall { 
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; } 
-      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } 
-    }
+    .audio-btn { background: linear-gradient(135deg, #FFD700, #FF6600); border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; cursor: pointer; border-radius: 50px; transition: all 0.3s; box-shadow: 4px 4px 0 #000; margin: 1rem; display: inline-block; }
+    .audio-btn:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 6px 6px 0 #000; }
+    .audio-btn.playing { animation: audioPlaying 0.5s infinite; }
+    @keyframes audioPlaying { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    .audio-btn {
-      background: linear-gradient(135deg, #FFD700, #FF6600);
-      border: 4px solid #000;
-      padding: 1rem 2rem;
-      font-family: 'Bangers', cursive;
-      font-size: 1.3rem;
-      cursor: pointer;
-      border-radius: 50px;
-      transition: all 0.3s;
-      box-shadow: 4px 4px 0 #000;
-      margin: 1rem;
-      display: inline-block;
-    }
+    .chai-container { text-align: center; margin: 2rem 0; }
+    .chai-flask { font-size: 5rem; cursor: pointer; transition: all 0.3s; display: inline-block; }
+    .chai-flask:hover { transform: scale(1.1) rotate(-5deg); }
+    .chai-mugs { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; font-size: 3rem; opacity: 0; transition: opacity 0.5s; }
+    .chai-mugs.filled { opacity: 1; animation: fillMugs 1s forwards; }
+    @keyframes fillMugs { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
-    .audio-btn:hover {
-      transform: scale(1.05) rotate(-2deg);
-      box-shadow: 6px 6px 0 #000;
-    }
+    .cricket-bat { font-size: 4rem; cursor: pointer; transition: all 0.2s; display: inline-block; }
+    .cricket-bat:active { transform: rotate(45deg) scale(1.2); }
+    @keyframes sixPop { 0% { transform: scale(0) rotate(0deg); opacity: 1; } 50% { transform: scale(1.5) rotate(360deg); } 100% { transform: scale(1) rotate(360deg); opacity: 0; } }
 
-    .audio-btn.playing {
-      animation: audioPlaying 0.5s infinite;
-    }
+    .parrot-tree { font-size: 5rem; cursor: pointer; display: inline-block; }
+    @keyframes flyAcross { 0% { left: -100px; } 100% { left: 110%; } }
 
-    @keyframes audioPlaying {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    .spaghetti-pot { font-size: 5rem; cursor: pointer; position: relative; display: inline-block; }
+    @keyframes bubblePop { 0% { transform: scale(0) translateY(0); opacity: 1; } 50% { transform: scale(1.2) translateY(-30px); opacity: 1; } 100% { transform: scale(0) translateY(-60px); opacity: 0; } }
 
-    .chai-container {
-      text-align: center;
-      margin: 2rem 0;
-    }
+    .video-call-btn { background: #25D366; border: 5px solid #000; padding: 1.5rem 3rem; font-family: 'Bangers', cursive; font-size: 2rem; cursor: pointer; border-radius: 50px; box-shadow: 5px 5px 0 #000; margin: 2rem; }
+    .video-call-btn.ringing { animation: ringRing 0.5s infinite; }
+    @keyframes ringRing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
 
-    .chai-flask {
-      font-size: 5rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: inline-block;
-    }
+    .poll-container { background: #FFD700; border: 5px solid #000; padding: 2rem; margin: 2rem 0; border-radius: 15px; box-shadow: 6px 6px 0 #000; }
+    .poll-btn { background: white; border: 3px solid #000; padding: 1rem 2rem; margin: 0.5rem; font-family: 'Permanent Marker', cursive; font-size: 1.2rem; cursor: pointer; }
+    .poll-btn:hover { background: #FFD700; transform: scale(1.05); }
+    .poll-result { margin-top: 1rem; font-family: 'Bangers', cursive; font-size: 1.5rem; }
 
-    .chai-flask:hover {
-      transform: scale(1.1) rotate(-5deg);
-    }
-
-    .chai-mugs {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      font-size: 3rem;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-
-    .chai-mugs.filled {
-      opacity: 1;
-      animation: fillMugs 1s forwards;
-    }
-
-    @keyframes fillMugs {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    .cricket-bat {
-      font-size: 4rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-block;
-    }
-
-    .cricket-bat:active {
-      transform: rotate(45deg) scale(1.2);
-    }
-
-    @keyframes sixPop {
-      0% { transform: scale(0) rotate(0deg); opacity: 1; }
-      50% { transform: scale(1.5) rotate(360deg); }
-      100% { transform: scale(1) rotate(360deg); opacity: 0; }
-    }
-
-    .parrot-tree {
-      font-size: 5rem;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    @keyframes flyAcross {
-      0% { left: -100px; }
-      100% { left: 110%; }
-    }
-
-    .spaghetti-pot {
-      font-size: 5rem;
-      cursor: pointer;
-      position: relative;
-      display: inline-block;
-    }
-
-    @keyframes bubblePop {
-      0% { transform: scale(0) translateY(0); opacity: 1; }
-      50% { transform: scale(1.2) translateY(-30px); opacity: 1; }
-      100% { transform: scale(0) translateY(-60px); opacity: 0; }
-    }
-
-    .video-call-btn {
-      background: #25D366;
-      border: 5px solid #000;
-      padding: 1.5rem 3rem;
-      font-family: 'Bangers', cursive;
-      font-size: 2rem;
-      cursor: pointer;
-      border-radius: 50px;
-      box-shadow: 5px 5px 0 #000;
-      margin: 2rem;
-    }
-
-    .video-call-btn.ringing {
-      animation: ringRing 0.5s infinite;
-    }
-
-    @keyframes ringRing {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-10deg); }
-      75% { transform: rotate(10deg); }
-    }
-
-    .poll-container {
-      background: #FFD700;
-      border: 5px solid #000;
-      padding: 2rem;
-      margin: 2rem 0;
-      border-radius: 15px;
-      box-shadow: 6px 6px 0 #000;
-    }
-
-    .poll-btn {
-      background: white;
-      border: 3px solid #000;
-      padding: 1rem 2rem;
-      margin: 0.5rem;
-      font-family: 'Permanent Marker', cursive;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .poll-btn:hover {
-      background: #FFD700;
-      transform: scale(1.05);
-    }
-
-    .poll-result {
-      margin-top: 1rem;
-      font-family: 'Bangers', cursive;
-      font-size: 1.5rem;
-    }
-
-    @keyframes travelGift {
-      0% { left: 0%; top: 50%; }
-      50% { left: 50%; top: 20%; transform: scale(0.5); }
-      100% { left: 100%; top: 50%; transform: scale(1); }
-    }
+    @keyframes travelGift { 0% { left: 0%; top: 50%; } 50% { left: 50%; top: 20%; transform: scale(0.5); } 100% { left: 100%; top: 50%; transform: scale(1); } }
 
     @media (max-width: 768px) { .chapter-grid { grid-template-columns: 1fr; } .panel-content-grid { grid-template-columns: 1fr; } .hero-stats { grid-template-columns: 1fr; } .columns { grid-template-columns: 1fr; } }
   </style>
@@ -444,7 +280,6 @@
     </div>
     <div class="chapter-viewer-content" id="chapterContent"></div>
   </div>
-
   <script>
     const music = document.getElementById('bgMusic');
     let musicPlaying = false;
@@ -482,6 +317,287 @@
     function closeChapter() { 
       document.getElementById('chapterViewer').classList.remove('active'); 
       document.getElementById('chapterGrid').style.display = 'block'; 
+    }
+
+    // Audio playback functions
+    function playSillySong() {
+      const audio = document.getElementById('sillySong');
+      const btn = document.getElementById('sillySongBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.classList.add('playing');
+        btn.textContent = '⏸️ PAUSE THE CUTENESS';
+        audio.onended = () => {
+          btn.classList.remove('playing');
+          btn.textContent = '🎤 HEAR HIM SING';
+        };
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.classList.remove('playing');
+        btn.textContent = '🎤 HEAR HIM SING';
+      }
+    }
+
+    function playHomeAudio() {
+      const audio = document.getElementById('homeAudio');
+      const btn = document.getElementById('homeAudioBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.classList.add('playing');
+        btn.textContent = '⏸️ PAUSE';
+        audio.onended = () => {
+          btn.classList.remove('playing');
+          btn.textContent = '🏠 HEAR HIM TALK TO HOME';
+        };
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.classList.remove('playing');
+        btn.textContent = '🏠 HEAR HIM TALK TO HOME';
+      }
+    }
+
+    function playGoodnightAudio() {
+      const audio = document.getElementById('goodnightAudio');
+      const btn = document.getElementById('goodnightAudioBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.classList.add('playing');
+        btn.textContent = '⏸️ PAUSE';
+        audio.onended = () => {
+          btn.classList.remove('playing');
+          btn.textContent = '🌙 HEAR OUR GOOD NIGHT MESSAGE';
+        };
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.classList.remove('playing');
+        btn.textContent = '🌙 HEAR OUR GOOD NIGHT MESSAGE';
+      }
+    }
+
+    // Chapter 1 Interactive Functions
+    function hitCricketBat() {
+      const six = document.createElement('div');
+      six.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Bangers,cursive;font-size:4rem;color:#FFD700;text-shadow:3px 3px 0 #000;z-index:9999;animation:sixPop 1s forwards;';
+      six.textContent = 'SIX!';
+      document.body.appendChild(six);
+      setTimeout(() => six.remove(), 1000);
+    }
+
+    function releaseParrots() {
+      for(let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const parrot = document.createElement('div');
+          parrot.textContent = '🦜';
+          parrot.style.cssText = 'position:fixed;font-size:3rem;animation:flyAcross 3s forwards;z-index:9999;left:-100px;top:' + (Math.random() * 50 + 20) + '%;';
+          document.body.appendChild(parrot);
+          setTimeout(() => parrot.remove(), 3000);
+        }, i * 300);
+      }
+    }
+
+    let samosaVotes = 0;
+    let kachoriVotes = 0;
+
+    function votePoll(choice) {
+      if(choice === 'samosa') samosaVotes++;
+      else kachoriVotes++;
+      
+      const result = document.getElementById('pollResult');
+      result.innerHTML = '<p>🥟 Samosa: ' + samosaVotes + ' votes</p><p>🥙 Kachori: ' + kachoriVotes + ' votes</p><p style="color: #FF0000; margin-top: 1rem;">Akshay is still right. Samosas win. No debates.</p>';
+    }
+
+    // Chapter 2 Interactive Functions
+    function pourChai() {
+      const mugs = document.getElementById('chaiMugs');
+      const flask = document.getElementById('chaiFlask');
+      
+      flask.style.transform = 'rotate(45deg)';
+      setTimeout(() => {
+        mugs.classList.add('filled');
+        flask.style.transform = 'rotate(0deg)';
+      }, 500);
+    }
+
+    function popSpaghetti() {
+      const pot = document.getElementById('pastaContainer');
+      for(let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const bubble = document.createElement('div');
+          bubble.textContent = '💥';
+          bubble.style.cssText = 'position:absolute;font-size:2rem;left:' + (Math.random() * 100) + 'px;top:-50px;animation:bubblePop 0.8s forwards;';
+          pot.appendChild(bubble);
+          setTimeout(() => bubble.remove(), 800);
+        }, i * 200);
+      }
+    }
+
+    // Chapter 3 Interactive Functions
+    function triggerApplause() {
+      for(let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const clap = document.createElement('div');
+          clap.textContent = ['👏', '🎉', '✨', '🌟', '👑'][Math.floor(Math.random() * 5)];
+          clap.style.cssText = 'position:fixed;font-size:3rem;pointer-events:none;z-index:9999;left:' + (Math.random() * window.innerWidth) + 'px;top:' + (Math.random() * window.innerHeight) + 'px;animation:floatUp 1s forwards;';
+          document.body.appendChild(clap);
+          setTimeout(() => clap.remove(), 1000);
+        }, i * 100);
+      }
+    }
+
+    function tryBet() {
+      const scoreEl = document.getElementById('akshayScore');
+      if(scoreEl) {
+        scoreEl.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+          scoreEl.style.transform = 'scale(1)';
+          alert('Nice try, Pagluuu! 😂 Still 0%!');
+        }, 300);
+      }
+    }
+
+    function saranyaWins() {
+      const scoreEl = document.getElementById('saranyaScore');
+      if(scoreEl) {
+        scoreEl.style.transform = 'scale(1.3)';
+        setTimeout(() => scoreEl.style.transform = 'scale(1)', 300);
+      }
+      triggerConfetti();
+    }
+
+    function start300km() {
+      const progress = document.getElementById('progress300');
+      if(progress) {
+        let width = 0;
+        const interval = setInterval(() => {
+          width += 2;
+          progress.style.width = width + '%';
+          if(width >= 100) {
+            clearInterval(interval);
+            alert('🏆 300KM CONQUERED! Legend status: CONFIRMED!');
+            triggerConfetti();
+          }
+        }, 50);
+      }
+    }
+
+    let dholCount = 0;
+    const dholSounds = ['DHINA!', 'DIN!', 'THA!', 'DHINA-DIN-THA!', 'BOOM!', 'TAKA-TAKA!', 'DHAM!'];
+
+    function playDhol() {
+      dholCount++;
+      const text = document.getElementById('dholText');
+      const btn = document.getElementById('dholBtn');
+      if(text && btn) {
+        text.textContent = dholSounds[Math.floor(Math.random() * dholSounds.length)];
+        btn.style.transform = 'scale(0.9)';
+        setTimeout(() => btn.style.transform = 'scale(1)', 100);
+        if(dholCount > 10) {
+          text.textContent = '🔥 DHOL MASTER UNLOCKED! 🔥';
+        }
+      }
+    }
+
+    function triggerGasp() {
+      const text = document.getElementById('gaspText');
+      if(text) {
+        text.style.fontSize = '5rem';
+        text.textContent = '😱 GASP!!!';
+        setTimeout(() => {
+          text.style.fontSize = '2.5rem';
+          text.textContent = 'GASP!';
+        }, 1000);
+      }
+    }
+
+    let loveCount = 0;
+
+    function clickHeart() {
+      loveCount++;
+      const countEl = document.getElementById('loveCount');
+      const heart = document.getElementById('heartBtn');
+      if(countEl) countEl.textContent = loveCount;
+      if(heart) {
+        heart.style.transform = 'scale(1.3)';
+        setTimeout(() => heart.style.transform = 'scale(1)', 300);
+      }
+      
+      if(loveCount === 50) alert('50 loves! You really love them! 💕');
+      if(loveCount === 100) { 
+        alert('💯 MAXIMUM LOVE ACHIEVED! 💯'); 
+        triggerConfetti(); 
+      }
+      
+      const floatHeart = document.createElement('div');
+      floatHeart.textContent = '❤️';
+      floatHeart.style.cssText = 'position:fixed;font-size:2rem;pointer-events:none;animation:floatUp 1s forwards;z-index:9999;left:' + (Math.random()*window.innerWidth) + 'px;top:' + (Math.random()*window.innerHeight) + 'px;';
+      document.body.appendChild(floatHeart);
+      setTimeout(() => floatHeart.remove(), 1000);
+    }
+
+    function triggerConfetti() {
+      const colors = ['#FFD700', '#FF0000', '#00FF00', '#FF69B4', '#00BFFF', '#FF6600'];
+      for(let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.style.cssText = 'position:fixed;width:10px;height:10px;pointer-events:none;z-index:9999;left:' + (Math.random() * window.innerWidth) + 'px;top:-20px;background:' + colors[Math.floor(Math.random() * colors.length)] + ';border-radius:' + (Math.random() > 0.5 ? '50%' : '0') + ';animation:confettiFall 3s forwards;';
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+    }
+
+    // Chapter 4 Interactive Functions
+    function ringVideoCall() {
+      const btn = document.getElementById('videoCallBtn');
+      btn.classList.add('ringing');
+      btn.textContent = '📞 RINGING...';
+      
+      setTimeout(() => {
+        btn.classList.remove('ringing');
+        btn.textContent = '💕 CONNECTED!';
+        btn.style.background = '#FF69B4';
+        setTimeout(() => alert('💛 "Hi Sarayu! Tu khush?"'), 500);
+      }, 2000);
+      
+      setTimeout(() => {
+        btn.textContent = '📞 CALL AKSHAY';
+        btn.style.background = '#25D366';
+      }, 5000);
+    }
+
+    function deliverGift() {
+      const gift = document.createElement('div');
+      gift.textContent = '🎁';
+      gift.style.cssText = 'position:fixed;font-size:3rem;animation:travelGift 3s forwards;z-index:9999;';
+      document.body.appendChild(gift);
+      
+      setTimeout(() => {
+        gift.remove();
+        alert('📦 Package delivered! Purple power bank has arrived in London! 💜🔋');
+      }, 3000);
+    }
+
+    let shayaris = [
+      "Tum saath ho ya na ho, kya fark hai\\nTumhari yaad ke sahare zinda hoon main",
+      "7000 km door ho, phir bhi dil ke kitne paas ho\\nHar raat tumhari awaaz mein so jaata hoon",
+      "Tu khush, toh main khush\\nYahi toh hai pyaar ka sabse seedha formula",
+      "London ki thand me bhi\\nTeri baaton ki garmi mehsoos hoti hai"
+    ];
+
+    let currentShayari = 0;
+
+    function revealShayari() {
+      const container = document.getElementById('shayariText');
+      container.style.fontFamily = 'Permanent Marker, cursive';
+      container.style.fontSize = '1.3rem';
+      container.style.lineHeight = '2';
+      container.style.color = '#FFD700';
+      container.style.textAlign = 'center';
+      container.innerHTML = shayaris[currentShayari];
+      currentShayari = (currentShayari + 1) % shayaris.length;
     }
 
     function getChapterContent(chapterNum) {
@@ -564,211 +680,398 @@
           </div>
           <div class="sound-effect">TO BE CONTINUED...</div>
         `,
-        2: `
-          <div class="chapter-title-section"><h1>CHAPTER 2</h1><p>The Bangalore Era: Where Heroes Are Made</p></div>
-          <div class="comic-panel">
-            <div class="panel-header">BANGALORE, INDIA</div>
-            <div class="caption-box">Every hero leaves home. Every hero finds himself somewhere unexpected. For this one, it was Bangalore — a city of traffic, filter coffee, rainstorms that arrive unannounced, and lives quietly transforming between office hours and late-night conversations.</div>
+       2: `
+      <div class="chapter-title-section"><h1>CHAPTER 2</h1><p>The Bangalore Era: Where Heroes Are Made</p></div>
+      <div class="comic-panel">
+        <div class="panel-header">BANGALORE, INDIA</div>
+        <div class="caption-box">Every hero leaves home. Every hero finds himself somewhere unexpected. For this one, it was Bangalore — a city of traffic, filter coffee, rainstorms that arrive unannounced, and lives quietly transforming between office hours and late-night conversations.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE INTERVIEW</div>
+        <div class="panel-text">
+          <h3>History Balanced on a Mouse Click</h3>
+          <p>She was hiring. He was applying.</p>
+          <p>"I reviewed his application. Competent. Qualified. Solid."</p>
+          <p>Pause.</p>
+          <p>"But I hesitated. Almost clicked 'reject.'"</p>
+          <p>She didn't know that a single yes would become morning chai, endless laughter, and someone who would read bedtime stories from 7,000 km away like distance was merely a suggestion.</p>
+          <p>He didn't know that walking into that role would change not just his career — but the shape of his life.</p>
+        </div>
+        <div class="caption-box"><strong>Best hiring decision ever made.</strong> HR textbooks remain silent on this outcome.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE DECISION</div>
+        <div class="panel-text">
+          <p>The job offer came. So did curiosity. Then comfort. Then something quieter and stronger — <strong>trust.</strong></p>
+          <p>Work turned into teamwork. Conversations stretched past agendas. Silences became easy.</p>
+          <p>Somewhere between deadlines and dumb jokes, a partnership formed — first professional, then personal, then unshakeable.</p>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">MAKING HOME</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home"></div>
+          <div class="panel-text">
+            <h3>Building Together</h3>
+            <p>Tiny rooms that felt enormous because they were shared.</p>
+            <p>Morning chai that appeared like magic.</p>
+            <p>Evening Amul walks that became sacred.</p>
+            <p>Home became less about walls and more about rhythm — shared mornings, shared exhaustion, shared laughter over nothing at all.</p>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE INTERVIEW</div>
-            <div class="panel-text">
-              <h3>History Balanced on a Mouse Click</h3>
-              <p>She was hiring. He was applying.</p>
-              <p>"I reviewed his application. Competent. Qualified. Solid."</p>
-              <p>Pause.</p>
-              <p>"But I hesitated. Almost clicked 'reject.'"</p>
-              <p>She didn't know that a single yes would become morning chai, endless laughter, and someone who would read bedtime stories from 7,000 km away like distance was merely a suggestion.</p>
-              <p>He didn't know that walking into that role would change not just his career — but the shape of his life.</p>
-            </div>
-            <div class="caption-box"><strong>Best hiring decision ever made.</strong> HR textbooks remain silent on this outcome.</div>
+        </div>
+        <div class="speech-bubble">"Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."</div>
+        <p style="font-style: italic; text-align: center;">She watched anyway. He slept anyway. Balance was maintained.</p>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE SPAGHETTI DISASTER</div>
+        <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">BUBBLE. POP.</div>
+        <div class="speech-bubble">"Pagluuu, this is authentic Italian. Trust the process."</div>
+        <div class="panel-text" style="text-align: center;">
+          <p>The process was not trusted.</p>
+          <p>The spaghetti survived out of spite.</p>
+          <p>The sauce gave up early.</p>
+          <p>But the laughter? That stayed long after the plates were cleared.</p>
+        </div>
+        <div class="caption-box">Historians later agreed: this was not a failure. This was a bonding exercise disguised as dinner.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE BANGALORE MAP</div>
+        <div class="caption-box">Every couple has their landmarks — places that hold memories like invisible pins on a map.</div>
+        <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="stat-box"><h4>☕ AMUL</h4><p>"Tu mera sabse bada distraction hai." Neither tried to fix this.</p></div>
+          <div class="stat-box"><h4>🍫 LAVONNE</h4><p>Hot chocolate = You. Non-negotiable.</p></div>
+          <div class="stat-box"><h4>🍕 TAAZA THINDI</h4><p>Morning dosa ritual. Proof that love thrives before 9 a.m.</p></div>
+          <div class="stat-box"><h4>🎳 BOWLING</h4><p>He won. Obviously. Grace was shown. Barely.</p></div>
+          <div class="stat-box"><h4>🎪 SODABOTTLE</h4><p>Sitting for hours. Making up stories about strangers. Building entire universes that existed only for an evening.</p></div>
+          <div class="stat-box"><h4>🏨 UB CITY</h4><p>Dressed up. City lights. Feeling like the world belonged to them — and for a moment, it did.</p></div>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">VALENTINE'S DAY 2025</div>
+        <div class="panel-text"><h3>The Saree Bet</h3>
+          <p>A bet was made. A dare was issued. Valentine's Day was weaponised.</p>
+          <p><strong>Condition:</strong> If she wanted to win, she must wear a saree.</p>
+          <p>What nobody predicted was his move.</p>
+        </div>
+        <div class="panel-content-grid">
+          <div class="panel-text">
+            <p style="font-size: 1.3rem;">He showed up wearing <strong>THE EXACT SAME SHADE OF BLUE</strong> as her saree.</p>
+            <p>Chaos. Shock. Applause from the universe.</p>
+            <p><strong>The first kiss followed</strong> — perfectly timed, perfectly placed, impossible to forget.</p>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE DECISION</div>
-            <div class="panel-text">
-              <p>The job offer came. So did curiosity. Then comfort. Then something quieter and stronger — <strong>trust.</strong></p>
-              <p>Work turned into teamwork. Conversations stretched past agendas. Silences became easy.</p>
-              <p>Somewhere between deadlines and dumb jokes, a partnership formed — first professional, then personal, then unshakeable.</p>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">MAKING HOME</div>
-            <div class="panel-content-grid">
-              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/2862322a-aaa1-4805-b85c-cd8a6e48e1b1.jpg" alt="Home"></div>
-              <div class="panel-text">
-                <h3>Building Together</h3>
-                <p>Tiny rooms that felt enormous because they were shared.</p>
-                <p>Morning chai that appeared like magic.</p>
-                <p>Evening Amul walks that became sacred.</p>
-                <p>Home became less about walls and more about rhythm — shared mornings, shared exhaustion, shared laughter over nothing at all.</p>
-              </div>
-            </div>
-            <div class="speech-bubble">"Sarayu yaar, raat ko neend nahi aaye toh akele Modern Family mat dekho. Mujhe utha dena."</div>
-            <p style="font-style: italic; text-align: center;">She watched anyway. He slept anyway. Balance was maintained.</p>
-            
-            <div class="chai-container">
-              <div id="chaiFlask" class="chai-flask" onclick="pourChai()">🫖</div>
-              <p style="font-size: 0.9rem;">Click to pour chai for two!</p>
-              <div id="chaiMugs" class="chai-mugs">
-                <div>☕</div>
-                <div>☕</div>
-              </div>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE SPAGHETTI DISASTER</div>
-            <div class="sound-effect" style="font-size: 2.5rem; color: #FF0000;">BUBBLE. POP.</div>
-            <div class="speech-bubble">"Pagluuu, this is authentic Italian. Trust the process."</div>
-            <div style="text-align: center; margin: 2rem 0;">
-              <div id="pastaContainer" class="spaghetti-pot" onclick="popSpaghetti()">🍝</div>
-              <p style="font-size: 0.9rem;">Click the pot!</p>
-            </div>
-            <div class="panel-text" style="text-align: center;">
-              <p>The process was not trusted.</p>
-              <p>The spaghetti survived out of spite.</p>
-              <p>The sauce gave up early.</p>
-              <p>But the laughter? That stayed long after the plates were cleared.</p>
-            </div>
-            <div class="caption-box">Historians later agreed: this was not a failure. This was a bonding exercise disguised as dinner.</div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE BANGALORE MAP</div>
-            <div class="caption-box">Every couple has their landmarks — places that hold memories like invisible pins on a map.</div>
-            <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
-              <div class="stat-box"><h4>☕ AMUL</h4><p>"Tu mera sabse bada distraction hai." Neither tried to fix this.</p></div>
-              <div class="stat-box"><h4>🍫 LAVONNE</h4><p>Hot chocolate = You. Non-negotiable.</p></div>
-              <div class="stat-box"><h4>🍕 TAAZA THINDI</h4><p>Morning dosa ritual. Proof that love thrives before 9 a.m.</p></div>
-              <div class="stat-box"><h4>🎳 BOWLING</h4><p>He won. Obviously. Grace was shown. Barely.</p></div>
-              <div class="stat-box"><h4>🎪 SODABOTTLE</h4><p>Sitting for hours. Making up stories about strangers. Building entire universes that existed only for an evening.</p></div>
-              <div class="stat-box"><h4>🏨 UB CITY</h4><p>Dressed up. City lights. Feeling like the world belonged to them — and for a moment, it did.</p></div>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">VALENTINE'S DAY 2025</div>
-            <div class="panel-text"><h3>The Saree Bet</h3>
-              <p>A bet was made. A dare was issued. Valentine's Day was weaponised.</p>
-              <p><strong>Condition:</strong> If she wanted to win, she must wear a saree.</p>
-              <p>What nobody predicted was his move.</p>
-            </div>
-            <div class="panel-content-grid">
-              <div class="panel-text">
-                <p style="font-size: 1.3rem;">He showed up wearing <strong>THE EXACT SAME SHADE OF BLUE</strong> as her saree.</p>
-                <p>Chaos. Shock. Applause from the universe.</p>
-                <p><strong>The first kiss followed</strong> — perfectly timed, perfectly placed, impossible to forget.</p>
-              </div>
-              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Valentine"></div>
-            </div>
-            <div class="speech-bubble">"Okay okay loserrrr!" Pause. "But... wow."</div>
-            <div class="caption-box">She wore the saree. Won the bet. He lost his heart completely.</div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">PARTNERSHIP</div>
-            <div class="panel-text"><h3>Competitive Everything</h3></div>
-            <div class="hero-stats">
-              <div class="stat-box"><h4>MORNINGS</h4><p>Crossword. Wordle. Silent wars.</p></div>
-              <div class="stat-box"><h4>EVENINGS</h4><p>Cinema. Lit fests. Long walks debating plots and politics.</p></div>
-              <div class="stat-box"><h4>NIGHTS</h4><p>Singing lyrics about her — sometimes confidently, sometimes very wrong.</p></div>
-            </div>
-            <div class="speech-bubble">"Panchayat and hot chocolate tonight?"</div>
-            <div class="panel-text" style="text-align: center; margin-top: 1.5rem;">
-              <p>Inside jokes multiplied. Harry Potter Hindi titles became lore.</p>
-              <p>Dumbledore wisdom became gospel:</p>
-              <p style="font-family: 'Permanent Marker', cursive; font-size: 1.3rem;">"It is our choices that show what we truly are."</p>
-              <p><strong>And together, they kept choosing each other.</strong></p>
-            </div>
-            
-            <div style="text-align: center; margin: 2rem 0;">
-              <button class="audio-btn" id="sillySongBtn" onclick="playSillySong()">🎤 HEAR HIM SING</button>
-              <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
-                Warning: Extremely adorable. May cause uncontrollable smiling.
-              </p>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">WORKPLACE ROMANCE</div>
-            <div class="speech-bubble">"I'm an undercover agent. Nobody suspects."</div>
-            <div class="panel-text" style="text-align: center;">
-              <p>Everyone suspected. Everyone was delighted.</p>
-              <p>Glances across desks. Inside jokes during meetings. Professionalism maintained just well enough to be believable.</p>
-              <p>What started in resumes and review calls became something far greater — a partnership built on admiration, respect, and an endless supply of teasing.</p>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">END OF CHAPTER</div>
-            <div class="panel-text" style="text-align: center;">
-              <p style="font-size: 1.2rem; line-height: 1.8;">Bangalore didn't just make the hero stronger.</p>
-              <p style="font-size: 1.2rem; line-height: 1.8;">It gave him love.</p>
-              <p style="font-size: 1.2rem; line-height: 1.8;">It gave him a teammate.</p>
-              <p style="font-size: 1.2rem; line-height: 1.8;">It gave him a story worth telling.</p>
-              <p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; margin-top: 1.5rem;"><strong>And this was only the beginning.</strong></p>
-            </div>
-          </div>
-          <div class="sound-effect">TO BE CONTINUED...</div>
-        `,
-        3: `[CHAPTER 3 - Too long to show here, but it's included with all interactive elements]`,
-        4: `[CHAPTER 4 - Also included with all interactive audio buttons]`
-      };
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/166de4a0-ef78-44ac-8cb3-1e810577d87e.JPG" alt="Valentine"></div>
+        </div>
+        <div class="speech-bubble">"Okay okay loserrrr!" Pause. "But... wow."</div>
+        <div class="caption-box">She wore the saree. Won the bet. He lost his heart completely.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">PARTNERSHIP</div>
+        <div class="panel-text"><h3>Competitive Everything</h3></div>
+        <div class="hero-stats">
+          <div class="stat-box"><h4>MORNINGS</h4><p>Crossword. Wordle. Silent wars.</p></div>
+          <div class="stat-box"><h4>EVENINGS</h4><p>Cinema. Lit fests. Long walks debating plots and politics.</p></div>
+          <div class="stat-box"><h4>NIGHTS</h4><p>Singing lyrics about her — sometimes confidently, sometimes very wrong.</p></div>
+        </div>
+        <div class="speech-bubble">"Panchayat and hot chocolate tonight?"</div>
+        <div class="panel-text" style="text-align: center; margin-top: 1.5rem;">
+          <p>Inside jokes multiplied. Harry Potter Hindi titles became lore.</p>
+          <p>Dumbledore wisdom became gospel:</p>
+          <p style="font-family: 'Permanent Marker', cursive; font-size: 1.3rem;">"It is our choices that show what we truly are."</p>
+          <p><strong>And together, they kept choosing each other.</strong></p>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">WORKPLACE ROMANCE</div>
+        <div class="speech-bubble">"I'm an undercover agent. Nobody suspects."</div>
+        <div class="panel-text" style="text-align: center;">
+          <p>Everyone suspected. Everyone was delighted.</p>
+          <p>Glances across desks. Inside jokes during meetings. Professionalism maintained just well enough to be believable.</p>
+          <p>What started in resumes and review calls became something far greater — a partnership built on admiration, respect, and an endless supply of teasing.</p>
+        </div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">END OF CHAPTER</div>
+        <div class="panel-text" style="text-align: center;">
+          <p style="font-size: 1.2rem; line-height: 1.8;">Bangalore didn't just make the hero stronger.</p>
+          <p style="font-size: 1.2rem; line-height: 1.8;">It gave him love.</p>
+          <p style="font-size: 1.2rem; line-height: 1.8;">It gave him a teammate.</p>
+          <p style="font-size: 1.2rem; line-height: 1.8;">It gave him a story worth telling.</p>
+          <p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; margin-top: 1.5rem;"><strong>And this was only the beginning.</strong></p>
+        </div>
+      </div>
+      <div class="sound-effect">TO BE CONTINUED...</div>
+    `,
+    3: `
+      <style>
+        .storyteller-effect { animation: spellcast 3s infinite; }
+        @keyframes spellcast { 0%, 100% { text-shadow: 0 0 5px #FFD700; } 50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FF6600; } }
+        .applause-btn { background: linear-gradient(135deg, #FFD700, #FF6600); border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; cursor: pointer; border-radius: 50px; transition: all 0.3s; box-shadow: 4px 4px 0 #000; }
+        .applause-btn:hover { transform: scale(1.1) rotate(-3deg); }
+        .applause-btn:active { transform: scale(0.95); }
+        .bet-counter { background: #1a1a1a; border: 5px solid #FFD700; border-radius: 15px; padding: 2rem; text-align: center; }
+        .bet-score { font-family: 'Bangers', cursive; font-size: 4rem; transition: all 0.3s; }
+        .bet-btn { background: #FF0000; color: white; border: 3px solid #000; padding: 0.8rem 1.5rem; font-family: 'Bangers', cursive; font-size: 1.2rem; cursor: pointer; margin: 0.5rem; border-radius: 10px; transition: all 0.2s; }
+        .bet-btn:hover { transform: scale(1.05); }
+        .bet-btn.saranya { background: #FFD700; color: #000; }
+        .cycling-progress { background: #333; border-radius: 50px; height: 40px; overflow: hidden; border: 3px solid #000; position: relative; }
+        .cycling-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6600); border-radius: 50px; transition: width 1s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
+        .bike-icon { font-size: 1.5rem; animation: pedal 0.3s infinite; }
+        @keyframes pedal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        .dhol-btn { background: #FF6600; border: 5px solid #000; border-radius: 50%; width: 120px; height: 120px; font-size: 3rem; cursor: pointer; transition: all 0.1s; box-shadow: 5px 5px 0 #000; }
+        .dhol-btn:active { transform: scale(0.9); box-shadow: 2px 2px 0 #000; }
+        .dhol-text { font-family: 'Bangers', cursive; font-size: 2rem; color: #FF6600; text-shadow: 2px 2px 0 #000; }
+        .gasp-btn { background: #FF0000; color: white; border: 4px solid #000; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.3rem; cursor: pointer; border-radius: 10px; }
+        .love-meter { background: linear-gradient(135deg, #ff6b6b, #ee5a24); border: 5px solid #000; border-radius: 20px; padding: 2rem; text-align: center; }
+        .heart-container { font-size: 4rem; cursor: pointer; transition: all 0.3s; display: inline-block; }
+        .heart-container:hover { transform: scale(1.2); }
+        .love-count { font-family: 'Bangers', cursive; font-size: 2rem; color: white; text-shadow: 2px 2px 0 #000; }
+      </style>
+
+      <div class="chapter-title-section"><h1>CHAPTER 3</h1><p>The Adventures: Conquering Everything</p></div>
       
-      if(chapterNum === 3) {
-        return `<!-- Chapter 3 with all interactive elements -->`; // The full chapter 3 code would go here
-      }
-      
-      if(chapterNum === 4) {
-        return `
-          <div class="chapter-title-section"><h1>CHAPTER 4</h1><p>Long Distance: 7,000 Kilometers of Love</p></div>
-          <div class="comic-panel">
-            <div class="panel-header">7,000 KM APART</div>
-            <div class="caption-box">They said long distance doesn't work. They clearly haven't met these two.</div>
-            <div class="panel-text"><h3>The Distance</h3><p>Just months after they found each other, life pulled them 7,000 kilometers apart. London called. Bilaspur stayed.</p><p>It came too soon. It hurt like hell. But giving up? <strong>Never an option.</strong></p></div>
-            <div class="speech-bubble">"Tu khush, toh main khush. Even from 7,000km away."</div>
+      <div class="comic-panel">
+        <div class="panel-header">THE STORYTELLER</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_7518.jpg" alt="Storyteller"></div>
+          <div class="panel-text">
+            <h3 class="storyteller-effect">Room Goes Silent</h3>
+            <p>Everyone stops when Akshay tells a story. He transports you. Every detail vivid.</p>
+            <p>Not just "listening" silence. The <em>lean-forward, chai-forgotten, mouth-half-open</em> silence. Even ceiling fans slow down to hear him better.</p>
+            <p>He doesn't narrate — <strong>he casts spells.</strong> Side characters get arcs. Background noises get emotions. Somewhere between sentence three and dramatic pause two, you forget where you are entirely.</p>
           </div>
-          <div class="comic-panel">
-            <div class="panel-header">THE HARD PARTS</div>
-            <div class="panel-text"><h3>What They Survived</h3><p>Life-altering losses. Health crises. Days when she couldn't get out of bed. Tough financial times. Loneliness that hit like waves.</p><p>But through every storm, they made each other their anchor.</p></div>
-            <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
-              <div class="stat-box"><h4>📞</h4><p>Calls during the mundane — chai, coffee, walking home alone</p></div>
-              <div class="stat-box"><h4>🫂</h4><p>Anchor through losses no one else understood</p></div>
-              <div class="stat-box"><h4>💪</h4><p>Pushed each other when getting up felt impossible</p></div>
-              <div class="stat-box"><h4>🏠</h4><p>Made "home" a feeling, not a place</p></div>
+        </div>
+        <div class="caption-box">
+          <strong>#1 fan? Sarayu. Obviously.</strong><br>
+          Front row. Permanent subscription. Laughs before the punchline. Defends the story in post-story debates like it's peer-reviewed research.
+        </div>
+        <p style="text-align: center; margin-top: 1rem; font-style: italic;">Master storyteller. Everyone leans in. Nobody checks phones. Superpower.</p>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">QUIZ CHAMPIONS</div>
+        <div class="panel-text">
+          <h3>Last-Minute Answer</h3>
+          <p>Final question. Teams stumped. Clock ticking.</p>
+          <p>Panic in the air. Whispers. Fake confidence. That one teammate Googling mentally and failing.</p>
+          <p style="font-size: 1.5rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">Akshay: "Wait... I know this one!"</p>
+          <p style="text-align: center;">Cue cinematic zoom-in. Cue Saranya already smiling because she knows.</p>
+        </div>
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="applause-btn" onclick="triggerApplause()">👏 APPLAUD THE GENIUS 👏</button>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">(Click to celebrate!)</p>
+        </div>
+        <div class="caption-box">
+          <strong>Perfect. Dramatic. Crowd clapping. Every time.</strong><br>
+          Even the quizmaster is impressed but pretending not to be.<br><br>
+          <strong>Record: UNDEFEATED.</strong> Her strategy + His brilliance = Glory.<br>
+          She plots. He delivers.
+        </div>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">BET WARS</div>
+        <div class="bet-counter">
+          <p style="color: #FFD700; font-family: 'Bangers', cursive; font-size: 1.5rem; margin-bottom: 1rem;">📊 OFFICIAL BET SCOREBOARD 📊</p>
+          <div style="display: flex; justify-content: center; gap: 3rem; align-items: center;">
+            <div>
+              <p style="color: #FF6666; font-size: 1.2rem;">AKSHAY</p>
+              <p class="bet-score" style="color: #FF0000;" id="akshayScore">0%</p>
             </div>
-            <div class="caption-box">The distance was painful. But they chose each other. Every single day.</div>
-            
-            <div style="text-align: center; margin: 2rem 0;">
-              <button class="audio-btn" id="homeAudioBtn" onclick="playHomeAudio()">🏠 HEAR HIM TALK TO HOME</button>
-              <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
-                Get ready to cry happy tears 💛
-              </p>
-            </div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">SLEEPING TOGETHER, APART</div>
-            <div class="panel-content-grid">
-              <div class="panel-text"><h3>The Nightly Ritual</h3><p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">"Good night, sleep tight, I love you."</p><p>Every. Single. Night.</p><p>She cannot sleep without hearing it. Neither can he.</p></div>
-              <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_6123.PNG" alt="Sleeping on video call"></div>
-            </div>
-            
-            <div style="text-align: center; margin: 2rem 0;">
-              <button class="audio-btn" id="goodnightAudioBtn" onclick="playGoodnightAudio()">🌙 HEAR OUR GOOD NIGHT MESSAGE</button>
-              <p style="font-size: 0.9rem; font-style: italic; color: #888; margin-top: 0.5rem;">
-                365+ nights. This is the one. 🌙💛
-              </p>
-            </div>
-            
-            <div class="caption-box">365+ nights. Unbroken streak. This is what commitment looks like.</div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">STAYING CONNECTED</div>
-            <div style="text-align: center;">
-              <button class="video-call-btn" id="videoCallBtn" onclick="ringVideoCall()">📞 CALL AKSHAY</button>
-            </div>
-            <div class="caption-box">7,000 km feels like nothing when you hear "Hi Sarayu!"</div>
-          </div>
-          <div class="comic-panel">
-            <div class="panel-header">SURPRISE DELIVERIES</div>
-            <div class="panel-text"><h3>Gifts Across Continents</h3><p>Random. Thoughtful. Perfect.</p></div>
-            <div style="text-align: center; margin: 2rem 0;">
-              <div style="font-size: 4rem; cursor: pointer; display: inline-block;" onclick="deliverGift()">🎁</div>
-              <p style="font-size: 0.9rem;">Click to send gift from India to London!</p>
+            <div style="color: #FFD700; font-size: 2rem;">VS</div>
+            <div>
+              <p style="color: #FFD700; font-size: 1.2rem;">SARANYA</p>
+              <p class="bet-score" style="color: #FFD700;" id="saranyaScore">100%</p>
             </div>
           </div>
-          <div class="comic
+          <p style="color: #888; margin-top: 1rem; font-size: 0.9rem;">Statistics don't lie. History has receipts.</p>
+          <div style="margin-top: 1.5rem;">
+            <button class="bet-btn" onclick="tryBet()">🎲 Akshay tries another bet</button>
+            <button class="bet-btn saranya" onclick="saranyaWins()">👑 Saranya wins (obviously)</button>
+          </div>
+        </div>
+        <div class="speech-bubble" style="margin-top: 1.5rem;">"Double or nothing?" / "You owe me everything, Pagluuu!"</div>
+        <p style="text-align: center; font-style: italic; margin-top: 1rem;">Every bet starts with confidence. Every bet ends with negotiation. Somehow he still agrees to the next one.<br><strong>Hope is a dangerous thing.</strong></p>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">CYCLING CONQUEST</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_4818.jpg" alt="Cycling"></div>
+          <div class="panel-text">
+            <h3>The Journey</h3>
+            <div style="margin: 1.5rem 0;">
+              <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">150km: CONQUERED! 🏆</p>
+              <div class="cycling-progress"><div class="cycling-fill" style="width: 100%;"><span class="bike-icon">🚴</span></div></div>
+            </div>
+            <div style="margin: 1.5rem 0;">
+              <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">200km: DESTROYED! 🏆</p>
+              <div class="cycling-progress"><div class="cycling-fill" style="width: 100%;"><span class="bike-icon">🚴</span></div></div>
+            </div>
+            <div style="margin: 1.5rem 0;">
+              <p style="margin-bottom: 0.5rem; font-family: 'Bangers', cursive;">300km: LOADING... 🎯</p>
+              <div class="cycling-progress"><div class="cycling-fill" id="progress300" style="width: 0%;"><span class="bike-icon">🚴</span></div></div>
+              <button onclick="start300km()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-family: 'Bangers', cursive; cursor: pointer;">START THE RIDE 🚀</button>
+            </div>
+          </div>
+        </div>
+        <div class="speech-bubble">"These aged legs need a cycle upgrade or they'll mutiny."</div>
+        <p style="text-align: center; font-style: italic;">Says the man who finishes rides and immediately starts planning longer ones.<br><strong>Threatens rebellion. Delivers excellence.</strong></p>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">DHOL-TASHA DREAMS</div>
+        <div style="text-align: center; margin: 2rem 0;">
+          <p class="dhol-text" id="dholText">🥁 TAP THE DHOL! 🥁</p>
+          <button class="dhol-btn" onclick="playDhol()" id="dholBtn">🪘</button>
+          <p style="font-size: 0.9rem; margin-top: 1rem; color: #666;">Click repeatedly for MAXIMUM DHOL ENERGY!</p>
+        </div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_3327.jpg" alt="Dhol"></div>
+          <div class="panel-text">
+            <h3>Most Excited Human Ever</h3>
+            <p>Amateur? Yes. Skilled? Getting there. Excited? <strong>ABSOLUTELY.</strong></p>
+            <p>Volume: maximum. Enthusiasm: illegal in some neighbourhoods.</p>
+          </div>
+        </div>
+        <div class="speech-bubble">"Agle Ganpathi season mein toh main hi dhol bajaunga!"</div>
+        <p style="text-align: center; font-style: italic;">Local aunties already emotionally preparing.</p>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">FLIGHT DISASTER</div>
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="gasp-btn" onclick="triggerGasp()">😱 CLICK FOR DRAMATIC GASP</button>
+        </div>
+        <div class="sound-effect" id="gaspText" style="font-size: 2.5rem; color: #FF0000;">GASP!</div>
+        <div class="speech-bubble">"Ayy dayya! Mera flight toh KAL ka hai yaar!"</div>
+        <div class="panel-text" style="text-align: center;">
+          <p>The moment. The realisation. The pure, cinematic horror.</p>
+        </div>
+        <div class="caption-box">
+          <strong>Even heroes have moments.</strong> Cab driver still tells this story.<br>
+          Probably adds sound effects now. Probably says, "Very smart guy… but that day 😌"
+        </div>
+      </div>
+
+      <div class="comic-panel">
+        <div class="panel-header">TOGETHER</div>
+        <div class="panel-image" style="text-align: center;"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5157.jpg" alt="Together" style="max-width: 600px;"></div>
+        <div class="panel-text" style="text-align: center; margin: 1.5rem 0;">
+          <p>Cinema. Lit Fest. Stand-up. SodaBottle stories. Bowling.</p>
+          <p>Inside jokes no one else understands. Laughing at the same thing for the 47th time. Competing, collaborating, conspiring.</p>
+          <p><strong>Every moment an adventure. Together.</strong></p>
+        </div>
+        <div class="love-meter">
+          <p style="color: white; font-family: 'Bangers', cursive; font-size: 1.5rem;">💕 LOVE-O-METER 💕</p>
+          <div class="heart-container" onclick="clickHeart()" id="heartBtn">❤️</div>
+          <p class="love-count">Tap the heart! <span id="loveCount">0</span> loves</p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem;">How much do you love them? Keep clicking!</p>
+        </div>
+        <div class="speech-bubble" style="margin-top: 1.5rem; text-align: center;">
+          <p style="font-size: 1.5rem;">"Tu khush, toh main khush."</p>
+          <p style="font-size: 1rem; font-family: Georgia, serif; font-style: italic;">Soft. Simple. Deadly effective.</p>
+        </div>
+      </div>
+
+      <div class="comic-panel" style="background: linear-gradient(135deg, #FFD700 0%, #FF6600 100%); text-align: center;">
+        <div class="sound-effect" style="color: #000; text-shadow: 3px 3px 0 #fff;">TO BE CONTINUED...</div>
+        <p style="font-size: 1.3rem; margin-top: 1rem;">Because with these two, there's always another story loading. 💛</p>
+        <button onclick="triggerConfetti()" style="margin-top: 1.5rem; padding: 1rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; background: #000; color: #FFD700; border: none; border-radius: 50px; cursor: pointer;">🎉 CELEBRATE CHAPTER 3! 🎉</button>
+      </div>
+    `,
+    4: `
+      <div class="chapter-title-section"><h1>CHAPTER 4</h1><p>Long Distance: 7,000 Kilometers of Love</p></div>
+      <div class="comic-panel">
+        <div class="panel-header">7,000 KM APART</div>
+        <div class="caption-box">They said long distance doesn't work. They clearly haven't met these two.</div>
+        <div class="panel-text"><h3>The Distance</h3><p>Just months after they found each other, life pulled them 7,000 kilometers apart. London called. Bilaspur stayed.</p><p>It came too soon. It hurt like hell. But giving up? <strong>Never an option.</strong></p></div>
+        <div class="speech-bubble">"Tu khush, toh main khush. Even from 7,000km away."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE HARD PARTS</div>
+        <div class="panel-text"><h3>What They Survived</h3><p>Life-altering losses. Health crises. Days when she couldn't get out of bed. Tough financial times. Loneliness that hit like waves.</p><p>But through every storm, they made each other their anchor.</p></div>
+        <div class="hero-stats" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="stat-box"><h4>📞</h4><p>Calls during the mundane — chai, coffee, walking home alone</p></div>
+          <div class="stat-box"><h4>🫂</h4><p>Anchor through losses no one else understood</p></div>
+          <div class="stat-box"><h4>💪</h4><p>Pushed each other when getting up felt impossible</p></div>
+          <div class="stat-box"><h4>🏠</h4><p>Made "home" a feeling, not a place</p></div>
+        </div>
+        <div class="caption-box">The distance was painful. But they chose each other. Every single day.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">VIRTUAL DATE NIGHTS</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_5961.jpg" alt="Virtual Date Night"></div>
+          <div class="panel-text"><h3>Dressed Up, 7,000km Apart</h3><p>He wears white — her favorite.</p><p>She wears a saree, bindi, his favorite jhumkas.</p><p>Elaborate. Intentional. <strong>Romantic as hell.</strong></p></div>
+        </div>
+        <div class="speech-bubble">"Just because we're on a screen doesn't mean I won't dress up for you."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE EVERYDAY MAGIC</div>
+        <div class="panel-text"><h3>It's the Little Things</h3></div>
+        <div class="hero-stats">
+          <div class="stat-box"><h4>🎵 PLAYLISTS</h4><p>Created together. Listened together.</p></div>
+          <div class="stat-box"><h4>🍳 RECIPES</h4><p>Shared across continents</p></div>
+          <div class="stat-box"><h4>📱 REMINDERS</h4><p>"Call your mom." "Text your friend."</p></div>
+        </div>
+        <div class="caption-box">He has an incredible social life — and pushes her to build hers in London too. Love that makes you grow.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">SURPRISE DELIVERIES</div>
+        <div class="panel-text"><h3>Gifts Across Continents</h3><p>Random. Thoughtful. Perfect.</p></div>
+        <div class="hero-stats">
+          <div class="stat-box"><h4>🧦</h4><p>Cute socks (because he knows)</p></div>
+          <div class="stat-box"><h4>🕯️</h4><p>Candles for Diwali (so London felt like home)</p></div>
+          <div class="stat-box"><h4>🔋</h4><p>Purple power bank (because her battery ALWAYS dies)</p></div>
+        </div>
+        <div class="speech-bubble">"Pagluuu, your phone died AGAIN? Check your mailbox tomorrow."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">SLEEPING TOGETHER, APART</div>
+        <div class="panel-content-grid">
+          <div class="panel-text"><h3>The Nightly Ritual</h3><p style="font-size: 1.4rem; font-family: 'Permanent Marker', cursive; text-align: center; margin: 1.5rem 0;">"Good night, sleep tight, I love you."</p><p>Every. Single. Night.</p><p>She cannot sleep without hearing it. Neither can he.</p><p style="font-style: italic; margin-top: 1rem;">(Sometimes he falls asleep during movies. She gets mad. He's still cute.)</p></div>
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/IMG_6123.PNG" alt="Sleeping on video call"></div>
+        </div>
+        <div class="caption-box">365+ nights. Unbroken streak. This is what commitment looks like.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">AAAJJAAAWWW!</div>
+        <div class="sound-effect" style="font-size: 4rem;">AAAJJAAAWWW!</div>
+        <div class="panel-text" style="text-align: center;"><p>There's a video of his niece as a baby, saying "Aaajjaaawww!"</p><p>Now, whenever she says "I want to be home with you," he sends it.</p><p><strong>Instant comfort. Every time.</strong></p></div>
+        <div class="speech-bubble">"I miss you." / "Aaajjaaawww! 🥺"</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THEIR SONG</div>
+        <div class="panel-text" style="text-align: center;"><h3>🎵 The Anthem 🎵</h3><p style="font-size: 1.2rem; font-family: 'Permanent Marker', cursive; line-height: 2; margin: 1.5rem 0;">"I love you, you love me,<br>We make a happy family.<br>With a great big hug and a kiss from me to you,<br>Won't you say you love me too?"</p></div>
+        <div class="caption-box">Sung across timezones. Silly? Yes. Theirs? Absolutely.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE POET</div>
+        <div class="panel-content-grid">
+          <div class="panel-image"><img src="https://raw.githubusercontent.com/Saranya-lalala/Batman-from-Bilaspur/main/592834CF-DAD0-4522-978F-B1099AD67A9A.JPG" alt="Shayari"></div>
+          <div class="panel-text"><h3>Shayaris That Heal</h3><p>When London feels cold and lonely, he sends poems.</p><p>He always knows exactly which shayari to send at exactly the right moment.</p><p><strong>Words across continents. Warmth that travels 7,000km.</strong></p></div>
+        </div>
+        <div class="speech-bubble">"Feeling low? Check your messages, Sarayu."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">THE SILLY FIGHTS</div>
+        <div class="panel-text" style="text-align: center;"><h3>Their Only Argument</h3><p style="font-size: 1.3rem; margin: 1.5rem 0;">"I love you more."</p><p style="font-size: 1.3rem; margin: 1.5rem 0;">"No, I love YOU more."</p><p style="font-size: 1.3rem; margin: 1.5rem 0;">"Impossible. I love you MORE."</p><p style="font-style: italic;">(This continues indefinitely. No winner declared. Both victorious.)</p></div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-header">7,000 KM. ZERO DOUBTS.</div>
+        <div class="panel-text" style="text-align: center;"><h3>The Truth</h3><p style="font-size: 1.2rem; line-height: 1.8;">Long distance is hard.<br>Losing people is harder.<br>Health scares are terrifying.<br>Bad days feel endless.<br><br>But having someone who stays on call while you make chai?<br>Who sends shayaris at 2am?<br>Who dresses up in white for a video call date?<br>Who says "good night, sleep tight, I love you" for 365 nights straight?<br><br><strong>That's not hard. That's home.</strong></p></div>
+        <div class="sound-effect">TO BE CONTINUED...</div>
+      </div>
+    `
+  };
+      return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
+    }
+
+    document.addEventListener('keydown', (e) => { 
+      if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) { 
+        closeChapter(); 
+      } 
+    });
+  </script>
+</body>
+</html>
