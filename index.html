@@ -121,6 +121,30 @@
     @keyframes travelGift { 0% { left: 0%; top: 50%; } 50% { left: 50%; top: 20%; transform: scale(0.5); } 100% { left: 100%; top: 50%; transform: scale(1); } }
 
     @media (max-width: 768px) { .chapter-grid { grid-template-columns: 1fr; } .panel-content-grid { grid-template-columns: 1fr; } .hero-stats { grid-template-columns: 1fr; } .columns { grid-template-columns: 1fr; } }
+.mission-briefing { background: #000; color: #FFD700; border: 5px solid #FFD700; padding: 2rem; margin: 2rem 0; font-family: 'Courier New', monospace; border-radius: 10px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+.mission-briefing h3 { font-family: 'Bangers', cursive; font-size: 2rem; color: #FF0000; text-align: center; margin-bottom: 1rem; }
+.reason-card { background: white; border: 5px solid #000; padding: 2rem; margin: 2rem 0; border-radius: 10px; box-shadow: 8px 8px 0 #000; }
+.reason-number { background: #FF0000; color: white; font-family: 'Bangers', cursive; font-size: 2rem; padding: 0.5rem 1rem; border-radius: 50%; display: inline-block; margin-bottom: 1rem; }
+.problem-generator { background: #FF0000; border: 5px solid #FFD700; padding: 2rem; margin: 2rem 0; border-radius: 15px; text-align: center; }
+.problem-display { background: white; color: #000; padding: 1.5rem; margin: 1rem 0; border-radius: 10px; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+.map-lost { position: relative; height: 300px; background: #f0f0f0; border: 5px solid #000; margin: 2rem 0; overflow: hidden; border-radius: 10px; }
+.lost-marker { position: absolute; font-size: 3rem; animation: wanderLost 4s infinite; }
+@keyframes wanderLost { 0%, 100% { left: 20%; top: 20%; } 25% { left: 70%; top: 40%; } 50% { left: 40%; top: 70%; } 75% { left: 80%; top: 30%; } }
+.guinness-test { text-align: center; margin: 2rem 0; }
+.guinness-glass { font-size: 5rem; cursor: pointer; transition: all 0.3s; display: inline-block; }
+.guinness-glass:hover { transform: scale(1.1); }
+.training-route { background: linear-gradient(135deg, #00FF00, #00AA00); border: 5px solid #000; padding: 2rem; margin: 2rem 0; border-radius: 15px; }
+.route-progress { background: #333; height: 30px; border-radius: 20px; overflow: hidden; margin: 1rem 0; }
+.route-fill { height: 100%; background: #FFD700; width: 0%; transition: width 2s ease; }
+.letter-container { background: linear-gradient(to bottom, #fff9e6, #ffe6cc); border: 8px solid #8B4513; padding: 3rem; margin: 3rem auto; max-width: 900px; box-shadow: 15px 15px 0 rgba(0,0,0,0.3); font-family: 'Georgia', serif; font-size: 1.15rem; line-height: 1.9; color: #2c2c2c; }
+.letter-header { text-align: center; font-family: 'Permanent Marker', cursive; font-size: 2.5rem; color: #8B4513; margin-bottom: 2rem; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+.letter-signature { text-align: right; font-style: italic; margin-top: 2rem; font-size: 1.2rem; }
+.hidden-surprise { text-align: center; margin: 4rem 0; opacity: 0; animation: fadeInSlow 2s forwards 1s; }
+@keyframes fadeInSlow { to { opacity: 1; } }
+.surprise-btn { background: linear-gradient(135deg, #FF0000, #FF6600); border: 6px solid #000; padding: 2rem 4rem; font-family: 'Bangers', cursive; font-size: 2rem; cursor: pointer; border-radius: 50px; box-shadow: 8px 8px 0 #000; }
+.surprise-reveal { background: #000; color: #FFD700; border: 5px solid #FFD700; padding: 3rem; margin: 2rem auto; max-width: 800px; border-radius: 15px; font-family: 'Bangers', cursive; font-size: 2.5rem; text-align: center; display: none; box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+.surprise-reveal.show { display: block; animation: revealPop 0.5s forwards; }
+@keyframes revealPop { 0% { transform: scale(0); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
   </style>
 </head>
 <body>
@@ -1114,10 +1138,9 @@
         <div class="panel-text" style="text-align: center;"><h3>The Truth</h3><p style="font-size: 1.2rem; line-height: 1.8;">Long distance is hard.<br>Losing people is harder.<br>Health scares are terrifying.<br>Bad days feel endless.<br><br>But having someone who stays on call while you make chai?<br>Who sends shayaris at 2am?<br>Who dresses up in white for a video call date?<br>Who says "good night, sleep tight, I love you" for 365 nights straight?<br><br><strong>That's not hard. That's home.</strong></p></div>
         <div class="sound-effect">TO BE CONTINUED...</div>
       </div>
-    `
-    ,
-5:
-    <div class="chapter-title-section"><h1>CHAPTER 5</h1><p>Mission: London - The Batman Must Come</p></div>
+  `,
+    5: `
+      <div class="chapter-title-section"><h1>CHAPTER 5</h1><p>Mission: London - The Batman Must Come</p></div>
   
   <div class="comic-panel">
     <div class="mission-briefing">
@@ -1292,8 +1315,8 @@
       <span style="font-size: 1.5rem; color: #FF6600;">Stay tuned, Batman. 😉</span>
     </p>
   </div>
-    \`
-`};
+    `
+  };
     
   return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
 }
