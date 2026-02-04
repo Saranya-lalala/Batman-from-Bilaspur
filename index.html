@@ -264,12 +264,12 @@
         <p class="chapter-desc">7,000 kilometers apart. 365 nights of reading. Gifts across continents. "Aaajjaaawww!" Making London feel less lonely.</p>
         <button class="read-btn">READ CHAPTER 4 →</button>
       </div>
-      <div class="chapter-box coming-soon">
-        <div class="chapter-number">CHAPTER 5</div>
-        <h2>Mission: London</h2>
-        <p class="chapter-desc">A girl lost in London streets. Dark secrets to uncover. Batman's greatest mission yet. The mystery awaits...</p>
-        <p style="margin-top: auto; font-style: italic; color: #666;">Coming soon...</p>
-      </div>
+     <div class="chapter-box" onclick="openChapter(5)">
+  <div class="chapter-number">CHAPTER 5</div>
+  <h2>Mission: London</h2>
+  <p class="chapter-desc">Why Batman must come to London. 5 reasons. 1 truth. And one final surprise...</p>
+  <button class="read-btn">READ CHAPTER 5 →</button>
+</div>
     </div>
   </div>
 
@@ -1116,7 +1116,71 @@
       </div>
     `
   };
+
   return chapters[chapterNum] || '<p style="color: white; text-align: center; font-size: 2rem;">Coming soon...</p>';
+}
+    // Chapter 5 Interactive Functions
+const londonProblems = [
+  "It's too cold. Again.",
+  "My Oyster card isn't working. Why is it never working?",
+  "I got lost going to Tesco. It's literally 5 minutes away.",
+  "The tube is delayed. I'm going to be late for class.",
+  "I miss you. That's the problem.",
+  "Why is coffee £4.50? FOUR POUNDS FIFTY!",
+  "My phone died. Obviously. Purple power bank where are you?",
+  "I can't decide what to eat. Call me back please.",
+  "The weather app lied. It's raining. I'm soaked.",
+  "Robeson House lift is broken. I'm on floor 17. Send help."
+];
+
+function generateProblem() {
+  const display = document.getElementById('problemDisplay');
+  const randomProblem = londonProblems[Math.floor(Math.random() * londonProblems.length)];
+  display.textContent = randomProblem;
+}
+
+function startLondonTraining() {
+  const route = document.getElementById('londonRoute');
+  const status = document.getElementById('trainingStatus');
+  
+  status.textContent = 'Training started! 🚴';
+  
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 5;
+    route.style.width = progress + '%';
+    
+    if(progress === 50) status.textContent = 'Halfway! Keep going! 💪';
+    if(progress === 100) {
+      clearInterval(interval);
+      status.textContent = '✅ Training complete! London roads conquered! Paris 2027, here we come! 🏆';
+      triggerConfetti();
+    }
+  }, 100);
+}
+
+const guinnessReactions = [
+  "😳 'Wait... this is actually really good?'",
+  "🤔 'Hmmm. Interesting. Very interesting.'",
+  "😋 'Okay I understand the hype now.'",
+  "🍺 'One more please!' (Narrator: He's converted.)",
+  "💭 'Why don't we have this in India?!'"
+];
+
+function tasteGuinness() {
+  const reaction = document.getElementById('guinnessReaction');
+  const randomReaction = guinnessReactions[Math.floor(Math.random() * guinnessReactions.length)];
+  reaction.textContent = randomReaction;
+}
+
+function revealSurprise() {
+  const reveal = document.getElementById('surpriseReveal');
+  reveal.classList.add('show');
+  triggerConfetti();
+  
+  setTimeout(() => {
+    reveal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 300);
 }
     document.addEventListener('keydown', (e) => { 
       if (e.key === 'Escape' && document.getElementById('chapterViewer').classList.contains('active')) { 
